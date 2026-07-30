@@ -35,12 +35,16 @@ Lucide · Zustand · React Hook Form · Zod · React Router · Dexie (IndexedDB)
 
 Everything is static — there is no backend.
 
-**Vercel** — import the repo. `vercel.json` sets the SPA rewrite and asset caching.
+**Vercel** — import the repo and accept the detected defaults. `vercel.json` sets the SPA rewrite
+and immutable asset caching. There are no environment variables; there is no backend.
 
-**GitHub Pages** — `.github/workflows/deploy-pages.yml` builds and publishes on push to `main`.
-Project sites are served from a sub-path, so the workflow passes `VITE_BASE=/<repo>/`; the router
-picks that up via `import.meta.env.BASE_URL`, and the build emits a `404.html` copy of `index.html`
-so deep links resolve.
+**Serving from a sub-path** — set `VITE_BASE=/<path>/` at build time. The router reads it via
+`import.meta.env.BASE_URL`, and the build emits a `404.html` copy of `index.html` so deep links
+resolve on hosts without SPA rewrites (GitHub Pages, S3).
+
+> **Pick the app's URL once and keep it.** Projects live in IndexedDB, which is scoped per *origin*.
+> Moving the app between origins later — `example.com` → `app.example.com` — leaves every existing
+> user's data stranded on the old one.
 
 ---
 
