@@ -1,0 +1,100 @@
+import { SlidersHorizontal } from 'lucide-react'
+import type { SectionDefinition } from '@/types/section'
+
+export const functionalRequirementsSection: SectionDefinition = {
+  id: 'functional-requirements',
+  order: 6,
+  title: 'Functional Requirements',
+  description: 'What the system must do, prioritised and testable.',
+  icon: SlidersHorizontal,
+  weight: 1.3,
+  fields: [
+    {
+      kind: 'repeater',
+      name: 'requirements',
+      label: 'Requirements',
+      itemLabel: 'Requirement',
+      titleField: 'title',
+      required: true,
+      minItems: 1,
+      span: 2,
+      help: 'MoSCoW priorities keep trade-off conversations short.',
+      fields: [
+        { kind: 'text', name: 'reference', label: 'Ref', placeholder: 'FR-01' },
+        { kind: 'text', name: 'title', label: 'Title', required: true },
+        { kind: 'textarea', name: 'description', label: 'Description', rows: 2, span: 2 },
+        {
+          kind: 'textarea',
+          name: 'userStory',
+          label: 'User story',
+          placeholder: 'As a … I want … so that …',
+          rows: 2,
+          span: 2,
+        },
+        {
+          kind: 'list',
+          name: 'acceptanceCriteria',
+          label: 'Acceptance criteria',
+          itemLabel: 'Criterion',
+          span: 2,
+        },
+        {
+          kind: 'select',
+          name: 'priority',
+          label: 'Priority',
+          options: [
+            { value: 'must', label: 'Must have' },
+            { value: 'should', label: 'Should have' },
+            { value: 'could', label: 'Could have' },
+            { value: 'wont', label: "Won't have (this release)" },
+          ],
+        },
+        {
+          kind: 'select',
+          name: 'complexity',
+          label: 'Complexity',
+          options: [
+            { value: 'low', label: 'Low' },
+            { value: 'medium', label: 'Medium' },
+            { value: 'high', label: 'High' },
+            { value: 'unknown', label: 'Needs investigation' },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'repeater',
+      name: 'userRoles',
+      label: 'User roles & permissions',
+      itemLabel: 'Role',
+      titleField: 'name',
+      span: 2,
+      fields: [
+        { kind: 'text', name: 'name', label: 'Role', required: true },
+        { kind: 'textarea', name: 'permissions', label: 'Permissions', rows: 2, span: 2 },
+      ],
+    },
+    {
+      kind: 'list',
+      name: 'integrations',
+      label: 'Third-party integrations',
+      itemLabel: 'Integration',
+      placeholder: 'e.g. HubSpot forms, Algolia search',
+    },
+    {
+      kind: 'list',
+      name: 'nonFunctional',
+      label: 'Non-functional requirements',
+      itemLabel: 'Requirement',
+      placeholder: 'e.g. Page interactive within 2s on 4G',
+    },
+    {
+      kind: 'textarea',
+      name: 'notes',
+      label: 'Notes & open questions',
+      rows: 2,
+      span: 2,
+      scored: false,
+    },
+  ],
+}

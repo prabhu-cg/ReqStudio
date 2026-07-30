@@ -1,0 +1,98 @@
+import { Users } from 'lucide-react'
+import type { SectionDefinition } from '@/types/section'
+
+export const targetAudienceSection: SectionDefinition = {
+  id: 'target-audience',
+  order: 3,
+  title: 'Target Audience',
+  description: 'Who the site is for, what they are trying to do, and what gets in their way.',
+  icon: Users,
+  weight: 1.1,
+  fields: [
+    {
+      kind: 'textarea',
+      name: 'primaryAudience',
+      label: 'Primary audience',
+      placeholder: 'The group the experience is optimised for.',
+      required: true,
+      rows: 2,
+      span: 2,
+    },
+    {
+      kind: 'textarea',
+      name: 'secondaryAudience',
+      label: 'Secondary audiences',
+      placeholder: 'Groups that must be served, but do not drive design decisions.',
+      rows: 2,
+      span: 2,
+    },
+    {
+      kind: 'repeater',
+      name: 'personas',
+      label: 'Personas',
+      itemLabel: 'Persona',
+      titleField: 'name',
+      required: true,
+      minItems: 1,
+      span: 2,
+      fields: [
+        { kind: 'text', name: 'name', label: 'Name', placeholder: 'e.g. Procurement Priya', required: true },
+        { kind: 'text', name: 'role', label: 'Role / job title' },
+        { kind: 'textarea', name: 'context', label: 'Context', rows: 2, span: 2 },
+        { kind: 'list', name: 'goals', label: 'Goals', itemLabel: 'Goal', span: 2 },
+        { kind: 'list', name: 'painPoints', label: 'Pain points', itemLabel: 'Pain point', span: 2 },
+        {
+          kind: 'multiselect',
+          name: 'devices',
+          label: 'Primary devices',
+          options: [
+            { value: 'desktop', label: 'Desktop' },
+            { value: 'tablet', label: 'Tablet' },
+            { value: 'mobile', label: 'Mobile' },
+            { value: 'assistive', label: 'Assistive technology' },
+          ],
+        },
+        {
+          kind: 'select',
+          name: 'techSavviness',
+          label: 'Digital confidence',
+          options: [
+            { value: 'low', label: 'Low' },
+            { value: 'medium', label: 'Medium' },
+            { value: 'high', label: 'High' },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'list',
+      name: 'userJourneys',
+      label: 'Key user journeys',
+      itemLabel: 'Journey',
+      placeholder: 'e.g. Search → compare plans → request a demo',
+      span: 2,
+    },
+    {
+      kind: 'textarea',
+      name: 'accessibilityAudience',
+      label: 'Accessibility considerations',
+      placeholder: 'Known assistive technology use, cognitive load concerns, language levels.',
+      rows: 2,
+      span: 2,
+    },
+    {
+      kind: 'tags',
+      name: 'locales',
+      label: 'Languages & regions',
+      placeholder: 'Add a locale and press Enter',
+      suggestions: ['en-GB', 'en-US', 'fr-FR', 'de-DE', 'es-ES', 'ar', 'zh-CN'],
+    },
+    {
+      kind: 'text',
+      name: 'researchSource',
+      label: 'Research source',
+      placeholder: 'e.g. 12 stakeholder interviews, Jan 2026',
+      scored: false,
+    },
+  ],
+}

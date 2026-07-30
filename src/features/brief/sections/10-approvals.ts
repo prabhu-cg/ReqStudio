@@ -1,0 +1,81 @@
+import { Stamp } from 'lucide-react'
+import type { SectionDefinition } from '@/types/section'
+
+export const approvalsSection: SectionDefinition = {
+  id: 'approvals',
+  order: 10,
+  title: 'Approvals',
+  description: 'Who signs this brief off, how, and by when.',
+  icon: Stamp,
+  fields: [
+    {
+      kind: 'repeater',
+      name: 'approvers',
+      label: 'Approvers',
+      itemLabel: 'Approver',
+      titleField: 'name',
+      required: true,
+      minItems: 1,
+      span: 2,
+      fields: [
+        { kind: 'text', name: 'name', label: 'Name', required: true },
+        { kind: 'text', name: 'role', label: 'Role' },
+        { kind: 'text', name: 'organisation', label: 'Organisation' },
+        { kind: 'text', name: 'email', label: 'Email' },
+        {
+          kind: 'select',
+          name: 'status',
+          label: 'Status',
+          options: [
+            { value: 'pending', label: 'Pending' },
+            { value: 'reviewing', label: 'Reviewing' },
+            { value: 'changes-requested', label: 'Changes requested' },
+            { value: 'approved', label: 'Approved' },
+          ],
+        },
+        { kind: 'date', name: 'approvedOn', label: 'Approved on' },
+      ],
+    },
+    {
+      kind: 'textarea',
+      name: 'signOffProcess',
+      label: 'Sign-off process',
+      placeholder: 'How approval is requested, tracked and evidenced.',
+      required: true,
+      rows: 3,
+      span: 2,
+    },
+    {
+      kind: 'number',
+      name: 'reviewCycles',
+      label: 'Included review cycles',
+      min: 0,
+      max: 20,
+      suffix: 'rounds',
+    },
+    { kind: 'date', name: 'targetApprovalDate', label: 'Target approval date' },
+    {
+      kind: 'textarea',
+      name: 'changeControl',
+      label: 'Change control',
+      placeholder: 'What happens when scope changes after sign-off?',
+      rows: 3,
+      span: 2,
+    },
+    {
+      kind: 'text',
+      name: 'documentVersion',
+      label: 'Document version',
+      placeholder: 'e.g. v1.0',
+      scored: false,
+    },
+    {
+      kind: 'textarea',
+      name: 'notes',
+      label: 'Notes',
+      rows: 2,
+      span: 2,
+      scored: false,
+    },
+  ],
+}

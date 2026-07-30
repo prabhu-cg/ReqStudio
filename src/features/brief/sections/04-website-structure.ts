@@ -1,0 +1,86 @@
+import { Network } from 'lucide-react'
+import type { SectionDefinition } from '@/types/section'
+
+export const websiteStructureSection: SectionDefinition = {
+  id: 'website-structure',
+  order: 4,
+  title: 'Website Structure',
+  description: 'Navigation model, information architecture and URL strategy.',
+  icon: Network,
+  fields: [
+    {
+      kind: 'select',
+      name: 'navigationModel',
+      label: 'Navigation model',
+      required: true,
+      options: [
+        { value: 'flat', label: 'Flat', description: 'All primary pages one click from home' },
+        { value: 'hierarchical', label: 'Hierarchical', description: 'Parent sections with children' },
+        { value: 'hub-and-spoke', label: 'Hub and spoke', description: 'Topic hubs linking to detail' },
+        { value: 'mega-menu', label: 'Mega menu', description: 'Large multi-column navigation' },
+        { value: 'task-based', label: 'Task based', description: 'Organised around user jobs' },
+      ],
+    },
+    {
+      kind: 'number',
+      name: 'maxDepth',
+      label: 'Maximum depth',
+      placeholder: '3',
+      min: 1,
+      max: 8,
+      suffix: 'levels',
+    },
+    {
+      kind: 'list',
+      name: 'primaryNavigation',
+      label: 'Primary navigation',
+      itemLabel: 'Nav item',
+      placeholder: 'e.g. Products',
+      required: true,
+    },
+    {
+      kind: 'list',
+      name: 'secondaryNavigation',
+      label: 'Secondary / utility navigation',
+      itemLabel: 'Nav item',
+      placeholder: 'e.g. Support, Login',
+    },
+    {
+      kind: 'list',
+      name: 'footerGroups',
+      label: 'Footer groups',
+      itemLabel: 'Group',
+      placeholder: 'e.g. Company — About, Careers, Press',
+      span: 2,
+    },
+    {
+      kind: 'textarea',
+      name: 'urlStrategy',
+      label: 'URL strategy',
+      placeholder: 'Patterns, casing, localisation prefixes, redirect rules from the old site.',
+      rows: 3,
+      span: 2,
+    },
+    {
+      kind: 'textarea',
+      name: 'sitemapNotes',
+      label: 'Information architecture notes',
+      placeholder: 'Card-sort findings, naming decisions, contested labels.',
+      rows: 3,
+      span: 2,
+    },
+    {
+      kind: 'switch',
+      name: 'multilingual',
+      label: 'Multilingual site',
+      help: 'Turn on if content is published in more than one language.',
+      scored: false,
+    },
+    {
+      kind: 'switch',
+      name: 'searchRequired',
+      label: 'Site search required',
+      scored: false,
+    },
+  ],
+}

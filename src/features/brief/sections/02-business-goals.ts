@@ -1,0 +1,91 @@
+import { Target } from 'lucide-react'
+import type { SectionDefinition } from '@/types/section'
+
+export const businessGoalsSection: SectionDefinition = {
+  id: 'business-goals',
+  order: 2,
+  title: 'Business Goals',
+  description: 'The commercial outcomes the site is accountable for, and how they get measured.',
+  icon: Target,
+  weight: 1.2,
+  fields: [
+    {
+      kind: 'textarea',
+      name: 'primaryGoal',
+      label: 'Primary business goal',
+      placeholder: 'The single outcome that matters most.',
+      required: true,
+      rows: 2,
+      span: 2,
+    },
+    {
+      kind: 'repeater',
+      name: 'goals',
+      label: 'Measurable goals',
+      itemLabel: 'Goal',
+      titleField: 'goal',
+      required: true,
+      minItems: 1,
+      span: 2,
+      help: 'Each goal needs a metric and a target, or it is a wish.',
+      fields: [
+        { kind: 'text', name: 'goal', label: 'Goal', required: true, span: 2 },
+        { kind: 'text', name: 'metric', label: 'Metric', placeholder: 'e.g. Demo requests / month' },
+        { kind: 'text', name: 'baseline', label: 'Baseline', placeholder: 'e.g. 40' },
+        { kind: 'text', name: 'target', label: 'Target', placeholder: 'e.g. 100' },
+        {
+          kind: 'select',
+          name: 'timeframe',
+          label: 'Timeframe',
+          options: [
+            { value: 'launch', label: 'At launch' },
+            { value: '3-months', label: 'Within 3 months' },
+            { value: '6-months', label: 'Within 6 months' },
+            { value: '12-months', label: 'Within 12 months' },
+          ],
+        },
+        {
+          kind: 'select',
+          name: 'priority',
+          label: 'Priority',
+          options: [
+            { value: 'critical', label: 'Critical' },
+            { value: 'high', label: 'High' },
+            { value: 'medium', label: 'Medium' },
+            { value: 'low', label: 'Low' },
+          ],
+        },
+      ],
+    },
+    {
+      kind: 'list',
+      name: 'kpis',
+      label: 'Key performance indicators',
+      itemLabel: 'KPI',
+      placeholder: 'e.g. Organic sessions, conversion rate, bounce rate',
+    },
+    {
+      kind: 'list',
+      name: 'competitors',
+      label: 'Competitors & benchmarks',
+      itemLabel: 'Reference',
+      placeholder: 'e.g. competitor.com — strong pricing page',
+    },
+    {
+      kind: 'textarea',
+      name: 'valueProposition',
+      label: 'Value proposition',
+      placeholder: 'Why should a visitor choose this organisation over the alternatives?',
+      rows: 3,
+      span: 2,
+    },
+    {
+      kind: 'textarea',
+      name: 'businessConstraints',
+      label: 'Commercial constraints',
+      placeholder: 'Contracts, brand rules, regulatory limits, immovable dates.',
+      rows: 2,
+      span: 2,
+    },
+  ],
+}

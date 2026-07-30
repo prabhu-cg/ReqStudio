@@ -1,0 +1,111 @@
+import { Library } from 'lucide-react'
+import type { SectionDefinition } from '@/types/section'
+
+export const contentInventorySection: SectionDefinition = {
+  id: 'content-inventory',
+  order: 7,
+  title: 'Content Inventory',
+  description: 'What content exists, what has to be written, and who owns it.',
+  icon: Library,
+  fields: [
+    {
+      kind: 'text',
+      name: 'contentOwner',
+      label: 'Content owner',
+      placeholder: 'Who signs off copy?',
+      required: true,
+    },
+    {
+      kind: 'select',
+      name: 'contentReadiness',
+      label: 'Overall content readiness',
+      options: [
+        { value: 'not-started', label: 'Not started' },
+        { value: 'partial', label: 'Partially available' },
+        { value: 'mostly-ready', label: 'Mostly ready' },
+        { value: 'ready', label: 'Ready' },
+      ],
+    },
+    {
+      kind: 'repeater',
+      name: 'items',
+      label: 'Content items',
+      itemLabel: 'Item',
+      titleField: 'item',
+      required: true,
+      minItems: 1,
+      span: 2,
+      fields: [
+        { kind: 'text', name: 'item', label: 'Item', required: true, span: 2 },
+        {
+          kind: 'select',
+          name: 'type',
+          label: 'Type',
+          options: [
+            { value: 'copy', label: 'Copy' },
+            { value: 'imagery', label: 'Imagery' },
+            { value: 'video', label: 'Video' },
+            { value: 'document', label: 'Document' },
+            { value: 'data', label: 'Data / feed' },
+            { value: 'legal', label: 'Legal' },
+          ],
+        },
+        {
+          kind: 'select',
+          name: 'source',
+          label: 'Source',
+          options: [
+            { value: 'existing', label: 'Reuse existing' },
+            { value: 'rewrite', label: 'Rewrite existing' },
+            { value: 'new', label: 'Create new' },
+            { value: 'migrate', label: 'Migrate' },
+          ],
+        },
+        { kind: 'text', name: 'owner', label: 'Owner' },
+        { kind: 'date', name: 'dueDate', label: 'Due date' },
+        {
+          kind: 'select',
+          name: 'status',
+          label: 'Status',
+          options: [
+            { value: 'not-started', label: 'Not started' },
+            { value: 'drafting', label: 'Drafting' },
+            { value: 'in-review', label: 'In review' },
+            { value: 'approved', label: 'Approved' },
+          ],
+        },
+        { kind: 'textarea', name: 'notes', label: 'Notes', rows: 2, span: 2 },
+      ],
+    },
+    {
+      kind: 'textarea',
+      name: 'toneOfVoice',
+      label: 'Tone of voice',
+      placeholder: 'How the writing should sound, with a do/do-not example.',
+      rows: 3,
+      span: 2,
+    },
+    {
+      kind: 'list',
+      name: 'assetsNeeded',
+      label: 'Assets required',
+      itemLabel: 'Asset',
+      placeholder: 'e.g. Photography for 6 team profiles',
+    },
+    {
+      kind: 'list',
+      name: 'contentSources',
+      label: 'Existing sources',
+      itemLabel: 'Source',
+      placeholder: 'e.g. Legacy CMS export, brand portal',
+    },
+    {
+      kind: 'textarea',
+      name: 'migrationNotes',
+      label: 'Migration notes',
+      placeholder: 'Volume, redirect mapping, cut-off dates.',
+      rows: 2,
+      span: 2,
+    },
+  ],
+}
