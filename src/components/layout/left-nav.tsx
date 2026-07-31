@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils/cn'
 import { Button } from '@/components/ui/button'
 import { Wordmark, Logo } from './logo'
 import { useUIStore } from '@/stores/ui-store'
+import { siteLinks } from '@/config/site'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/primitives'
 
 interface NavItem {
@@ -48,7 +49,19 @@ export function LeftNav({ onNavigate }: { onNavigate?: () => void }) {
       )}
     >
       <div className={cn('flex h-14 items-center px-3', collapsed && 'justify-center')}>
-        {collapsed ? <Logo className="h-7" /> : <Wordmark className="px-1" />}
+        {/* A plain anchor, not a router Link: the marketing site is a separate
+            deployment on another origin. */}
+        <a
+          href={siteLinks.marketingUrl}
+          aria-label="ReqStudio home page"
+          title="ReqStudio home page"
+          className={cn(
+            'rounded-[8px] transition-opacity hover:opacity-80',
+            collapsed ? 'p-0.5' : 'px-1 py-0.5',
+          )}
+        >
+          {collapsed ? <Logo className="h-7" /> : <Wordmark />}
+        </a>
       </div>
 
       <ul className="flex flex-1 flex-col gap-1 px-3 py-2">
