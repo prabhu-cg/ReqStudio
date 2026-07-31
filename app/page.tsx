@@ -10,6 +10,7 @@ import {
   Save,
   Search,
   ShieldCheck,
+  TriangleAlert,
   WifiOff,
   type LucideIcon,
 } from 'lucide-react'
@@ -197,6 +198,44 @@ export default function HomePage() {
                 )
               })}
             </div>
+
+            <div className="mx-auto mt-6 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="rounded-card border border-success/30 bg-success-soft/60 p-6">
+                <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                  <ShieldCheck className="size-4 shrink-0 text-success" aria-hidden="true" />
+                  What you get
+                </h3>
+                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                  <li>
+                    Your client&rsquo;s budgets, deadlines and commercial goals never touch a server.
+                  </li>
+                  <li>Nothing to breach, subpoena or sell — there is no database of your work.</li>
+                  <li>No vendor can lock you out, raise a price, or shut the product down on you.</li>
+                </ul>
+              </div>
+
+              <div className="rounded-card border border-warning/40 bg-warning/5 p-6">
+                <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                  <TriangleAlert className="size-4 shrink-0 text-warning" aria-hidden="true" />
+                  What that costs you
+                </h3>
+                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                  <li>
+                    <span className="font-medium text-foreground">
+                      Clearing your browser data deletes every brief.
+                    </span>{' '}
+                    There is no backup and no way to recover it.
+                  </li>
+                  <li>Briefs do not sync — they live on the one browser that created them.</li>
+                  <li>Print or export anything you cannot afford to lose.</li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="mx-auto mt-4 max-w-4xl text-center text-xs text-muted-foreground">
+              This is the honest trade of a tool with no server. We would rather you knew it up
+              front than discovered it later.
+            </p>
           </div>
         </section>
 

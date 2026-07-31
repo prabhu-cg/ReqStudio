@@ -67,20 +67,9 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <Wordmark />
-          <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">
-            Free, local-first project briefs. No account, no server, no tracking.
-          </p>
-        </div>
+        <Wordmark />
 
         <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-          <a
-            href={siteConfig.appUrl}
-            className="font-medium text-primary-text underline-offset-4 hover:underline"
-          >
-            Open the app
-          </a>
           <AboutModal />
           <TermsModal />
           <PrivacyModal />
@@ -94,11 +83,17 @@ export function SiteFooter() {
           </a>
         </nav>
       </div>
+
       <div className="border-t border-border">
-        <p className="mx-auto max-w-6xl px-5 py-4 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} {siteConfig.name}. Built for people who write the brief before
-          the build.
-        </p>
+        <div className="mx-auto max-w-6xl px-5 py-5 text-center">
+          <p className="text-sm font-medium text-foreground">
+            Free, local-first project briefs. No account, no server, no tracking.
+          </p>
+          <p className="mt-1.5 text-xs text-muted-foreground">
+            © {new Date().getFullYear()} {siteConfig.name}. Built for people who write the brief
+            before the build.
+          </p>
+        </div>
       </div>
     </footer>
   )
