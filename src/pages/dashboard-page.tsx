@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { PageHeader } from '@/components/common/page-header'
 import { EmptyState } from '@/components/common/empty-state'
+import { LocalDataNotice } from '@/components/common/local-data-notice'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/primitives'
 import { ProjectCard } from '@/features/projects/components/project-card'
@@ -64,7 +65,8 @@ export function DashboardPage() {
           title="Dashboard"
           description="ReqStudio keeps every brief on this device — free, offline and private."
         />
-        <div className="mt-8">
+        <LocalDataNotice className="mt-6" />
+        <div className="mt-6">
           <EmptyState
             icon={Sparkles}
             title="Create your first project"
@@ -169,10 +171,9 @@ export function DashboardPage() {
         </section>
       ) : null}
 
-      <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
-        <p className="text-xs text-muted-foreground">
-          Everything is stored in this browser. Clearing site data removes it permanently.
-        </p>
+      <LocalDataNotice />
+
+      <div className="flex items-center justify-end border-t border-border pt-6">
         <Button variant="secondary" size="sm" asChild>
           <Link to="/projects">
             Browse all {pluralize(stats.total, 'project')}

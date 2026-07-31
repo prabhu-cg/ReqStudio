@@ -4,6 +4,7 @@ import { PageHeader } from '@/components/common/page-header'
 import { Button } from '@/components/ui/button'
 import { Label, Separator, Switch } from '@/components/ui/primitives'
 import { ConfirmDialog } from '@/components/common/confirm-dialog'
+import { LocalDataNotice } from '@/components/common/local-data-notice'
 import { ThemeToggle } from '@/components/layout/theme-toggle'
 import {
   useSettingsStore,
@@ -144,6 +145,10 @@ export function SettingsPage() {
       </SettingsSection>
 
       <SettingsSection icon={<Database className="size-4" aria-hidden="true" />} title="Local data">
+        <LocalDataNotice variant="full" />
+
+        <Separator />
+
         <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           <DataStat label="Projects" value={String(projectCount)} />
           <DataStat label="Pages" value={String(pageCount)} />
