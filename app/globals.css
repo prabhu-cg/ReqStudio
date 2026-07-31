@@ -29,6 +29,13 @@
   --color-success: var(--rs-success);
   --color-warning: var(--rs-warning);
 
+  /* The privacy trade-off panels. Deep teal and burnt sienna: distinct from the
+     primary, from each other, and both AA against white at 5:1+. */
+  --color-trade-good: var(--rs-trade-good);
+  --color-trade-good-soft: var(--rs-trade-good-soft);
+  --color-trade-cost: var(--rs-trade-cost);
+  --color-trade-cost-soft: var(--rs-trade-cost-soft);
+
   /* Radius scale copied from the rest of the suite: 6px controls, 16px cards.
      Overriding the scale keeps `rounded-lg` / `rounded-2xl` in the markup. */
   --radius-lg: 0.375rem;
@@ -55,6 +62,11 @@
   --rs-success: #146c43;
   --rs-warning: #8a5a00;
 
+  --rs-trade-good: #0f5c52;
+  --rs-trade-good-soft: #eef6f4;
+  --rs-trade-cost: #8f3a12;
+  --rs-trade-cost-soft: #fdf1e9;
+
   color-scheme: light;
 }
 
@@ -80,6 +92,11 @@
 
     --rs-success: #7ee2ab;
     --rs-warning: #f5c26b;
+
+    --rs-trade-good: #12796c;
+    --rs-trade-good-soft: #0e1a18;
+    --rs-trade-cost: #b04a18;
+    --rs-trade-cost-soft: #1c1210;
 
     color-scheme: dark;
   }

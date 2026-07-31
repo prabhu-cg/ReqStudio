@@ -305,35 +305,53 @@ export default function HomePage() {
               })}
             </div>
 
-            <div className="mt-6 grid gap-6 md:grid-cols-2">
-              <div className="rounded-2xl border border-success/30 bg-success/5 p-6">
-                <h3 className="flex items-center gap-2 text-base font-bold">
-                  <ShieldCheck className="size-4 shrink-0 text-success" aria-hidden="true" />
+            {/* The trade at the heart of the product, so these two carry real
+                colour rather than the tinted-white the cards above use. */}
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              <div className="overflow-hidden rounded-2xl border-2 border-trade-good/35 bg-trade-good-soft shadow-sm">
+                <h3 className="flex items-center gap-2.5 border-b-2 border-trade-good/25 bg-trade-good px-6 py-4 text-base font-bold text-white">
+                  <ShieldCheck className="size-5 shrink-0" aria-hidden="true" />
                   What you get
                 </h3>
-                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
-                  <li>
+                <ul className="space-y-3 p-6 text-sm leading-relaxed text-foreground/85">
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-good" aria-hidden="true" />
                     Your client&rsquo;s budgets, deadlines and commercial goals never touch a server.
                   </li>
-                  <li>Nothing to breach, subpoena or sell — there is no database of your work.</li>
-                  <li>No vendor can lock you out, raise a price, or shut the product down on you.</li>
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-good" aria-hidden="true" />
+                    Nothing to breach, subpoena or sell — there is no database of your work.
+                  </li>
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-good" aria-hidden="true" />
+                    No vendor can lock you out, raise a price, or shut the product down on you.
+                  </li>
                 </ul>
               </div>
 
-              <div className="rounded-2xl border border-warning/40 bg-warning/5 p-6">
-                <h3 className="flex items-center gap-2 text-base font-bold">
-                  <TriangleAlert className="size-4 shrink-0 text-warning" aria-hidden="true" />
+              <div className="overflow-hidden rounded-2xl border-2 border-trade-cost/35 bg-trade-cost-soft shadow-sm">
+                <h3 className="flex items-center gap-2.5 border-b-2 border-trade-cost/25 bg-trade-cost px-6 py-4 text-base font-bold text-white">
+                  <TriangleAlert className="size-5 shrink-0" aria-hidden="true" />
                   What that costs you
                 </h3>
-                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
-                  <li>
-                    <span className="font-semibold text-foreground">
-                      Clearing your browser data deletes every brief.
-                    </span>{' '}
-                    There is no backup and no way to recover it.
+                <ul className="space-y-3 p-6 text-sm leading-relaxed text-foreground/85">
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-cost" aria-hidden="true" />
+                    <span>
+                      <span className="font-bold text-foreground">
+                        Clearing your browser data deletes every brief.
+                      </span>{' '}
+                      There is no backup and no way to recover it.
+                    </span>
                   </li>
-                  <li>Briefs do not sync — they live on the one browser that created them.</li>
-                  <li>Print or export anything you cannot afford to lose.</li>
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-cost" aria-hidden="true" />
+                    Briefs do not sync — they live on the one browser that created them.
+                  </li>
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-cost" aria-hidden="true" />
+                    Print or export anything you cannot afford to lose.
+                  </li>
                 </ul>
               </div>
             </div>
