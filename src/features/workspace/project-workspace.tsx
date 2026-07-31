@@ -70,7 +70,7 @@ export function ProjectWorkspace() {
 
   return (
     <div className="flex h-full min-h-0 flex-col">
-      <header className="shrink-0 border-b border-border bg-surface">
+      <header className="shrink-0 border-b border-border bg-surface-raised">
         <div className="rs-page px-4 pt-6 lg:px-8">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0">

@@ -50,25 +50,23 @@
 }
 
 :root {
-  /* Warm stone family shared with the rest of the suite, but with a real
-     elevation scale: a sand canvas for chrome, white for raised cards. A single
-     cream everywhere left the workspace flat, with white cards on a white body.
-     `muted-foreground` is darkened from the suite's #78716c, which measures
-     4.29:1 on the sand surface — under AA. #6b625c is 4.8–6.0:1 throughout. */
+  /* Exact parity with the landing page and the rest of the suite. Regions are
+     told apart by which token they use, not by muddying the palette: cream
+     rails, white working canvas, white cards lifted by border and shadow. */
   --rs-background: #ffffff;
   --rs-foreground: #1c1917;
-  --rs-surface: #f6f3ec;
+  --rs-surface: #fffaef;
   --rs-surface-raised: #ffffff;
-  --rs-muted: #ebe6da;
-  --rs-muted-foreground: #6b625c;
-  --rs-border: #e4dccb;
-  --rs-border-strong: #cfc3ab;
+  --rs-muted: #f4f2ea;
+  --rs-muted-foreground: #78716c;
+  --rs-border: #e8ddc8;
+  --rs-border-strong: #d6c7ab;
   --rs-ring: #c74504;
 
   --rs-primary: #c74504;
   --rs-primary-hover: #a93a03;
   --rs-primary-foreground: #ffffff;
-  --rs-primary-soft: #fbeae2;
+  --rs-primary-soft: #fdefe7;
   --rs-primary-text: #a93a03;
 
   --rs-success: #146c43;
@@ -84,15 +82,14 @@
 }
 
 .dark {
-  /* Same three steps in reverse: canvas, chrome, raised card. */
-  --rs-background: #0a0a0a;
+  --rs-background: #0c0c0c;
   --rs-foreground: #fafafa;
-  --rs-surface: #131313;
-  --rs-surface-raised: #1a1a1a;
+  --rs-surface: #151515;
+  --rs-surface-raised: #1c1c1c;
   --rs-muted: #262626;
   --rs-muted-foreground: #a1a1a1;
-  --rs-border: #2b2b2b;
-  --rs-border-strong: #3d3d3d;
+  --rs-border: #2e2e2e;
+  --rs-border-strong: #3f3f3f;
   --rs-ring: #ff8a5c;
 
   --rs-primary: #c74504;

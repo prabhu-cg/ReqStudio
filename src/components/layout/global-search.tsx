@@ -132,7 +132,7 @@ export function GlobalSearch() {
                 go(results[activeIndex]!)
               }
             }}
-            className="h-9 w-full rounded-control border border-border bg-surface-raised pl-9 pr-16 text-sm shadow-xs transition-colors placeholder:text-muted-foreground/80 hover:border-border-strong focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35"
+            className="h-9 w-full rounded-control border border-border bg-surface-raised pl-9 pr-16 text-sm shadow-xs transition-colors placeholder:text-muted-foreground/70 hover:border-border-strong focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35"
           />
 
           {search ? (
