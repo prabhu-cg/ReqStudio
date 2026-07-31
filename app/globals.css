@@ -28,6 +28,12 @@
 
   --color-success: var(--rs-success);
   --color-warning: var(--rs-warning);
+
+  /* Radius scale copied from the rest of the suite: 6px controls, 16px cards.
+     Overriding the scale keeps `rounded-lg` / `rounded-2xl` in the markup. */
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.625rem;
+  --radius-2xl: 1rem;
 }
 
 :root {
