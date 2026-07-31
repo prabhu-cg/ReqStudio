@@ -17,7 +17,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     <div
       role="radiogroup"
       aria-label="Colour theme"
-      className={cn('flex items-center gap-0.5 rounded-[8px] border border-border bg-surface p-0.5', className)}
+      className={cn('flex items-center gap-0.5 rounded-control border border-border bg-surface p-0.5', className)}
     >
       {OPTIONS.map((option) => {
         const Icon = option.icon

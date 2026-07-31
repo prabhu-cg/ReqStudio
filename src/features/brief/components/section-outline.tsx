@@ -47,13 +47,13 @@ export function SectionOutline({
             onClick={() => onSelect(section.id)}
             aria-current={isActive ? 'true' : undefined}
             className={cn(
-              'group flex items-center gap-3 rounded-[8px] px-2.5 py-2 text-left transition-colors',
+              'group flex items-center gap-3 rounded-control px-2.5 py-2 text-left transition-colors',
               isActive ? 'bg-primary-soft' : 'hover:bg-muted',
             )}
           >
             <span
               className={cn(
-                'relative grid size-7 shrink-0 place-items-center rounded-[8px] border transition-colors',
+                'relative grid size-7 shrink-0 place-items-center rounded-control border transition-colors',
                 isActive && 'border-primary/40 bg-primary-soft text-primary-text',
                 !isActive && status === 'complete' && 'border-success/30 bg-success-soft text-success',
                 !isActive && status === 'in-progress' && 'border-primary/25 bg-primary-soft text-primary-text',

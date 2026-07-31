@@ -59,7 +59,7 @@ export function LeftNav({ onNavigate }: { onNavigate?: () => void }) {
           aria-label="ReqStudio home page (opens in a new tab)"
           title="ReqStudio home page"
           className={cn(
-            'rounded-[8px] transition-opacity hover:opacity-80',
+            'rounded-control transition-opacity hover:opacity-80',
             collapsed ? 'p-0.5' : 'px-1 py-0.5',
           )}
         >
@@ -125,7 +125,7 @@ function NavItemLink({
   // A fixed square when collapsed keeps every icon — nav, settings, collapse —
   // on the same vertical axis as the logo.
   const baseClasses = cn(
-    'flex items-center rounded-[8px] text-sm font-medium transition-colors',
+    'flex items-center rounded-control text-sm font-medium transition-colors',
     collapsed ? 'h-10 w-full justify-center px-0' : 'gap-3 px-3 py-2',
   )
 

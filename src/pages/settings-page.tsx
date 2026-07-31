@@ -60,7 +60,7 @@ export function SettingsPage() {
           <div
             role="radiogroup"
             aria-label="Font size"
-            className="flex items-center gap-0.5 rounded-[8px] border border-border bg-surface p-0.5"
+            className="flex items-center gap-0.5 rounded-control border border-border bg-surface p-0.5"
           >
             {FONT_SIZES.map((option) => (
               <button
@@ -106,7 +106,7 @@ export function SettingsPage() {
           <div
             role="radiogroup"
             aria-label="Autosave delay"
-            className="flex items-center gap-0.5 rounded-[8px] border border-border bg-surface p-0.5"
+            className="flex items-center gap-0.5 rounded-control border border-border bg-surface p-0.5"
           >
             {[300, 600, 1200].map((delay) => (
               <button

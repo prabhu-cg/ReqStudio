@@ -62,7 +62,7 @@ export function BriefTab() {
         <header className="mb-6">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="flex min-w-0 gap-3">
-              <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-[8px] bg-primary-soft text-primary-text">
+              <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-control bg-primary-soft text-primary-text">
                 <Icon className="size-4.5" aria-hidden="true" />
               </span>
               <div className="min-w-0">
@@ -91,7 +91,7 @@ export function BriefTab() {
           </div>
 
           {showHints && completion && completion.missingRequired.length > 0 ? (
-            <p className="mt-4 rounded-[8px] border border-warning/30 bg-warning-soft px-3 py-2 text-xs text-foreground">
+            <p className="mt-4 rounded-control border border-warning/30 bg-warning-soft px-3 py-2 text-xs text-foreground">
               <span className="font-semibold">Still required:</span>{' '}
               {completion.missingRequired.join(', ')}
             </p>

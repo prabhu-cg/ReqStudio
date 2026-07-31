@@ -127,7 +127,7 @@ function RepeaterView({
         <li
           key={index}
           data-print="section"
-          className="rounded-[8px] border border-border bg-surface px-4 py-3"
+          className="rounded-control border border-border bg-surface px-4 py-3"
         >
           <p className="text-sm font-semibold">
             {String(row[field.titleField] ?? `${field.itemLabel} ${index + 1}`)}

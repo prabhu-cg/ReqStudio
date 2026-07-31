@@ -77,7 +77,7 @@ export function ProjectToolbar({ tags, count }: { tags: string[]; count?: string
         <div
           role="radiogroup"
           aria-label="Layout"
-          className="flex items-center gap-0.5 rounded-[8px] border border-border bg-surface p-0.5"
+          className="flex items-center gap-0.5 rounded-control border border-border bg-surface p-0.5"
         >
           {(['grid', 'list'] as const).map((layout) => {
             const Icon = layout === 'grid' ? LayoutGrid : List

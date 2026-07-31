@@ -71,7 +71,7 @@ export function RepeaterInput({ field, value, onChange, errors, error }: Repeate
       </div>
 
       {rows.length === 0 ? (
-        <p className="rounded-[8px] border border-dashed border-border bg-surface px-4 py-6 text-center text-sm text-muted-foreground">
+        <p className="rounded-control border border-dashed border-border bg-surface px-4 py-6 text-center text-sm text-muted-foreground">
           No {field.itemLabel.toLowerCase()}s yet.
         </p>
       ) : null}

@@ -134,7 +134,7 @@ function RecommendationRow({
         <button
           type="button"
           onClick={() => onSelectSection?.(recommendation.sectionId!)}
-          className="flex w-full items-start gap-2 rounded-[8px] px-2 py-1.5 text-left transition-colors hover:bg-muted"
+          className="flex w-full items-start gap-2 rounded-control px-2 py-1.5 text-left transition-colors hover:bg-muted"
         >
           {content}
         </button>

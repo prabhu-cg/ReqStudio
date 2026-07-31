@@ -156,7 +156,7 @@ export const TooltipContent = forwardRef<
         ref={ref}
         sideOffset={sideOffset}
         className={cn(
-          'z-100 max-w-64 rounded-[8px] bg-foreground px-2.5 py-1.5 text-xs font-medium text-background shadow-raised',
+          'z-100 max-w-64 rounded-control bg-foreground px-2.5 py-1.5 text-xs font-medium text-background shadow-raised',
           'data-[state=delayed-open]:animate-[fade-in_120ms_ease-out]',
           className,
         )}

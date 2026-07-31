@@ -57,7 +57,7 @@ export function ScalarField({
     return (
       <div
         className={cn(
-          'flex items-start justify-between gap-4 rounded-[8px] border border-border bg-surface px-4 py-3',
+          'flex items-start justify-between gap-4 rounded-control border border-border bg-surface px-4 py-3',
           className,
         )}
       >

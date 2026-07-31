@@ -37,7 +37,7 @@ export function LocalDataNotice({ variant = 'compact', className }: LocalDataNot
           className,
         )}
       >
-        <span className="grid size-9 shrink-0 place-items-center rounded-[8px] bg-primary-soft text-primary-text">
+        <span className="grid size-9 shrink-0 place-items-center rounded-control bg-primary-soft text-primary-text">
           <HardDrive className="size-4.5" aria-hidden="true" />
         </span>
         <div className="min-w-0 flex-1">
