@@ -92,7 +92,7 @@ export function TagsInput({
           onBlur?.()
         }}
         placeholder={value.length === 0 ? placeholder : ''}
-        className="min-w-24 flex-1 bg-transparent px-1 py-0.5 text-sm outline-none placeholder:text-muted-foreground/70"
+        className="min-w-24 flex-1 bg-transparent px-1 py-0.5 text-sm outline-none placeholder:text-muted-foreground/80"
         aria-describedby={aria['aria-describedby']}
         aria-invalid={aria['aria-invalid']}
       />

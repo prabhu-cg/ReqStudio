@@ -49,20 +49,26 @@
 }
 
 :root {
+  /* Neutrals are the warm stone family shared with UXLedger, UXBeacon,
+     Localens, Assessly and SiteNest. Semantic colours (success/warning/danger/
+     info) are unchanged — they are functional, and re-tinting them would mean
+     re-verifying every contrast pair for no brand gain. */
   --rs-background: #ffffff;
-  --rs-foreground: #16161a;
-  --rs-surface: #f8f8f8;
+  --rs-foreground: #1c1917;
+  --rs-surface: #fffaef;
   --rs-surface-raised: #ffffff;
-  --rs-muted: #f1f1f0;
-  --rs-muted-foreground: #555555;
-  --rs-border: #e6e5e3;
-  --rs-border-strong: #d3d1ce;
+  --rs-muted: #f4f2ea;
+  --rs-muted-foreground: #78716c;
+  --rs-border: #e8ddc8;
+  --rs-border-strong: #d8c9ac;
   --rs-ring: #c74504;
 
   --rs-primary: #c74504;
   --rs-primary-hover: #a93a03;
   --rs-primary-foreground: #ffffff;
-  --rs-primary-soft: #fdf0e9;
+  --rs-primary-soft: #f9ebe6;
+  /* One shade darker than the brand primary: #c74504 is 4.9:1 on white, which
+     is thin for the small dense text this app is full of. #a93a03 is 6.4:1. */
   --rs-primary-text: #a93a03;
 
   --rs-success: #146c43;
@@ -78,20 +84,20 @@
 }
 
 .dark {
-  --rs-background: #0e0e11;
-  --rs-foreground: #f4f4f5;
-  --rs-surface: #16161a;
-  --rs-surface-raised: #1c1c21;
-  --rs-muted: #232329;
-  --rs-muted-foreground: #a3a3aa;
-  --rs-border: #2a2a31;
-  --rs-border-strong: #3a3a43;
+  --rs-background: #0a0a0a;
+  --rs-foreground: #fafafa;
+  --rs-surface: #171717;
+  --rs-surface-raised: #171717;
+  --rs-muted: #262626;
+  --rs-muted-foreground: #a1a1a1;
+  --rs-border: #262626;
+  --rs-border-strong: #3a3a3a;
   --rs-ring: #ff8a5c;
 
   --rs-primary: #c74504;
   --rs-primary-hover: #dd5211;
   --rs-primary-foreground: #ffffff;
-  --rs-primary-soft: #2a1509;
+  --rs-primary-soft: #1d1009;
   --rs-primary-text: #ff8a5c;
 
   --rs-success: #7ee2ab;
