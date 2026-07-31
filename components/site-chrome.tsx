@@ -23,12 +23,15 @@ const NAV_LINKS = [
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-5">
-        <Link href="/" aria-label={`${siteConfig.name} home`}>
+      {/* Three columns with equal 1fr flanks: the auto middle column lands on
+          the true centre of the header regardless of how wide the wordmark or
+          the action cluster become. */}
+      <div className="mx-auto grid h-16 max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-5">
+        <Link href="/" aria-label={`${siteConfig.name} home`} className="justify-self-start">
           <Wordmark />
         </Link>
 
-        <nav aria-label="Primary" className="hidden flex-1 items-center gap-1 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -40,7 +43,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 md:ml-0">
+        <div className="flex items-center gap-2 justify-self-end">
           <a
             href={siteConfig.repoUrl}
             target="_blank"
