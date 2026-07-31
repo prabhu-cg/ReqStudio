@@ -50,10 +50,13 @@ export function LeftNav({ onNavigate }: { onNavigate?: () => void }) {
     >
       <div className={cn('flex h-14 items-center px-3', collapsed && 'justify-center')}>
         {/* A plain anchor, not a router Link: the marketing site is a separate
-            deployment on another origin. */}
+            deployment on another origin. Opens in a new tab so a brief in
+            progress is never navigated away from. */}
         <a
           href={siteLinks.marketingUrl}
-          aria-label="ReqStudio home page"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="ReqStudio home page (opens in a new tab)"
           title="ReqStudio home page"
           className={cn(
             'rounded-[8px] transition-opacity hover:opacity-80',
