@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { siteConfig } from '@/lib/site'
 import { Wordmark } from './logo'
+import { AboutModal, PrivacyModal, TermsModal } from './footer-documents'
 
 /** lucide-react dropped brand marks in v1, so the GitHub logo is inlined. */
 function GithubMark({ className = 'size-4' }: { className?: string }) {
@@ -73,13 +74,16 @@ export function SiteFooter() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+        <nav aria-label="Footer" className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
           <a
             href={siteConfig.appUrl}
             className="font-medium text-primary-text underline-offset-4 hover:underline"
           >
             Open the app
           </a>
+          <AboutModal />
+          <TermsModal />
+          <PrivacyModal />
           <a
             href={siteConfig.repoUrl}
             target="_blank"
@@ -88,7 +92,7 @@ export function SiteFooter() {
           >
             Source on GitHub
           </a>
-        </div>
+        </nav>
       </div>
       <div className="border-t border-border">
         <p className="mx-auto max-w-6xl px-5 py-4 text-xs text-muted-foreground">
