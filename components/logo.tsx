@@ -47,19 +47,26 @@ export function Logo({ className }: { className?: string }) {
   )
 }
 
-export function Wordmark({ className }: { className?: string }) {
+export function Wordmark({
+  className,
+  showTagline = true,
+}: {
+  className?: string
+  showTagline?: boolean
+}) {
   return (
-    <span className={cn('flex items-center gap-2.5', className)}>
-      <Logo className="h-7" />
+    <span className={cn('flex items-center gap-3', className)}>
+      <Logo className="h-9" />
       <span className="flex min-w-0 flex-col leading-none">
-        <span className="text-[15px] font-bold tracking-tight">
-          Req<span className="text-primary-text">Studio</span>
+        <span className="text-base font-bold tracking-tight">
+          <span className="text-foreground">Req</span>
+          <span className="text-primary">Studio</span>
         </span>
-        {/* Sentence case, not uppercase: the caps version overruns the 240px
-            navigation rail, and this is how the tagline is written anyway. */}
-        <span className="mt-1 truncate text-[10px] font-medium text-muted-foreground">
-          {TAGLINE}
-        </span>
+        {showTagline ? (
+          <span className="mt-1 truncate text-[11px] font-medium text-muted-foreground">
+            {TAGLINE}
+          </span>
+        ) : null}
       </span>
     </span>
   )

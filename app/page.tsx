@@ -5,11 +5,11 @@ import {
   Gauge,
   KeyRound,
   LayoutTemplate,
-  Moon,
   Printer,
   Save,
   Search,
   ShieldCheck,
+  Sparkles,
   TriangleAlert,
   WifiOff,
   type LucideIcon,
@@ -17,6 +17,13 @@ import {
 import { siteConfig } from '@/lib/site'
 import { AppPreview } from '@/components/app-preview'
 import { SiteFooter, SiteHeader } from '@/components/site-chrome'
+
+const STATS = [
+  { value: '10', label: 'Guided brief sections' },
+  { value: 'Unlimited', label: 'Projects and pages' },
+  { value: '0', label: 'Accounts to create' },
+  { value: 'Free', label: 'No card, no trial' },
+]
 
 const FEATURES: Array<{ icon: LucideIcon; title: string; body: string }> = [
   {
@@ -58,7 +65,7 @@ const STEPS = [
   },
   {
     title: 'Work the ten sections',
-    body: 'Answer what you know, skip what you do not. The outline tracks completion and tells you what is still required.',
+    body: 'Answer what you know, skip what you do not. The outline tracks completion and names what is still required.',
   },
   {
     title: 'Send the brief',
@@ -100,70 +107,171 @@ export default function HomePage() {
 
       <main id="main">
         {/* Hero ------------------------------------------------------------ */}
-        <section className="relative overflow-hidden">
-          <div className="rs-hero-glow absolute inset-0 -z-10" aria-hidden="true" />
-          <div className="rs-grid-lines absolute inset-0 -z-10 opacity-40" aria-hidden="true" />
+        <section className="relative overflow-hidden pb-20 pt-20 sm:pb-28 sm:pt-28">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-secondary opacity-60 blur-3xl" />
+            <div className="absolute -top-20 right-0 h-[400px] w-[400px] translate-x-1/3 rounded-full bg-primary opacity-[0.08] blur-3xl" />
+          </div>
 
-          <div className="mx-auto max-w-6xl px-5 pb-16 pt-16 sm:pb-24 sm:pt-24">
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-raised px-3 py-1.5 text-xs font-medium text-muted-foreground shadow-card">
-                <ShieldCheck className="size-3.5 text-success" aria-hidden="true" />
-                Free · No account · Your data never leaves the device
+          <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+            <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-secondary px-4 py-1.5">
+              <Sparkles className="size-3.5 shrink-0 fill-primary text-primary" aria-hidden="true" />
+              <span className="text-xs font-semibold uppercase tracking-wide text-primary-text">
+                <span className="sm:hidden">Free · Local-first</span>
+                <span className="hidden sm:inline">
+                  Free to use · No account · Your data never leaves the device
+                </span>
               </span>
-
-              <h1 className="mt-6 text-balance text-4xl font-bold leading-[1.1] tracking-tight sm:text-6xl">
-                Write the brief before
-                <br className="hidden sm:block" /> anyone writes the code
-              </h1>
-
-              <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-                ReqStudio turns a scattered Word document into a structured project brief — ten
-                guided sections, unlimited pages, and a readiness score that tells you exactly what
-                is still missing. It runs entirely in your browser.
-              </p>
-
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <a
-                  href={siteConfig.appUrl}
-                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-[8px] bg-primary px-7 text-[15px] font-medium text-primary-foreground shadow-card transition-colors hover:bg-primary-hover sm:w-auto"
-                >
-                  Start a brief — free
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </a>
-                <a
-                  href="#how-it-works"
-                  className="inline-flex h-12 w-full items-center justify-center rounded-[8px] border border-border bg-surface-raised px-7 text-[15px] font-medium transition-colors hover:border-border-strong sm:w-auto"
-                >
-                  See how it works
-                </a>
-              </div>
-
-              <p className="mt-4 text-xs text-muted-foreground">
-                Opens instantly. Nothing to install, nothing to sign up for.
-              </p>
             </div>
 
-            <div className="mx-auto mt-14 max-w-5xl">
-              <AppPreview />
+            <h1 className="text-4xl font-extrabold tracking-tight text-balance sm:text-6xl">
+              Write the brief before
+              <br />
+              <span className="text-primary">anyone writes the code.</span>
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-balance text-muted-foreground">
+              ReqStudio turns a scattered Word document into a structured project brief — ten guided
+              sections, unlimited pages, and a readiness score that tells you exactly what is still
+              missing. It runs entirely in your browser.
+            </p>
+
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a
+                href={siteConfig.appUrl}
+                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-primary px-8 text-base font-semibold text-primary-foreground transition-all duration-150 hover:bg-primary-hover active:scale-[0.98] sm:w-auto"
+              >
+                Start a brief — free
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </a>
+              <a
+                href="#how-it-works"
+                className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-border bg-background px-8 text-base font-semibold transition-all duration-150 hover:border-primary active:scale-[0.98] sm:w-auto"
+              >
+                See how it works
+              </a>
+            </div>
+
+            <p className="mt-4 text-sm text-muted-foreground">
+              Opens instantly. Nothing to install, nothing to sign up for.
+            </p>
+
+            <dl className="mt-14 grid grid-cols-2 gap-8 sm:grid-cols-4">
+              {STATS.map((stat) => (
+                <div key={stat.label}>
+                  <dt className="sr-only">{stat.label}</dt>
+                  <dd>
+                    <span className="block text-2xl font-extrabold text-primary sm:text-3xl">
+                      {stat.value}
+                    </span>
+                    <span className="mt-1 block text-sm text-muted-foreground">{stat.label}</span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* Product preview -------------------------------------------------- */}
+        <section className="border-y border-border bg-secondary py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-14 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
+                A peek at your brief
+              </p>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">
+                Ten sections. One live readiness score.
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-balance text-muted-foreground">
+                Illustrative preview with sample data — this is the Brief tab as you work through a
+                project.
+              </p>
+            </div>
+            <AppPreview />
+          </div>
+        </section>
+
+        {/* Features --------------------------------------------------------- */}
+        <section id="features" className="py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-14 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
+                What ReqStudio does
+              </p>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">
+                Everything a brief needs. Nothing it doesn&rsquo;t.
+              </h2>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {FEATURES.map((feature) => {
+                const Icon = feature.icon
+                return (
+                  <div
+                    key={feature.title}
+                    className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary hover:shadow-md"
+                  >
+                    <div className="mb-4 inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/15">
+                      <Icon className="size-5 text-primary-text" aria-hidden="true" />
+                    </div>
+                    <h3 className="mb-2 text-base font-bold">{feature.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{feature.body}</p>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>
 
-        {/* Privacy ---------------------------------------------------------- */}
-        <section id="privacy" className="border-y border-border bg-surface">
-          <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Client requirements are confidential. Treat them that way.
+        {/* How it works ----------------------------------------------------- */}
+        <section id="how-it-works" className="border-y border-border bg-secondary py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-14 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
+                How it works
+              </p>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">
+                From a blank page to a signed-off brief
               </h2>
-              <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
+            </div>
+
+            <ol className="grid gap-6 md:grid-cols-3">
+              {STEPS.map((step, index) => (
+                <li
+                  key={step.title}
+                  className="rounded-2xl border border-border bg-card p-6 shadow-sm"
+                >
+                  <span className="inline-flex size-9 items-center justify-center rounded-xl bg-primary text-sm font-extrabold text-primary-foreground">
+                    {index + 1}
+                  </span>
+                  <h3 className="mb-2 mt-4 text-base font-bold">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* Privacy ---------------------------------------------------------- */}
+        <section id="privacy" className="py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-14 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
+                Privacy by architecture
+              </p>
+              <h2 className="text-3xl font-extrabold text-balance sm:text-4xl">
+                Client requirements are confidential.
+                <br />
+                Treat them that way.
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-balance text-muted-foreground">
                 Most brief tools ask you to upload your client&rsquo;s commercial goals, budgets and
                 launch dates to somebody else&rsquo;s server. ReqStudio has no server to upload them
                 to.
               </p>
             </div>
 
-            <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-3">
               {[
                 {
                   icon: KeyRound,
@@ -185,23 +293,21 @@ export default function HomePage() {
                 return (
                   <div
                     key={item.title}
-                    className="rounded-card border border-border bg-surface-raised p-6 text-center shadow-card"
+                    className="rounded-2xl border border-border bg-card p-6 text-center shadow-sm"
                   >
-                    <span className="mx-auto grid size-10 place-items-center rounded-full bg-primary-soft text-primary-text">
-                      <Icon className="size-5" aria-hidden="true" />
+                    <span className="mx-auto inline-flex size-10 items-center justify-center rounded-xl bg-primary/10">
+                      <Icon className="size-5 text-primary-text" aria-hidden="true" />
                     </span>
-                    <h3 className="mt-4 text-sm font-semibold">{item.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {item.body}
-                    </p>
+                    <h3 className="mb-2 mt-4 text-base font-bold">{item.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{item.body}</p>
                   </div>
                 )
               })}
             </div>
 
-            <div className="mx-auto mt-6 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="rounded-card border border-success/30 bg-success-soft/60 p-6">
-                <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+              <div className="rounded-2xl border border-success/30 bg-success/5 p-6">
+                <h3 className="flex items-center gap-2 text-base font-bold">
                   <ShieldCheck className="size-4 shrink-0 text-success" aria-hidden="true" />
                   What you get
                 </h3>
@@ -214,14 +320,14 @@ export default function HomePage() {
                 </ul>
               </div>
 
-              <div className="rounded-card border border-warning/40 bg-warning/5 p-6">
-                <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+              <div className="rounded-2xl border border-warning/40 bg-warning/5 p-6">
+                <h3 className="flex items-center gap-2 text-base font-bold">
                   <TriangleAlert className="size-4 shrink-0 text-warning" aria-hidden="true" />
                   What that costs you
                 </h3>
                 <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
                   <li>
-                    <span className="font-medium text-foreground">
+                    <span className="font-semibold text-foreground">
                       Clearing your browser data deletes every brief.
                     </span>{' '}
                     There is no backup and no way to recover it.
@@ -232,110 +338,46 @@ export default function HomePage() {
               </div>
             </div>
 
-            <p className="mx-auto mt-4 max-w-4xl text-center text-xs text-muted-foreground">
-              This is the honest trade of a tool with no server. We would rather you knew it up
-              front than discovered it later.
-            </p>
-          </div>
-        </section>
-
-        {/* How it works ----------------------------------------------------- */}
-        <section id="how-it-works" className="mx-auto max-w-6xl px-5 py-16 sm:py-24">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary-text">
-              How it works
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              Three steps, no ceremony
-            </h2>
-          </div>
-
-          <ol className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {STEPS.map((step, index) => (
-              <li key={step.title} className="relative rounded-card border border-border bg-surface-raised p-6 shadow-card">
-                <span className="grid size-8 place-items-center rounded-[8px] bg-primary text-sm font-bold text-primary-foreground">
-                  {index + 1}
-                </span>
-                <h3 className="mt-4 text-base font-semibold tracking-tight">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        {/* Features --------------------------------------------------------- */}
-        <section id="features" className="border-t border-border bg-surface">
-          <div className="mx-auto max-w-6xl px-5 py-16 sm:py-24">
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary-text">
-                Features
-              </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                Everything a brief needs. Nothing it doesn&rsquo;t.
-              </h2>
-            </div>
-
-            <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {FEATURES.map((feature) => {
-                const Icon = feature.icon
-                return (
-                  <div
-                    key={feature.title}
-                    className="rounded-card border border-border bg-surface-raised p-6 shadow-card transition-colors hover:border-primary"
-                  >
-                    <span className="grid size-10 place-items-center rounded-[8px] bg-primary-soft text-primary-text">
-                      <Icon className="size-5" aria-hidden="true" />
-                    </span>
-                    <h3 className="mt-4 text-base font-semibold tracking-tight">{feature.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {feature.body}
-                    </p>
-                  </div>
-                )
-              })}
-            </div>
-
-            <p className="mt-8 flex items-center gap-2 text-sm text-muted-foreground">
-              <Moon className="size-4 shrink-0" aria-hidden="true" />
-              Light and dark themes, adjustable text size, full keyboard navigation and a WCAG AA
-              colour pass — because you will be living in this thing.
+            <p className="mt-6 text-center text-sm text-muted-foreground">
+              This is the honest trade of a tool with no server. We would rather you knew it up front
+              than discovered it later.
             </p>
           </div>
         </section>
 
         {/* FAQ -------------------------------------------------------------- */}
-        <section id="faq" className="mx-auto max-w-6xl px-5 py-16 sm:py-24">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary-text">
-              FAQ
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              The questions worth asking
-            </h2>
-          </div>
+        <section id="faq" className="border-y border-border bg-secondary py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-14 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
+                FAQ
+              </p>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">Frequently asked questions</h2>
+            </div>
 
-          <dl className="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2">
-            {FAQ.map((item) => (
-              <div key={item.q}>
-                <dt className="text-base font-semibold tracking-tight">{item.q}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.a}</dd>
-              </div>
-            ))}
-          </dl>
+            <dl className="mx-auto grid max-w-5xl grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2">
+              {FAQ.map((item) => (
+                <div key={item.q}>
+                  <dt className="text-base font-bold">{item.q}</dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </section>
 
         {/* Closing CTA ------------------------------------------------------ */}
-        <section className="border-t border-border bg-surface">
-          <div className="mx-auto max-w-3xl px-5 py-20 text-center">
-            <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              Your next brief is one click away
+        <section className="py-20 sm:py-28">
+          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-extrabold text-balance sm:text-4xl">
+              Ready to write your next brief?
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-4 max-w-xl text-balance text-muted-foreground">
               No trial to start, no card to enter, no data to hand over. Open it and write.
             </p>
             <a
               href={siteConfig.appUrl}
-              className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-[8px] bg-primary px-8 text-[15px] font-medium text-primary-foreground shadow-card transition-colors hover:bg-primary-hover"
+              className="mt-8 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-8 text-base font-semibold text-primary-foreground transition-all duration-150 hover:bg-primary-hover active:scale-[0.98]"
             >
               Open ReqStudio
               <ArrowRight className="size-4" aria-hidden="true" />

@@ -8,7 +8,9 @@
  */
 export const siteConfig = {
   name: 'ReqStudio',
-  tagline: 'Project briefs that stay on your machine',
+  tagline: 'Requirements. Planned. Perfected.',
+  /** Longer line used for the page <title> and social cards. */
+  metaTagline: 'Project briefs that stay on your machine',
   description:
     'A free, local-first studio for project requirements and website briefs. Ten guided sections, a live readiness score, and autosave — with no account, no server and no tracking.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://getreqstudio.vercel.app',

@@ -45,14 +45,14 @@ function barTone(percent: number) {
  */
 export function AppPreview() {
   return (
-    <div className="overflow-hidden rounded-card border border-border bg-surface-raised shadow-hero">
-      <div className="flex items-center gap-2 border-b border-border bg-surface px-4 py-3">
+    <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
+      <div className="flex items-center gap-2 border-b border-border bg-muted px-4 py-3">
         <span className="flex gap-1.5" aria-hidden="true">
-          <span className="size-2.5 rounded-full bg-border-strong" />
-          <span className="size-2.5 rounded-full bg-border-strong" />
-          <span className="size-2.5 rounded-full bg-border-strong" />
+          <span className="size-2.5 rounded-full bg-[#f87171]" />
+          <span className="size-2.5 rounded-full bg-[#fbbf24]" />
+          <span className="size-2.5 rounded-full bg-[#4ade80]" />
         </span>
-        <span className="ml-3 hidden rounded-[6px] border border-border bg-surface-raised px-3 py-1 text-[11px] text-muted-foreground sm:block">
+        <span className="ml-3 hidden rounded-[6px] border border-border bg-card px-3 py-1 text-[11px] text-muted-foreground sm:block">
           Northwind Corporate Site · Brief
         </span>
         <span className="ml-auto flex items-center gap-1.5 text-[11px] font-medium text-success">
@@ -64,7 +64,7 @@ export function AppPreview() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-[13rem_1fr] sm:p-5">
-        <aside className="rounded-[10px] border border-border bg-surface p-2">
+        <aside className="rounded-[10px] border border-border bg-muted p-2">
           <div className="flex items-baseline justify-between px-2 py-1.5">
             <span className="text-[10px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
               Sections
@@ -83,15 +83,15 @@ export function AppPreview() {
                 <li
                   key={section.label}
                   className={`flex items-center gap-2 rounded-[6px] px-2 py-1.5 ${
-                    active ? 'bg-primary-soft' : ''
+                    active ? 'bg-primary/10' : ''
                   }`}
                 >
                   <span
                     className={`grid size-5 shrink-0 place-items-center rounded-[6px] border ${
                       section.percent >= 100
-                        ? 'border-success/30 bg-success-soft text-success'
+                        ? 'border-success/30 bg-success/10 text-success'
                         : section.percent > 0
-                          ? 'border-primary/25 bg-primary-soft text-primary-text'
+                          ? 'border-primary/25 bg-primary/10 text-primary-text'
                           : 'border-border bg-muted text-muted-foreground'
                     }`}
                   >
@@ -115,7 +115,7 @@ export function AppPreview() {
 
         <div className="min-w-0">
           <div className="flex items-start gap-3">
-            <span className="grid size-9 shrink-0 place-items-center rounded-[8px] bg-primary-soft text-primary-text">
+            <span className="grid size-9 shrink-0 place-items-center rounded-[8px] bg-primary/10 text-primary-text">
               <LayoutTemplate className="size-4" aria-hidden="true" />
             </span>
             <div className="min-w-0 flex-1">
@@ -127,7 +127,7 @@ export function AppPreview() {
                 Every page in the build, with its purpose, calls to action and content needs.
               </p>
             </div>
-            <span className="hidden shrink-0 rounded-full bg-primary-soft px-2 py-1 text-[10px] font-medium text-primary-text sm:block">
+            <span className="hidden shrink-0 rounded-full bg-primary/10 px-2 py-1 text-[10px] font-medium text-primary-text sm:block">
               66% complete
             </span>
           </div>
@@ -141,7 +141,7 @@ export function AppPreview() {
             ].map((page, index) => (
               <div
                 key={page.name}
-                className="flex items-center gap-3 rounded-[10px] border border-border bg-surface px-3 py-2.5"
+                className="flex items-center gap-3 rounded-[10px] border border-border bg-muted px-3 py-2.5"
               >
                 <span className="grid size-6 shrink-0 place-items-center rounded-[6px] bg-muted text-[10px] font-semibold text-muted-foreground">
                   {index + 1}
@@ -165,7 +165,7 @@ export function AppPreview() {
             ))}
           </div>
 
-          <div className="mt-4 rounded-[10px] border border-border bg-surface p-3">
+          <div className="mt-4 rounded-[10px] border border-border bg-muted p-3">
             <div className="flex items-baseline justify-between">
               <span className="text-[10px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
                 Readiness score
