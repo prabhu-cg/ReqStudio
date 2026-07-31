@@ -7,7 +7,8 @@ export function NotFoundPage() {
   const navigate = useNavigate()
 
   return (
-    <div className="rs-scroll-area h-full overflow-y-auto p-4 lg:p-8">
+    <div className="rs-scroll-area h-full overflow-y-auto">
+      <div className="rs-page p-4 lg:p-8">
       <EmptyState
         icon={Compass}
         title="Page not found"
@@ -17,7 +18,8 @@ export function NotFoundPage() {
             Back to dashboard
           </Button>
         }
-      />
+        />
+      </div>
     </div>
   )
 }

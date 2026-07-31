@@ -20,18 +20,26 @@ function formatBytes(bytes: number): string {
 /** Persistent footer: local storage footprint, connectivity and save state. */
 export function StatusBar() {
   const summaries = useProjectSummaries()
-  const [usage, setUsage] = useState<number | null>(null)
+  const [usage, setUsage] = useState<string | null>(null)
   const [online, setOnline] = useState(() => navigator.onLine)
 
+  const projectCount = summaries?.length ?? 0
+  const pageCount = summaries?.reduce((total, summary) => total + summary.pageCount, 0) ?? 0
+
+  // Keyed on the counts rather than the array: useLiveQuery hands back a new
+  // array on every write, and navigator.storage.estimate() returns a figure
+  // that drifts between calls, so re-running per write made the number flicker.
   useEffect(() => {
     let cancelled = false
     void estimateStorage().then((estimate) => {
-      if (!cancelled && estimate) setUsage(estimate.usage)
+      if (cancelled || !estimate) return
+      const next = formatBytes(estimate.usage)
+      setUsage((current) => (current === next ? current : next))
     })
     return () => {
       cancelled = true
     }
-  }, [summaries])
+  }, [projectCount, pageCount])
 
   useEffect(() => {
     const update = () => setOnline(navigator.onLine)
@@ -43,9 +51,6 @@ export function StatusBar() {
     }
   }, [])
 
-  const projectCount = summaries?.length ?? 0
-  const pageCount = summaries?.reduce((total, summary) => total + summary.pageCount, 0) ?? 0
-
   return (
     <footer className="flex h-8 shrink-0 items-center gap-4 border-t border-border bg-surface px-4 text-[11px] text-muted-foreground lg:px-6">
       <span className="flex items-center gap-1.5">
@@ -56,7 +61,7 @@ export function StatusBar() {
       {usage !== null ? (
         <span className="hidden items-center gap-1.5 sm:flex">
           <HardDrive className="size-3" aria-hidden="true" />
-          {formatBytes(usage)} stored locally
+          {usage} stored locally
         </span>
       ) : null}
 

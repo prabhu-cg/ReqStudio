@@ -30,7 +30,8 @@ export function RecentPage() {
   const anyOpened = summaries.some((summary) => summary.project.lastOpenedAt)
 
   return (
-    <div className="rs-scroll-area h-full overflow-y-auto flex flex-col gap-6 p-4 lg:p-8">
+    <div className="rs-scroll-area h-full overflow-y-auto">
+      <div className="rs-page flex flex-col gap-6 p-4 lg:p-8">
       <PageHeader
         title="Recent"
         description="Projects you have opened, most recent first."
@@ -48,6 +49,7 @@ export function RecentPage() {
           <ProjectCollection summaries={visible} />
         </>
       )}
+      </div>
     </div>
   )
 }

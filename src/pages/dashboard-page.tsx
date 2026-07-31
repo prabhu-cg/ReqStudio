@@ -60,7 +60,8 @@ export function DashboardPage() {
 
   if (summaries.length === 0) {
     return (
-      <div className="rs-scroll-area h-full overflow-y-auto p-4 lg:p-8">
+      <div className="rs-scroll-area h-full overflow-y-auto">
+        <div className="rs-page p-4 lg:p-8">
         <PageHeader
           title="Dashboard"
           description="ReqStudio keeps every brief on this device — free, offline and private."
@@ -77,14 +78,16 @@ export function DashboardPage() {
                 New project
               </Button>
             }
-          />
+            />
+          </div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="rs-scroll-area flex h-full flex-col gap-8 overflow-y-auto p-4 lg:p-8">
+    <div className="rs-scroll-area h-full overflow-y-auto">
+      <div className="rs-page flex flex-col gap-8 p-4 lg:p-8">
       <PageHeader
         title="Dashboard"
         description="Where your briefs stand today."
@@ -180,6 +183,7 @@ export function DashboardPage() {
             <ArrowRight aria-hidden="true" />
           </Link>
         </Button>
+      </div>
       </div>
     </div>
   )

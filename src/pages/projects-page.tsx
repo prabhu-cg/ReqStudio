@@ -27,7 +27,8 @@ export function ProjectsPage() {
   }
 
   return (
-    <div className="rs-scroll-area h-full overflow-y-auto flex flex-col gap-6 p-4 lg:p-8">
+    <div className="rs-scroll-area h-full overflow-y-auto">
+      <div className="rs-page flex flex-col gap-6 p-4 lg:p-8">
       <PageHeader
         title="Projects"
         description={
@@ -68,6 +69,7 @@ export function ProjectsPage() {
           <ProjectCollection summaries={visible} />
         </>
       )}
+      </div>
     </div>
   )
 }

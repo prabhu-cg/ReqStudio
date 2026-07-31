@@ -25,9 +25,14 @@ export function ProjectWorkspace() {
   const navigate = useNavigate()
   const openDrawer = useUIStore((state) => state.openDrawer)
 
+  // Keyed on the id alone. Depending on `project` looped: openProject writes
+  // lastOpenedAt, the live query re-emits a new object identity, and the effect
+  // fired again — an unbounded write loop for as long as the tab was open.
+  // touch() already no-ops when the record is missing, so the guard is not needed.
   useEffect(() => {
-    if (projectId && project) void openProject(projectId)
-  }, [projectId, project])
+    if (!projectId) return
+    void openProject(projectId)
+  }, [projectId])
 
   // Exposes the scrollport height to sticky panels inside the active tab.
   const tabViewportRef = useHeightVariable('--rs-tab-h')
@@ -65,7 +70,8 @@ export function ProjectWorkspace() {
 
   return (
     <div className="flex h-full min-h-0 flex-col">
-      <header className="shrink-0 border-b border-border bg-surface px-4 pt-6 lg:px-8">
+      <header className="shrink-0 border-b border-border bg-surface">
+        <div className="rs-page px-4 pt-6 lg:px-8">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
@@ -184,14 +190,17 @@ export function ProjectWorkspace() {
               </NavLink>
             )
           })}
-        </nav>
+          </nav>
+        </div>
       </header>
 
       <div
         ref={tabViewportRef}
-        className="rs-scroll-area min-h-0 flex-1 overflow-y-auto p-4 lg:p-8"
+        className="rs-scroll-area min-h-0 flex-1 overflow-y-auto"
       >
-        <Outlet context={context} />
+        <div className="rs-page p-4 lg:p-8">
+          <Outlet context={context} />
+        </div>
       </div>
     </div>
   )
