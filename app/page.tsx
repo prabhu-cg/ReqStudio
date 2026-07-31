@@ -15,6 +15,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { siteConfig } from '@/lib/site'
+import { Logo } from '@/components/logo'
 import { AppPreview } from '@/components/app-preview'
 import { SiteFooter, SiteHeader } from '@/components/site-chrome'
 
@@ -107,13 +108,19 @@ export default function HomePage() {
 
       <main id="main">
         {/* Hero ------------------------------------------------------------ */}
-        <section className="relative overflow-hidden pb-20 pt-20 sm:pb-28 sm:pt-28">
+        <section className="relative overflow-hidden border-b border-border bg-secondary pb-20 pt-20 sm:pb-24 sm:pt-24">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-            <div className="absolute -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-secondary opacity-60 blur-3xl" />
-            <div className="absolute -top-20 right-0 h-[400px] w-[400px] translate-x-1/3 rounded-full bg-primary opacity-[0.08] blur-3xl" />
+            {/* Oversized mark behind the headline, the same watermark device the
+                other apps use to stop a centred hero floating in white space. */}
+            <Logo className="absolute left-1/2 top-2 h-[440px] w-auto -translate-x-1/2 opacity-[0.05]" />
+            <div className="absolute -top-24 right-0 h-[420px] w-[420px] translate-x-1/3 rounded-full bg-primary opacity-[0.10] blur-3xl" />
+            <div className="absolute -bottom-32 left-0 h-[380px] w-[380px] -translate-x-1/3 rounded-full bg-primary opacity-[0.07] blur-3xl" />
           </div>
 
-          <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+          {/* Outer container matches the header and every section below, so the
+              stat row lines up with the rest of the page; the copy stays narrow. */}
+          <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
             <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-secondary px-4 py-1.5">
               <Sparkles className="size-3.5 shrink-0 fill-primary text-primary" aria-hidden="true" />
               <span className="text-xs font-semibold uppercase tracking-wide text-primary-text">
@@ -152,11 +159,12 @@ export default function HomePage() {
               </a>
             </div>
 
-            <p className="mt-4 text-sm text-muted-foreground">
-              Opens instantly. Nothing to install, nothing to sign up for.
-            </p>
+              <p className="mt-4 text-sm text-muted-foreground">
+                Opens instantly. Nothing to install, nothing to sign up for.
+              </p>
+            </div>
 
-            <dl className="mt-14 grid grid-cols-2 gap-8 sm:grid-cols-4">
+            <dl className="mt-14 grid grid-cols-2 gap-8 text-center sm:grid-cols-4">
               {STATS.map((stat) => (
                 <div key={stat.label}>
                   <dt className="sr-only">{stat.label}</dt>
@@ -173,7 +181,7 @@ export default function HomePage() {
         </section>
 
         {/* Product preview -------------------------------------------------- */}
-        <section className="border-y border-border bg-secondary py-20 sm:py-28">
+        <section className="py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mb-14 text-center">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
@@ -192,7 +200,7 @@ export default function HomePage() {
         </section>
 
         {/* Features --------------------------------------------------------- */}
-        <section id="features" className="py-20 sm:py-28">
+        <section id="features" className="border-y border-border bg-secondary py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mb-14 text-center">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
@@ -224,7 +232,7 @@ export default function HomePage() {
         </section>
 
         {/* How it works ----------------------------------------------------- */}
-        <section id="how-it-works" className="border-y border-border bg-secondary py-20 sm:py-28">
+        <section id="how-it-works" className="py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mb-14 text-center">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
@@ -253,7 +261,7 @@ export default function HomePage() {
         </section>
 
         {/* Privacy ---------------------------------------------------------- */}
-        <section id="privacy" className="py-20 sm:py-28">
+        <section id="privacy" className="border-y border-border bg-secondary py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mb-14 text-center">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
@@ -364,7 +372,7 @@ export default function HomePage() {
         </section>
 
         {/* FAQ -------------------------------------------------------------- */}
-        <section id="faq" className="border-y border-border bg-secondary py-20 sm:py-28">
+        <section id="faq" className="py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mb-14 text-center">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
@@ -385,7 +393,7 @@ export default function HomePage() {
         </section>
 
         {/* Closing CTA ------------------------------------------------------ */}
-        <section className="py-20 sm:py-28">
+        <section className="border-t border-border bg-secondary py-20 sm:py-28">
           <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
             <h2 className="text-3xl font-extrabold text-balance sm:text-4xl">
               Ready to write your next brief?
