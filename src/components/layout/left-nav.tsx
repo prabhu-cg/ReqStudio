@@ -48,7 +48,7 @@ export function LeftNav({ onNavigate }: { onNavigate?: () => void }) {
       )}
     >
       <div className={cn('flex h-14 items-center px-3', collapsed && 'justify-center')}>
-        {collapsed ? <Logo /> : <Wordmark className="px-1" />}
+        {collapsed ? <Logo className="h-7" /> : <Wordmark className="px-1" />}
       </div>
 
       <ul className="flex flex-1 flex-col gap-1 px-3 py-2">
