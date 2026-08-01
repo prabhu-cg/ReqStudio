@@ -34,3 +34,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Deployment
+
+Connected to [prabhu-cg/ReqStudio-Landing](https://github.com/prabhu-cg/ReqStudio-Landing) on
+Vercel: a push to `main` deploys to production and every branch gets a preview URL.
+
+Set `NEXT_PUBLIC_APP_URL` if the app ever moves origin — but note that ReqStudio stores projects in
+IndexedDB, which is scoped per origin, so moving it strands existing users' briefs. Defaults live in
+`lib/site.ts`.
