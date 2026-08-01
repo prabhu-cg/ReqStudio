@@ -35,8 +35,12 @@ Lucide · Zustand · React Hook Form · Zod · React Router · Dexie (IndexedDB)
 
 Everything is static — there is no backend.
 
-**Vercel** — import the repo and accept the detected defaults. `vercel.json` sets the SPA rewrite
-and immutable asset caching. There are no environment variables; there is no backend.
+**Vercel** — connected to this repository, so a push to `main` deploys to production and every
+branch gets a preview URL. `vercel.json` sets the SPA rewrite and immutable asset caching. There
+are no environment variables; there is no backend.
+
+The marketing site lives in a separate repository, [ReqStudio-Landing](https://github.com/prabhu-cg/ReqStudio-Landing),
+and deploys independently.
 
 **Serving from a sub-path** — set `VITE_BASE=/<path>/` at build time. The router reads it via
 `import.meta.env.BASE_URL`, and the build emits a `404.html` copy of `index.html` so deep links
