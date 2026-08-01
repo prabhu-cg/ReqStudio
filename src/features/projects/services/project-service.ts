@@ -1,5 +1,7 @@
 import {
   activityRepository,
+  documentRepository,
+  exportRepository,
   pageRepository,
   projectRepository,
 } from '@/lib/db'
@@ -8,6 +10,7 @@ import type { SectionValues } from '@/types/field'
 import type { UpdateInput } from '@/types/entity'
 import type { NewProjectInput } from '@/lib/db/repositories/project-repository'
 import { getSection } from '@/features/brief/sections'
+import { isSampleProject } from '@/features/sample/lib/sample-project'
 
 /**
  * Project use-cases.
@@ -63,8 +66,16 @@ export async function togglePinned(id: string): Promise<void> {
 }
 
 export async function deleteProject(id: string): Promise<void> {
+  // The sample ships with the app rather than belonging to the user. The UI
+  // hides every delete affordance for it; this is the backstop.
+  if (isSampleProject(id)) {
+    throw new Error('The built-in sample project cannot be deleted.')
+  }
+
   await pageRepository.removeByProject(id)
   await activityRepository.removeByProject(id)
+  await documentRepository.removeByProject(id)
+  await exportRepository.removeByProject(id)
   await projectRepository.remove(id)
 }
 

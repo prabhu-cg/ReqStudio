@@ -24,7 +24,7 @@ import { cn } from '@/lib/utils/cn'
 import { truncate } from '@/lib/utils/text'
 
 /** Custom pane for section 5 — pages live in their own table, not in the brief blob. */
-export function PageRequirementsPane({ project, pages }: SectionPaneProps) {
+export function PageRequirementsPane({ project, pages, readOnly = false }: SectionPaneProps) {
   const openDrawer = useUIStore((state) => state.openDrawer)
 
   return (
@@ -35,14 +35,16 @@ export function PageRequirementsPane({ project, pages }: SectionPaneProps) {
             ? 'No pages yet.'
             : `${pages.length} ${pages.length === 1 ? 'page' : 'pages'} defined.`}
         </p>
-        <Button
-          variant="primary"
-          size="sm"
-          onClick={() => openDrawer({ type: 'page.create', projectId: project.id })}
-        >
-          <Plus aria-hidden="true" />
-          Add page
-        </Button>
+        {readOnly ? null : (
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => openDrawer({ type: 'page.create', projectId: project.id })}
+          >
+            <Plus aria-hidden="true" />
+            Add page
+          </Button>
+        )}
       </div>
 
       {pages.length === 0 ? (
@@ -52,14 +54,16 @@ export function PageRequirementsPane({ project, pages }: SectionPaneProps) {
           title="Start with your key pages"
           description="Add every page in the build — home, product, pricing, contact — then fill in the detail as it firms up."
           action={
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => openDrawer({ type: 'page.create', projectId: project.id })}
-            >
-              <Plus aria-hidden="true" />
-              Add the first page
-            </Button>
+            readOnly ? undefined : (
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => openDrawer({ type: 'page.create', projectId: project.id })}
+              >
+                <Plus aria-hidden="true" />
+                Add the first page
+              </Button>
+            )
           }
         />
       ) : (
@@ -71,6 +75,7 @@ export function PageRequirementsPane({ project, pages }: SectionPaneProps) {
               index={index}
               total={pages.length}
               projectId={project.id}
+              readOnly={readOnly}
             />
           ))}
         </ul>
@@ -84,11 +89,13 @@ function PageRow({
   index,
   total,
   projectId,
+  readOnly,
 }: {
   page: ProjectPage
   index: number
   total: number
   projectId: string
+  readOnly: boolean
 }) {
   const openDrawer = useUIStore((state) => state.openDrawer)
   const completion = pageCompletion(page)
@@ -103,13 +110,19 @@ function PageRow({
 
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <button
-              type="button"
-              onClick={() => openDrawer({ type: 'page.edit', projectId, pageId: page.id })}
-              className="truncate rounded text-sm font-semibold hover:text-primary-text"
-            >
-              {page.name || 'Untitled page'}
-            </button>
+            {readOnly ? (
+              <span className="truncate text-sm font-semibold">
+                {page.name || 'Untitled page'}
+              </span>
+            ) : (
+              <button
+                type="button"
+                onClick={() => openDrawer({ type: 'page.edit', projectId, pageId: page.id })}
+                className="truncate rounded text-sm font-semibold hover:text-primary-text"
+              >
+                {page.name || 'Untitled page'}
+              </button>
+            )}
             {page.primaryCta ? (
               <Badge tone="outline">CTA: {truncate(page.primaryCta, 28)}</Badge>
             ) : null}
@@ -148,6 +161,7 @@ function PageRow({
           </div>
         </div>
 
+        {readOnly ? null : (
         <div className="flex shrink-0 items-center gap-1">
           <Button
             variant="ghost"
@@ -206,6 +220,7 @@ function PageRow({
             </DropdownMenu.Portal>
           </DropdownMenu.Root>
         </div>
+        )}
       </div>
     </li>
   )

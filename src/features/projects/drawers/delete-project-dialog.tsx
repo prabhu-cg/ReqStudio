@@ -29,7 +29,20 @@ export function DeleteProjectDialog({
       description={`“${name}” and its ${pluralize(pages.length, 'page')} will be permanently removed from this device. This cannot be undone.`}
       confirmLabel="Delete project"
       onConfirm={async () => {
-        await deleteProject(state.projectId)
+        try {
+          await deleteProject(state.projectId)
+        } catch (error) {
+          // The only project that refuses deletion is the built-in sample, and
+          // every route to this dialog is already hidden for it.
+          toast({
+            title: 'Could not delete this project',
+            description: error instanceof Error ? error.message : undefined,
+            variant: 'danger',
+          })
+          closeAllDrawers()
+          return
+        }
+
         toast({ title: 'Project deleted', description: name, variant: 'danger' })
         closeAllDrawers()
         if (location.pathname.startsWith(`/projects/${state.projectId}`)) {

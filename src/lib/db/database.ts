@@ -1,5 +1,6 @@
 import Dexie, { type Table } from 'dexie'
 import type { ActivityEvent, Project, ProjectPage } from '@/types/project'
+import type { ExportRecord, ProjectDocument } from '@/types/document'
 
 /**
  * IndexedDB schema.
@@ -11,6 +12,8 @@ export class ReqStudioDatabase extends Dexie {
   projects!: Table<Project, string>
   pages!: Table<ProjectPage, string>
   activity!: Table<ActivityEvent, string>
+  documents!: Table<ProjectDocument, string>
+  exports!: Table<ExportRecord, string>
 
   constructor(name = 'reqstudio') {
     super(name)
@@ -20,6 +23,13 @@ export class ReqStudioDatabase extends Dexie {
       pages: 'id, projectId, [projectId+order], name, updatedAt, deletedAt',
       activity: 'id, projectId, [projectId+createdAt], type, createdAt',
     })
+
+    // Phase 2. Both tables are additive — no upgrade function is needed because
+    // no existing store or record shape changed.
+    this.version(2).stores({
+      documents: 'id, &projectId, updatedAt, deletedAt',
+      exports: 'id, projectId, [projectId+createdAt], format, createdAt, deletedAt',
+    })
   }
 }
 
@@ -27,8 +37,14 @@ export const db = new ReqStudioDatabase()
 
 /** Removes every local record. Backing the Settings → Reset Local Data action. */
 export async function resetDatabase(): Promise<void> {
-  await db.transaction('rw', db.projects, db.pages, db.activity, async () => {
-    await Promise.all([db.projects.clear(), db.pages.clear(), db.activity.clear()])
+  await db.transaction('rw', db.projects, db.pages, db.activity, db.documents, db.exports, async () => {
+    await Promise.all([
+      db.projects.clear(),
+      db.pages.clear(),
+      db.activity.clear(),
+      db.documents.clear(),
+      db.exports.clear(),
+    ])
   })
 }
 

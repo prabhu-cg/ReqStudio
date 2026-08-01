@@ -1,8 +1,16 @@
 import type { ComponentType } from 'react'
-import { Activity, FileText, LayoutDashboard, ScrollText, type LucideIcon } from 'lucide-react'
+import {
+  Activity,
+  Download,
+  FileText,
+  LayoutDashboard,
+  ScrollText,
+  type LucideIcon,
+} from 'lucide-react'
 import { OverviewTab } from './tabs/overview-tab'
 import { BriefTab } from './tabs/brief-tab'
 import { PreviewTab } from './tabs/preview-tab'
+import { ExportsTab } from './tabs/exports-tab'
 import { ActivityTab } from './tabs/activity-tab'
 
 export interface WorkspaceTab {
@@ -33,5 +41,6 @@ export const workspaceTabs: readonly WorkspaceTab[] = [
   },
   { id: 'brief', path: 'brief', label: 'Brief', icon: FileText, component: BriefTab },
   { id: 'preview', path: 'preview', label: 'Preview', icon: ScrollText, component: PreviewTab },
+  { id: 'exports', path: 'exports', label: 'Exports', icon: Download, component: ExportsTab },
   { id: 'activity', path: 'activity', label: 'Activity', icon: Activity, component: ActivityTab },
 ]

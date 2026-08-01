@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Lock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/primitives'
@@ -11,7 +11,7 @@ import { readinessBarClass } from '@/features/projects/lib/project-display'
 import { useSettingsStore } from '@/stores/settings-store'
 
 export function BriefTab() {
-  const { project, pages, readiness } = useWorkspace()
+  const { project, pages, readiness, readOnly } = useWorkspace()
   const [searchParams, setSearchParams] = useSearchParams()
   const showHints = useSettingsStore((state) => state.showCompletionHints)
 
@@ -98,11 +98,23 @@ export function BriefTab() {
           ) : null}
         </header>
 
+        {readOnly ? (
+          <aside className="mb-6 flex gap-3 rounded-card border border-border bg-surface px-4 py-3.5">
+            <Lock className="mt-0.5 size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              This is the built-in sample brief, kept read-only so it always shows a complete
+              example. Use <span className="font-medium text-foreground">Duplicate to edit</span> to
+              get a copy you can change.
+            </p>
+          </aside>
+        ) : null}
+
         <SectionForm
           key={`${project.id}:${section.id}`}
           section={section}
           project={project}
           pages={pages}
+          readOnly={readOnly}
         />
 
         <nav

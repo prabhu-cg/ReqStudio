@@ -6,6 +6,8 @@ import { ProjectSettingsDrawer } from '@/features/projects/drawers/project-setti
 import { DeleteProjectDialog } from '@/features/projects/drawers/delete-project-dialog'
 import { PageFormDrawer } from '@/features/pages/drawers/page-form-drawer'
 import { DeletePageDialog } from '@/features/pages/drawers/delete-page-dialog'
+import { DocumentSettingsDrawer } from '@/features/exports/drawers/document-settings-drawer'
+import { ExportSettingsDrawer } from '@/features/exports/drawers/export-settings-drawer'
 
 export interface DrawerComponentProps<T extends DrawerType = DrawerType> {
   state: Extract<DrawerState, { type: T }>
@@ -34,4 +36,6 @@ export const drawerRegistry: {
   'page.create': PageFormDrawer,
   'page.edit': PageFormDrawer,
   'page.delete': DeletePageDialog,
+  'document.settings': DocumentSettingsDrawer,
+  'export.settings': ExportSettingsDrawer,
 }

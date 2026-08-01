@@ -2,10 +2,13 @@ import type { ComponentType } from 'react'
 import type { LucideIcon } from 'lucide-react'
 import type { FieldDef, SectionValues } from './field'
 import type { Project, ProjectPage } from './project'
+import type { DateFormatPattern, DocBlock } from './document'
 
 export interface SectionPaneProps {
   project: Project
   pages: ProjectPage[]
+  /** Panes hide their editing affordances when the project is locked. */
+  readOnly?: boolean
 }
 
 export interface SectionCompletionContext {
@@ -51,8 +54,23 @@ export interface SectionDefinition {
     SectionCompletion,
     'completed' | 'total' | 'missingRequired' | 'missingOptional'
   >
-  /** Rendered in Preview instead of the generic field list. */
-  preview?: ComponentType<SectionPaneProps>
+  /**
+   * Emits document blocks instead of the generic field rendering.
+   *
+   * The preview, PDF, Word, Markdown and HTML outputs all render whatever this
+   * returns, so a section with a bespoke shape — a sitemap, a complexity
+   * matrix — describes itself once and appears correctly everywhere.
+   */
+  documentBlocks?: (context: SectionDocumentContext) => DocBlock[]
+}
+
+export interface SectionDocumentContext {
+  values: SectionValues
+  project: Project
+  pages: ProjectPage[]
+  dateFormat: DateFormatPattern
+  /** True when the reader asked to see unanswered fields. */
+  includeEmpty: boolean
 }
 
 export interface Recommendation {

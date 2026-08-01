@@ -6,6 +6,11 @@ export interface WorkspaceContext {
   project: Project
   pages: ProjectPage[]
   readiness: ReadinessReport
+  /**
+   * True for the built-in sample project, which is a showcase rather than a
+   * workspace: its brief, pages and document settings are all locked.
+   */
+  readOnly: boolean
   /** Navigates to the Brief tab with a section selected. */
   goToSection: (sectionId: string) => void
 }

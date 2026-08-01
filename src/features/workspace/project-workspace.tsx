@@ -1,6 +1,16 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { NavLink, Navigate, Outlet, useNavigate, useParams } from 'react-router-dom'
-import { FolderX, MoreHorizontal, Pencil, Pin, PinOff, Settings2, Trash2 } from 'lucide-react'
+import {
+  Copy,
+  FolderX,
+  Lock,
+  MoreHorizontal,
+  Pencil,
+  Pin,
+  PinOff,
+  Settings2,
+  Trash2,
+} from 'lucide-react'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -16,6 +26,8 @@ import { cn } from '@/lib/utils/cn'
 import { formatRelative } from '@/lib/utils/date'
 import { pluralize } from '@/lib/utils/text'
 import { useHeightVariable } from '@/lib/hooks/use-height-variable'
+import { isSampleProject } from '@/features/sample/lib/sample-project'
+import { duplicateSampleForEditing } from '@/features/sample/services/sample-service'
 
 export function ProjectWorkspace() {
   const { projectId } = useParams<{ projectId: string }>()
@@ -24,6 +36,8 @@ export function ProjectWorkspace() {
   const readiness = useProjectReadiness(project, pages)
   const navigate = useNavigate()
   const openDrawer = useUIStore((state) => state.openDrawer)
+  const toast = useUIStore((state) => state.toast)
+  const [duplicating, setDuplicating] = useState(false)
 
   // Keyed on the id alone. Depending on `project` looped: openProject writes
   // lastOpenedAt, the live query re-emits a new object identity, and the effect
@@ -36,6 +50,32 @@ export function ProjectWorkspace() {
 
   // Exposes the scrollport height to sticky panels inside the active tab.
   const tabViewportRef = useHeightVariable('--rs-tab-h')
+
+  // The built-in sample is a showcase: it is locked and cannot be deleted, and
+  // "Duplicate to edit" is the way out of it into an editable project.
+  const readOnly = isSampleProject(projectId)
+
+  const duplicateToEdit = useCallback(async () => {
+    setDuplicating(true)
+    try {
+      const copy = await duplicateSampleForEditing()
+      if (!copy) return
+      toast({
+        title: 'Sample duplicated',
+        description: 'Your copy is fully editable.',
+        variant: 'success',
+      })
+      navigate(`/projects/${copy.id}/brief`)
+    } catch (error) {
+      toast({
+        title: 'Could not duplicate the sample',
+        description: error instanceof Error ? error.message : undefined,
+        variant: 'danger',
+      })
+    } finally {
+      setDuplicating(false)
+    }
+  }, [navigate, toast])
 
   const goToSection = useCallback(
     (sectionId: string) => {
@@ -66,7 +106,7 @@ export function ProjectWorkspace() {
     )
   }
 
-  const context: WorkspaceContext = { project, pages, readiness, goToSection }
+  const context: WorkspaceContext = { project, pages, readiness, readOnly, goToSection }
 
   return (
     <div className="flex h-full min-h-0 flex-col">
@@ -79,6 +119,15 @@ export function ProjectWorkspace() {
               <Badge tone={STATUS_META[project.status].tone} size="md">
                 {STATUS_META[project.status].label}
               </Badge>
+              {readOnly ? (
+                <>
+                  <Badge tone="primary">Sample</Badge>
+                  <Badge tone="outline">
+                    <Lock aria-hidden="true" />
+                    Read only
+                  </Badge>
+                </>
+              ) : null}
               {project.pinned ? (
                 <Badge tone="outline">
                   <Pin aria-hidden="true" />
@@ -108,14 +157,26 @@ export function ProjectWorkspace() {
               <span className="text-sm font-semibold tabular-nums">{readiness.score}%</span>
             </div>
 
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => openDrawer({ type: 'project.edit', projectId: project.id })}
-            >
-              <Pencil aria-hidden="true" />
-              Edit
-            </Button>
+            {readOnly ? (
+              <Button
+                variant="primary"
+                size="sm"
+                loading={duplicating}
+                onClick={() => void duplicateToEdit()}
+              >
+                {duplicating ? null : <Copy aria-hidden="true" />}
+                Duplicate to edit
+              </Button>
+            ) : (
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => openDrawer({ type: 'project.edit', projectId: project.id })}
+              >
+                <Pencil aria-hidden="true" />
+                Edit
+              </Button>
+            )}
 
             <DropdownMenu.Root>
               <DropdownMenu.Trigger asChild>
@@ -147,21 +208,35 @@ export function ProjectWorkspace() {
                     )}
                     {project.pinned ? 'Unpin' : 'Pin to dashboard'}
                   </DropdownMenu.Item>
-                  <DropdownMenu.Item
-                    onSelect={() => openDrawer({ type: 'project.settings', projectId: project.id })}
-                    className="flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
-                  >
-                    <Settings2 className="size-4" aria-hidden="true" />
-                    Project settings
-                  </DropdownMenu.Item>
-                  <DropdownMenu.Separator className="my-1 h-px bg-border" />
-                  <DropdownMenu.Item
-                    onSelect={() => openDrawer({ type: 'project.delete', projectId: project.id })}
-                    className="flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm text-danger outline-none data-[highlighted]:bg-muted"
-                  >
-                    <Trash2 className="size-4" aria-hidden="true" />
-                    Delete project
-                  </DropdownMenu.Item>
+                  {readOnly ? (
+                    <DropdownMenu.Item
+                      onSelect={() => void duplicateToEdit()}
+                      className="flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
+                    >
+                      <Copy className="size-4" aria-hidden="true" />
+                      Duplicate to edit
+                    </DropdownMenu.Item>
+                  ) : (
+                    <>
+                      <DropdownMenu.Item
+                        onSelect={() =>
+                          openDrawer({ type: 'project.settings', projectId: project.id })
+                        }
+                        className="flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
+                      >
+                        <Settings2 className="size-4" aria-hidden="true" />
+                        Project settings
+                      </DropdownMenu.Item>
+                      <DropdownMenu.Separator className="my-1 h-px bg-border" />
+                      <DropdownMenu.Item
+                        onSelect={() => openDrawer({ type: 'project.delete', projectId: project.id })}
+                        className="flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm text-danger outline-none data-[highlighted]:bg-muted"
+                      >
+                        <Trash2 className="size-4" aria-hidden="true" />
+                        Delete project
+                      </DropdownMenu.Item>
+                    </>
+                  )}
                 </DropdownMenu.Content>
               </DropdownMenu.Portal>
             </DropdownMenu.Root>

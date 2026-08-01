@@ -44,11 +44,15 @@ export class ProjectRepository extends DexieRepository<Project> {
     return this.update(projectId, { pinned })
   }
 
-  /** Touched on workspace open so the dashboard can surface recent work. */
+  /**
+   * Touched on workspace open so the dashboard can surface recent work.
+   *
+   * A partial update rather than a read-modify-write: the latter raced with the
+   * sample-project seeding that also runs at start-up, and wrote back a stale
+   * copy of the whole record over it. `update` no-ops when the row is missing.
+   */
   async touch(projectId: string): Promise<void> {
-    const current = await this.table.get(projectId)
-    if (!current) return
-    await this.table.put({ ...current, lastOpenedAt: nowIso() })
+    await this.table.update(projectId, { lastOpenedAt: nowIso() })
   }
 
   async duplicate(projectId: string): Promise<Project | undefined> {

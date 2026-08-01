@@ -12,6 +12,7 @@ import {
 } from '@/stores/settings-store'
 import { useUIStore } from '@/stores/ui-store'
 import { estimateStorage, resetDatabase } from '@/lib/db'
+import { ensureSampleProject } from '@/features/sample/services/sample-service'
 import { useProjectSummaries } from '@/features/projects/hooks/use-projects'
 import { pluralize } from '@/lib/utils/text'
 import { cn } from '@/lib/utils/cn'
@@ -201,10 +202,13 @@ export function SettingsPage() {
         open={confirmReset}
         onClose={() => setConfirmReset(false)}
         title="Reset local data"
-        description="Every project, page and activity record in this browser will be deleted. This cannot be undone and there is no backup."
+        description="Every project, page and activity record in this browser will be deleted. This cannot be undone and there is no backup. The built-in sample project is restored afterwards."
         confirmLabel="Delete everything"
         onConfirm={async () => {
           await resetDatabase()
+          // The sample is part of the app rather than the user's data, so it
+          // comes back rather than being cleared away with everything else.
+          await ensureSampleProject()
           toast({ title: 'Local data cleared', variant: 'danger' })
         }}
         />

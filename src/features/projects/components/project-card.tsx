@@ -15,6 +15,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/primitives'
 import { useUIStore } from '@/stores/ui-store'
+import { isSampleProject } from '@/features/sample/lib/sample-project'
 import { togglePinned } from '../services/project-service'
 import { PRIORITY_META, STATUS_META, readinessBarClass, typeLabel } from '../lib/project-display'
 import { formatDate, formatRelative, daysUntil } from '@/lib/utils/date'
@@ -33,6 +34,7 @@ export function ProjectCard({ summary }: { summary: ProjectSummary }) {
         <div className="flex min-w-0 flex-1 flex-col">
           <div className="flex items-center gap-2">
             <Badge tone={STATUS_META[project.status].tone}>{STATUS_META[project.status].label}</Badge>
+            {isSampleProject(project.id) ? <Badge tone="primary">Sample</Badge> : null}
             {project.pinned ? (
               <Pin className="size-3.5 text-primary-text" aria-label="Pinned project" />
             ) : null}
@@ -127,6 +129,8 @@ export function ProjectCard({ summary }: { summary: ProjectSummary }) {
 
 function ProjectCardMenu({ projectId, pinned }: { projectId: string; pinned: boolean }) {
   const openDrawer = useUIStore((state) => state.openDrawer)
+  // The sample is a read-only showcase: it cannot be edited or deleted here.
+  const readOnly = isSampleProject(projectId)
 
   const itemClass =
     'flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted'
@@ -157,25 +161,31 @@ function ProjectCardMenu({ projectId, pinned }: { projectId: string; pinned: boo
             <Settings2 className="size-4" aria-hidden="true" />
             View details
           </DropdownMenu.Item>
-          <DropdownMenu.Item
-            className={itemClass}
-            onSelect={() => openDrawer({ type: 'project.edit', projectId })}
-          >
-            <Pencil className="size-4" aria-hidden="true" />
-            Edit project
-          </DropdownMenu.Item>
+          {readOnly ? null : (
+            <DropdownMenu.Item
+              className={itemClass}
+              onSelect={() => openDrawer({ type: 'project.edit', projectId })}
+            >
+              <Pencil className="size-4" aria-hidden="true" />
+              Edit project
+            </DropdownMenu.Item>
+          )}
           <DropdownMenu.Item className={itemClass} onSelect={() => void togglePinned(projectId)}>
             {pinned ? <PinOff className="size-4" aria-hidden="true" /> : <Pin className="size-4" aria-hidden="true" />}
             {pinned ? 'Unpin' : 'Pin to dashboard'}
           </DropdownMenu.Item>
-          <DropdownMenu.Separator className="my-1 h-px bg-border" />
-          <DropdownMenu.Item
-            className={cn(itemClass, 'text-danger')}
-            onSelect={() => openDrawer({ type: 'project.delete', projectId })}
-          >
-            <Trash2 className="size-4" aria-hidden="true" />
-            Delete project
-          </DropdownMenu.Item>
+          {readOnly ? null : (
+            <>
+              <DropdownMenu.Separator className="my-1 h-px bg-border" />
+              <DropdownMenu.Item
+                className={cn(itemClass, 'text-danger')}
+                onSelect={() => openDrawer({ type: 'project.delete', projectId })}
+              >
+                <Trash2 className="size-4" aria-hidden="true" />
+                Delete project
+              </DropdownMenu.Item>
+            </>
+          )}
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>

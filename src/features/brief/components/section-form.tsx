@@ -14,6 +14,8 @@ export interface SectionFormProps {
   section: SectionDefinition
   project: Project
   pages: ProjectPage[]
+  /** Locks every control and suspends autosave. */
+  readOnly?: boolean
 }
 
 /**
@@ -22,7 +24,7 @@ export interface SectionFormProps {
  * The form is rebuilt whenever the section changes, keyed by project + section,
  * so switching sections never carries values across.
  */
-export function SectionForm({ section, project, pages }: SectionFormProps) {
+export function SectionForm({ section, project, pages, readOnly = false }: SectionFormProps) {
   const defaultValues = useMemo(
     () => withDefaults(section.fields, project.brief[section.id]),
     // Re-seeding on every project mutation would fight the user's typing, so the
@@ -57,6 +59,8 @@ export function SectionForm({ section, project, pages }: SectionFormProps) {
 
   useAutosave<SectionValues>({
     value: values as SectionValues,
+    // A locked project must never write, even if a control somehow changes.
+    enabled: !readOnly,
     canSave: (next) =>
       JSON.stringify(pruneValues(section.fields, next)) !== storedPayload,
     save: async (next) => {
@@ -73,9 +77,13 @@ export function SectionForm({ section, project, pages }: SectionFormProps) {
       onSubmit={(event) => event.preventDefault()}
       className="flex flex-col gap-8"
     >
-      {Pane ? <Pane project={project} pages={pages} /> : null}
+      {Pane ? <Pane project={project} pages={pages} readOnly={readOnly} /> : null}
       {section.fields.length > 0 ? (
-        <FieldGrid fields={section.fields} control={control} />
+        // A disabled fieldset disables every control it contains, including the
+        // button-based Radix selects and switches, in one place.
+        <fieldset disabled={readOnly} className="m-0 min-w-0 border-0 p-0">
+          <FieldGrid fields={section.fields} control={control} />
+        </fieldset>
       ) : null}
     </form>
   )

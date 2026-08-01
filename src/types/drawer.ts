@@ -14,6 +14,8 @@ export type DrawerState =
   | { type: 'page.create'; projectId: string }
   | { type: 'page.edit'; projectId: string; pageId: string }
   | { type: 'page.delete'; projectId: string; pageId: string }
+  | { type: 'document.settings'; projectId: string }
+  | { type: 'export.settings'; projectId: string }
 
 export type DrawerType = DrawerState['type']
 

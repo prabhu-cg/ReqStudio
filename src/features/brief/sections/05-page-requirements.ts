@@ -4,7 +4,6 @@ import type { SectionDefinition } from '@/types/section'
 import { scoreFields } from '@/lib/fields/completion'
 import { pageCompletion } from '../../pages/lib/page-completion'
 import { PageRequirementsPane } from '../../pages/components/page-requirements-pane'
-import { PageRequirementsPreview } from '../../pages/components/page-requirements-preview'
 
 const fields: readonly FieldDef[] = [
   {
@@ -40,7 +39,6 @@ export const pageRequirementsSection: SectionDefinition = {
   weight: 1.4,
   fields,
   pane: PageRequirementsPane,
-  preview: PageRequirementsPreview,
   completion: ({ values, pages }) => {
     const base = scoreFields(fields, values)
 
