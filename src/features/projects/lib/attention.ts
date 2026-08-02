@@ -1,5 +1,6 @@
 import type { ProjectSummary } from '../hooks/use-projects'
 import { daysUntil } from '@/lib/utils/date'
+import { isSampleProject } from '@/features/sample/lib/sample-project'
 
 export interface AttentionItem {
   summary: ProjectSummary
@@ -87,6 +88,7 @@ export interface PortfolioStats {
   total: number
   active: number
   pages: number
+  sample: number
   averageReadiness: number
   needsAttention: number
 }
@@ -103,6 +105,7 @@ export function portfolioStats(
     total: summaries.length,
     active: summaries.filter((summary) => summary.project.status === 'active').length,
     pages: summaries.reduce((sum, summary) => sum + summary.pageCount, 0),
+    sample: summaries.filter((summary) => isSampleProject(summary.project.id)).length,
     // Averaged over live work only — archived projects would drag it down forever.
     averageReadiness:
       live.length === 0

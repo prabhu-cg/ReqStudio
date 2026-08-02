@@ -104,7 +104,11 @@ export function DashboardPage() {
           icon={<FolderKanban className="size-4" aria-hidden="true" />}
           label="Projects"
           value={String(stats.total)}
-          hint={`${pluralize(stats.active, 'active project')} · ${pluralize(stats.pages, 'page')}`}
+          hint={
+            stats.sample > 0
+              ? `${pluralize(stats.active, 'active project')} · ${pluralize(stats.pages, 'page')} · incl. ${pluralize(stats.sample, 'sample')}`
+              : `${pluralize(stats.active, 'active project')} · ${pluralize(stats.pages, 'page')}`
+          }
         />
         <StatTile
           icon={<Gauge className="size-4" aria-hidden="true" />}
