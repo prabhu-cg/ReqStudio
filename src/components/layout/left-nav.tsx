@@ -75,20 +75,23 @@ export function LeftNav({ onNavigate }: { onNavigate?: () => void }) {
         ))}
       </ul>
 
-      <ul className="flex flex-col gap-1 px-3 pb-2">
-        {FOOTER_NAV_ITEMS.map((item) => (
-          <li key={item.to}>
-            <NavItemLink item={item} collapsed={collapsed} onNavigate={onNavigate} />
-          </li>
-        ))}
-      </ul>
+      <div className="space-y-0.5 border-t border-border px-3 py-3">
+        <ul className="flex flex-col gap-1">
+          {FOOTER_NAV_ITEMS.map((item) => (
+            <li key={item.to}>
+              <NavItemLink item={item} collapsed={collapsed} onNavigate={onNavigate} />
+            </li>
+          ))}
+        </ul>
 
-      <div className="border-t border-border p-3">
         <Button
           variant="ghost"
           size="sm"
           onClick={toggleNav}
-          className={cn('w-full', collapsed ? 'h-10 justify-center px-0' : 'justify-start')}
+          className={cn(
+            'w-full hover:bg-primary-soft hover:text-primary-text',
+            collapsed ? 'h-10 justify-center px-0' : 'justify-start',
+          )}
           aria-label={collapsed ? 'Expand navigation' : 'Collapse navigation'}
         >
           {collapsed ? (
@@ -170,7 +173,7 @@ function NavItemLink({
         baseClasses,
         isActive
           ? 'bg-primary-soft text-primary-text'
-          : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+          : 'text-muted-foreground hover:bg-primary-soft hover:text-primary-text',
       )}
     >
       <Icon className="size-4 shrink-0" aria-hidden="true" />
