@@ -111,8 +111,10 @@ export default function HomePage() {
         <section className="relative overflow-hidden border-b border-border bg-secondary pb-20 pt-20 sm:pb-24 sm:pt-24">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
             {/* Oversized mark behind the headline, the same watermark device the
-                other apps use to stop a centred hero floating in white space. */}
-            <Logo className="absolute left-1/2 top-2 h-[440px] w-auto -translate-x-1/2 opacity-[0.05]" />
+                other apps use to stop a centred hero floating in white space.
+                Pulled up by half its own height so the section's overflow-hidden
+                crops it to just the lower half. */}
+            <Logo className="absolute left-1/2 -top-[220px] h-[440px] w-auto -translate-x-1/2 opacity-[0.05]" />
             <div className="absolute -top-24 right-0 h-[420px] w-[420px] translate-x-1/3 rounded-full bg-primary opacity-[0.10] blur-3xl" />
             <div className="absolute -bottom-32 left-0 h-[380px] w-[380px] -translate-x-1/3 rounded-full bg-primary opacity-[0.07] blur-3xl" />
           </div>
