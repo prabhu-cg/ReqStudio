@@ -59,8 +59,8 @@ export function SiteFooter() {
 
         <nav aria-label="Footer" className="flex items-center gap-5 text-sm">
           <AboutModal />
-          <TermsModal />
           <PrivacyModal />
+          <TermsModal />
           <a
             href={siteConfig.repoUrl}
             target="_blank"

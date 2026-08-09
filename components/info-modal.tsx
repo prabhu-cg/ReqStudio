@@ -7,6 +7,10 @@ export interface InfoModalProps {
   label: string
   title: string
   subtitle?: string
+  /** App/site mark shown in a bordered box to the left of the title. */
+  icon?: ReactNode
+  /** Version pill rendered under the subtitle, e.g. "v0.1.0". */
+  badge?: string
   children: ReactNode
 }
 
@@ -18,7 +22,7 @@ export interface InfoModalProps {
  * `::backdrop` for free, which keeps a marketing page free of a dialog
  * dependency it would otherwise carry for three static documents.
  */
-export function InfoModal({ label, title, subtitle, children }: InfoModalProps) {
+export function InfoModal({ label, title, subtitle, icon, badge, children }: InfoModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
   const [open, setOpen] = useState(false)
   const titleId = useId()
@@ -64,12 +68,18 @@ export function InfoModal({ label, title, subtitle, children }: InfoModalProps) 
       >
         <div className="flex max-h-[min(80vh,44rem)] flex-col">
           <header className="flex items-start gap-4 border-b border-border px-6 py-4">
+            {icon ? <div className="shrink-0">{icon}</div> : null}
             <div className="min-w-0 flex-1">
               <h2 id={titleId} className="text-base font-semibold tracking-tight">
                 {title}
               </h2>
               {subtitle ? (
                 <p className="mt-1 text-xs text-muted-foreground">{subtitle}</p>
+              ) : null}
+              {badge ? (
+                <span className="mt-2 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary-text">
+                  {badge}
+                </span>
               ) : null}
             </div>
             <button

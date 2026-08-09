@@ -1,5 +1,7 @@
 import { siteConfig } from '@/lib/site'
+import { Logo, TAGLINE } from './logo'
 import { DocList, DocSection, InfoModal } from './info-modal'
+import packageJson from '../package.json'
 
 /*
  * Plain-language Terms and Privacy documents.
@@ -29,7 +31,13 @@ const STACK: Array<{ group: string; items: string }> = [
 
 export function AboutModal() {
   return (
-    <InfoModal label="About" title="About ReqStudio" subtitle="What it is and how it is built">
+    <InfoModal
+      label="About"
+      title={`About ${siteConfig.name}`}
+      subtitle={TAGLINE}
+      icon={<Logo className="h-9" />}
+      badge={`v${packageJson.version}`}
+    >
       <DocSection title="What it is">
         <p>
           ReqStudio is a free, local-first studio for project requirements and website briefs, built
@@ -49,13 +57,13 @@ export function AboutModal() {
       </DocSection>
 
       <DocSection title="How it is built">
-        <dl className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-[minmax(8rem,10rem)_1fr]">
+        <dl className="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
           {STACK.map((row) => (
-            <div key={row.group} className="contents">
-              <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground/80">
+            <div key={row.group}>
+              <dt className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground/80">
                 {row.group}
               </dt>
-              <dd className="mb-2 text-foreground sm:mb-0">{row.items}</dd>
+              <dd className="mt-1 text-foreground">{row.items}</dd>
             </div>
           ))}
         </dl>
@@ -78,6 +86,39 @@ export function AboutModal() {
           PDF, Word, Markdown and HTML export, a sitemap generator, page complexity analysis, an AI
           prompt generator and optional cloud sync are designed for but deliberately not built. The
           architecture carries the extension points already, so none of them require a rewrite.
+        </p>
+      </DocSection>
+
+      <DocSection title="Who built this">
+        <p>
+          ReqStudio is an independent side project by{' '}
+          <a
+            href="https://prabhuraja.vercel.app/"
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-primary-text underline underline-offset-4"
+          >
+            Prabhu Raja
+          </a>
+          , a product designer with 15+ years across enterprise and B2B software — currently VP of
+          User Experience at BNY, previously at Thomson Reuters HighQ, Sweepr, and Marston
+          Holdings. Day to day, that work centres on design systems, accessibility, and turning
+          ambiguous, high-stakes workflows into clear, systemised outcomes.
+        </p>
+        <p className="mt-3">
+          ReqStudio is a small, focused tool: ten guided sections, a live readiness score, and a
+          print-ready report — the discipline of a proper brief, without the friction of writing one
+          from a blank page.
+        </p>
+        <p className="mt-3">
+          Feedback, feature requests, or just want to say hello —{' '}
+          <a
+            href="mailto:prabhu_cg@proton.me"
+            className="font-medium text-primary-text underline underline-offset-4"
+          >
+            prabhu_cg@proton.me
+          </a>
+          .
         </p>
       </DocSection>
     </InfoModal>

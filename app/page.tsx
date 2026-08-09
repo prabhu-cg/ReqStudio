@@ -395,17 +395,17 @@ export default function HomePage() {
         </section>
 
         {/* Closing CTA ------------------------------------------------------ */}
-        <section className="border-t border-border bg-secondary py-20 sm:py-28">
+        <section className="bg-primary py-20 sm:py-28">
           <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-extrabold text-balance sm:text-4xl">
+            <h2 className="text-3xl font-extrabold text-balance text-primary-foreground sm:text-4xl">
               Ready to write your next brief?
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-balance text-muted-foreground">
+            <p className="mx-auto mt-4 max-w-xl text-balance text-primary-foreground/80">
               No trial to start, no card to enter, no data to hand over. Open it and write.
             </p>
             <a
               href={siteConfig.appUrl}
-              className="mt-8 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-8 text-base font-semibold text-primary-foreground transition-all duration-150 hover:bg-primary-hover active:scale-[0.98]"
+              className="mt-8 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-background px-8 text-base font-semibold text-foreground transition-all duration-150 hover:bg-secondary active:scale-[0.98]"
             >
               Open ReqStudio
               <ArrowRight className="size-4" aria-hidden="true" />
