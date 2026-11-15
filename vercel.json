@@ -28,6 +28,18 @@
   ],
   "rewrites": [
     {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
       "source": "/app/:path*",
       "destination": "/app/index.html"
     }
@@ -51,6 +63,5 @@
         }
       ]
     }
-  ],
-  "cleanUrls": true
+  ]
 }
