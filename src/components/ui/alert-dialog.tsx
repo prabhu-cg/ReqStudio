@@ -45,8 +45,9 @@ export const AlertDialogContent = forwardRef<
         ref={ref}
         className={cn(
           'fixed left-1/2 top-1/2 z-90 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2',
-          'rounded-card border border-border bg-surface-raised p-6 shadow-raised outline-none',
+          'overflow-hidden rounded-card border border-border bg-surface-raised shadow-raised outline-none',
           'data-[state=open]:animate-[dialog-in_180ms_cubic-bezier(0.22,1,0.36,1)]',
+          'data-[state=closed]:animate-[fade-out_120ms_ease-in]',
           className,
         )}
         {...props}
@@ -62,7 +63,7 @@ export const AlertDialogTitle = forwardRef<
   return (
     <AlertDialogPrimitive.Title
       ref={ref}
-      className={cn('text-base font-semibold tracking-tight', className)}
+      className={cn('text-xl leading-snug text-foreground', className)}
       {...props}
     />
   )

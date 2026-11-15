@@ -7,7 +7,7 @@ import { Button } from './button'
 /**
  * The one drawer component.
  *
- * ReqStudio never uses centred modal dialogs — every create/edit/confirm surface
+ * ReqStudio never uses centred modal dialogs — every create/edit surface
  * slides in from the right so the workspace behind stays readable. Built on
  * Radix Dialog, which supplies focus trapping, `aria-modal`, escape handling and
  * scroll locking for free.
@@ -53,19 +53,22 @@ export function Drawer({
         <DrawerOverlay />
         <DialogPrimitive.Content
           className={cn(
-            'fixed inset-y-0 right-0 z-70 flex w-full flex-col border-l border-border bg-background shadow-drawer outline-none',
+            'fixed inset-y-0 right-0 z-70 flex w-full flex-col overflow-hidden border-l border-border bg-background shadow-drawer outline-none sm:rounded-l-card',
             'data-[state=open]:animate-[drawer-in_220ms_cubic-bezier(0.32,0.72,0,1)]',
             'data-[state=closed]:animate-[drawer-out_180ms_cubic-bezier(0.32,0.72,0,1)]',
             SIZES[size],
           )}
         >
-          <header className="flex items-start gap-4 border-b border-border px-6 py-4">
+          {/* The header is chrome: it sits on the desk ground with a hairline, so it
+              reads as a frame around the paper-white form below instead of the
+              first line of it. The title is a real heading (Newsreader, 24px). */}
+          <header className="flex items-start gap-4 border-b border-border bg-surface px-6 py-5 sm:px-8 sm:py-6">
             <div className="min-w-0 flex-1">
-              <DialogPrimitive.Title className="truncate text-base font-semibold tracking-tight">
+              <DialogPrimitive.Title className="line-clamp-2 text-2xl leading-tight text-foreground">
                 {title}
               </DialogPrimitive.Title>
               {description ? (
-                <DialogPrimitive.Description className="mt-1 text-sm text-muted-foreground">
+                <DialogPrimitive.Description className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {description}
                 </DialogPrimitive.Description>
               ) : (
@@ -76,18 +79,23 @@ export function Drawer({
             </div>
             {headerAccessory}
             <DialogPrimitive.Close asChild>
-              <Button variant="ghost" size="icon-sm" aria-label="Close drawer">
+              <Button variant="secondary" size="icon" aria-label="Close drawer">
                 <X aria-hidden="true" />
               </Button>
             </DialogPrimitive.Close>
           </header>
 
-          <div className={cn('rs-scroll-area flex-1 overflow-y-auto px-6 py-5', contentClassName)}>
+          <div
+            className={cn(
+              'rs-scroll-area flex-1 overflow-y-auto px-6 py-6 sm:px-8 sm:py-8',
+              contentClassName,
+            )}
+          >
             {children}
           </div>
 
           {footer ? (
-            <footer className="flex items-center justify-end gap-2 border-t border-border bg-surface px-6 py-4">
+            <footer className="flex items-center justify-end gap-2 border-t border-border bg-surface px-6 py-4 sm:px-8">
               {footer}
             </footer>
           ) : null}
@@ -131,10 +139,8 @@ export function DrawerSection({
   return (
     <section className={cn('mb-8 last:mb-0', className)}>
       {title ? (
-        <div className="mb-4">
-          <h3 className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">
-            {title}
-          </h3>
+        <div className="mb-4 border-b border-border pb-3">
+          <h3 className="text-base font-semibold text-foreground">{title}</h3>
           {description ? (
             <p className="mt-1 text-sm text-muted-foreground">{description}</p>
           ) : null}

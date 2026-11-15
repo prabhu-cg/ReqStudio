@@ -39,6 +39,7 @@ Ten sections, fillable in any order. A half-finished section never blocks the re
 - **Autosave.** No Save button. Writes a moment after typing stops and flushes if the tab closes.
 - **Preview report.** A clean report with a sticky table of contents, collapsible sections and a print stylesheet.
 - **Client-ready exports.** PDF, Word, Markdown and HTML.
+- **Focused edit flows.** Creating or editing a project, a page or the document settings opens a right-side drawer, so the workspace stays visible behind it. Only destructive confirmations (delete project, delete page, reset local data) interrupt, with a centred dialog.
 - **Projects.** Search, filter, sort and pin. A built-in, read-only sample project (Northwind Rebuild, fictional data) shows a complete brief and can be duplicated to edit.
 - **Light and dark.** Light is the default; dark is chosen with the toggle. There is no "system" option.
 
@@ -56,4 +57,4 @@ Accounts, cloud sync, collaboration, AI drafting or scoring, and a Templates lib
 
 ## Where it lives
 
-One origin, `getreqstudio.vercel.app` (the Vercel project is named `reqstudioapp`): the marketing site at `/` and the app at `/app/`. The app's origin must never change, because IndexedDB is scoped per origin and moving it would strand every user's briefs. The repository is `prabhu-cg/ReqStudio`; the site is in `landing/`. See the README for the build and deploy details.
+One origin, `getreqstudio.vercel.app` (the Vercel project is named `reqstudioapp`): the marketing site at `/` and the app at `/app/`. The site also has About, Privacy and Terms pages (`/about`, `/privacy`, `/terms`), and its top nav glides to the page's sections. The app's origin must never change, because IndexedDB is scoped per origin and moving it would strand every user's briefs. The repository is `prabhu-cg/ReqStudio`; the site is in `landing/`. See the README for the build and deploy details.

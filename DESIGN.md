@@ -225,6 +225,18 @@ Rail items are pills: hover `sand` with `foreground` text, active `accent-tint` 
 
 App: a two-option pill segmented control (sun, moon). Site: a 36px pill icon button (moon in light mode, sun in dark) labelled "Toggle light and dark mode"; both icons render and swap with CSS, so there is no flash.
 
+### Drawers and dialogs
+
+Every create and edit surface is a right-side **drawer**, so the workspace behind stays readable. Only destructive confirmations interrupt, with a centred **dialog**. Both use the same structure: chrome on the desk ground, content on paper, hairlines between.
+
+- **Drawer:** 448 to 768px wide (`sm` to `xl`, full width on mobile), a 20px rounded left edge, a hairline, `shadow-drawer`, over the `bg-black/40` scrim.
+- **Drawer header:** on the **desk** ground with a hairline beneath, `px-8 py-6`, so it frames the form instead of reading as its first line. The title is a real heading: Newsreader 24px (the One Heading Rule), at most two lines. The description is 14px muted with room above it. The close control is a 36px outlined pill, not a faint ghost icon.
+- **Drawer body:** paper white, `px-8 py-8`. Group headings inside it are 16px semibold with a hairline beneath, not small uppercase labels.
+- **Drawer footer:** desk ground with a hairline. Cancel on the left of the action, one primary on the right.
+- **Dialog:** 20px, `max-w-md`, `shadow-raised`. A body with a 44px tinted icon, a Newsreader 20px title and a 14px description; then a footer bar on the desk ground with a hairline holding Cancel (outline) and the action (danger outline for destructive, primary otherwise). It never closes on an outside click while an action runs.
+
+**Motion.** A drawer slides in over 220ms and out over 180ms, both ease-out, with the scrim fading 180ms in and 150ms out. A dialog fades and scales from 97% over 180ms and fades out over 120ms. It is animated with opacity and scale only, because the dialog is centred with the `translate` property and a keyframe `translate` would stack on it. `DrawerHost` keeps a closed drawer mounted, inert, for 300ms so the slide-out can finish; unmounting it on close makes it vanish.
+
 ### Device mockup
 
 A CSS-built MacBook (`landing/components/macbook-mockup.tsx`) holding a 16:10 capture of the app's Brief tab. The light capture shows in light mode and the dark one in dark mode, with the caption "Sample project — fictional data". Captures are 2880x1800 PNGs of the fictional sample project at `landing/public/mockups/workspace-light-v2.png` and `workspace-dark-v2.png`. Retake them whenever the app chrome changes and bump the `-v2` suffix so caches refresh. Device colours are fixed, not themed.

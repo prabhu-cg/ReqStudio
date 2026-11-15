@@ -51,12 +51,12 @@ export function ConfirmDialog({
   return (
     <AlertDialog open={open} onOpenChange={(next) => !next && !busy && onClose()}>
       <AlertDialogContent>
-        <div className="flex gap-4">
+        <div className="flex gap-4 p-6">
           <span
             className={
               tone === 'danger'
-                ? 'grid size-10 shrink-0 place-items-center rounded-full bg-danger-soft text-danger'
-                : 'grid size-10 shrink-0 place-items-center rounded-full bg-primary-soft text-primary-text'
+                ? 'grid size-11 shrink-0 place-items-center rounded-full bg-danger-soft text-danger'
+                : 'grid size-11 shrink-0 place-items-center rounded-full bg-primary-soft text-primary-text'
             }
           >
             <TriangleAlert className="size-5" aria-hidden="true" />
@@ -69,9 +69,9 @@ export function ConfirmDialog({
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-end gap-2">
+        <div className="flex items-center justify-end gap-2 border-t border-border bg-surface px-6 py-4">
           <AlertDialogCancel asChild>
-            <Button variant="ghost" disabled={busy}>
+            <Button variant="secondary" disabled={busy}>
               Cancel
             </Button>
           </AlertDialogCancel>
