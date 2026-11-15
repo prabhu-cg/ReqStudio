@@ -43,12 +43,15 @@ import { toSpans } from '@/features/documents/lib/blocks'
  */
 
 const FONT = 'Manrope'
-const PRIMARY = 'C74504'
-const INK = '1C1917'
-const BODY = '555555'
-const MUTED = '78716C'
-const RULE = 'E5E0D5'
-const SURFACE = 'F4F2EA'
+// The Butter palette. Amber is a fill (borders, rules); anything that carries
+// the accent as text is ochre.
+const PRIMARY_FILL = 'E8B923'
+const PRIMARY = '826400'
+const INK = '353335'
+const BODY = '4D4A4D'
+const MUTED = '6B6B6B'
+const RULE = 'ECE5CC'
+const SURFACE = 'F8F4E4'
 
 const BULLET_REFERENCE = 'rs-bullets'
 const NUMBER_REFERENCE = 'rs-numbers'
@@ -70,7 +73,7 @@ const CALLOUT_COLOURS: Record<CalloutTone, { fill: string; text: string; label: 
   success: { fill: 'E6F4EC', text: '146C43', label: 'Success' },
   warning: { fill: 'FDF3E0', text: '8A5A00', label: 'Warning' },
   risk: { fill: 'FDECEB', text: 'B3261E', label: 'Risk' },
-  future: { fill: 'FDEFE7', text: 'A93A03', label: 'Future scope' },
+  future: { fill: 'FAF4DF', text: '826400', label: 'Future scope' },
 }
 
 export async function exportDocx(model: DocumentModel): Promise<Blob> {
@@ -267,7 +270,7 @@ function coverPage(model: DocumentModel): Paragraph[] {
     }),
     new Paragraph({
       spacing: { after: 600 },
-      border: { bottom: { style: BorderStyle.SINGLE, size: 18, color: PRIMARY, space: 12 } },
+      border: { bottom: { style: BorderStyle.SINGLE, size: 18, color: PRIMARY_FILL, space: 12 } },
       children: [new TextRun({ text: cover.subtitle, size: 24, color: MUTED })],
     }),
     ...facts.map(

@@ -8,15 +8,17 @@
 
 export const DOCUMENT_STYLES = `
 :root {
-  --ink: #1c1917;
-  --body: #555555;
-  --muted: #78716c;
-  --line: #e5e0d5;
-  --line-strong: #d6c7ab;
-  --surface: #faf8f3;
-  --primary: #c74504;
-  --primary-dark: #a93a03;
-  --primary-soft: #fdefe7;
+  /* The Butter palette. Amber is a fill; the accent as text is ochre. */
+  --ink: #353335;
+  --body: #4d4a4d;
+  --muted: #6b6b6b;
+  --line: #ece5cc;
+  --line-strong: #dccfa6;
+  --surface: #fcfaf3;
+  --sand: #f8f4e4;
+  --primary: #e8b923;
+  --primary-text: #826400;
+  --primary-soft: #faf4df;
   --info: #1f5f9e;
   --info-soft: #ebf3fb;
   --success: #146c43;
@@ -31,7 +33,7 @@ export const DOCUMENT_STYLES = `
 
 body {
   margin: 0;
-  background: #f2efe8;
+  background: var(--sand);
   color: var(--body);
   font-family: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   font-size: 15px;
@@ -45,14 +47,13 @@ body {
   margin: 2.5rem auto;
   background: #ffffff;
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 2px 4px -1px rgba(16,16,20,.06), 0 8px 24px -6px rgba(16,16,20,.12);
 }
 
 h1, h2, h3, h4 { color: var(--ink); font-weight: 700; letter-spacing: -0.02em; margin: 0; }
 p { margin: 0 0 1rem; max-width: 68ch; }
-a { color: var(--primary-dark); }
+a { color: var(--primary-text); }
 
 /* Running header and footer ---------------------------------------------- */
 .doc-header {
@@ -61,7 +62,7 @@ a { color: var(--primary-dark); }
   font-size: 12px; color: var(--muted);
 }
 .doc-header strong { color: var(--ink); font-weight: 600; }
-.doc-header .version { color: var(--primary-dark); font-weight: 700; }
+.doc-header .version { color: var(--primary-text); font-weight: 700; }
 
 .doc-footer {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
@@ -75,18 +76,18 @@ a { color: var(--primary-dark); }
 .cover-mark {
   display: flex; align-items: center; justify-content: center;
   width: 3rem; height: 3rem; border-radius: 14px;
-  background: var(--primary); color: #fff; font-weight: 700; font-size: 14px;
+  background: var(--primary); color: var(--ink); font-weight: 700; font-size: 14px;
 }
 .cover-brand { display: flex; align-items: center; gap: .75rem; }
 .cover-brand p { margin: 0; }
 .cover-brand .name { color: var(--ink); font-weight: 600; font-size: 14px; }
 .cover-brand .kind { font-size: 12px; color: var(--muted); }
 .cover-meta { text-align: right; font-size: 12px; }
-.cover-meta .version { color: var(--primary-dark); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.cover-meta .version { color: var(--primary-text); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 
 .cover-title { padding: 4rem 0; }
 .cover-eyebrow {
-  margin: 0; color: var(--primary-dark); font-size: 12px; font-weight: 700;
+  margin: 0; color: var(--primary-text); font-size: 12px; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
 }
 .cover h1 { margin: 1rem 0 0; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; }
@@ -112,13 +113,13 @@ a { color: var(--primary-dark); }
 .section > h2 { font-size: 1.6rem; }
 .section.level-2 { padding-left: 1.5rem; }
 .section.level-2 > h2 { font-size: 1.15rem; }
-.section .num { color: var(--primary-dark); margin-right: .6rem; }
+.section .num { color: var(--primary-text); margin-right: .6rem; }
 .section-description { margin: .5rem 0 0; font-size: 14px; color: var(--muted); }
 .section-body { margin-top: 1.25rem; }
 .section-body > * + * { margin-top: 1rem; }
 
 h3.block { font-size: 1rem; margin-top: 1.5rem; }
-h4.block { font-size: .9rem; color: var(--primary-dark); margin-top: 1.25rem; }
+h4.block { font-size: .9rem; color: var(--primary-text); margin-top: 1.25rem; }
 
 ul, ol { margin: 0; padding-left: 1.35rem; max-width: 68ch; }
 li { margin: .3rem 0; }
@@ -135,13 +136,13 @@ table { width: 100%; border-collapse: collapse; font-size: 14px; }
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
 caption { text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-bottom: .5rem; }
 th {
-  background: #f4f2ea; text-align: left; font-size: 11px; font-weight: 700;
+  background: var(--sand); text-align: left; font-size: 11px; font-weight: 700;
   letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
   padding: .7rem .8rem; border-bottom: 1px solid var(--line);
 }
 td { padding: .7rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
 tr:last-child td { border-bottom: 0; }
-tr:nth-child(even) td { background: #fbfaf6; }
+tr:nth-child(even) td { background: var(--surface); }
 th.right, td.right { text-align: right; font-variant-numeric: tabular-nums; }
 
 .callout { display: flex; gap: .85rem; padding: .9rem 1.1rem; border: 1px solid; border-radius: 12px; }
@@ -156,8 +157,8 @@ th.right, td.right { text-align: right; font-variant-numeric: tabular-nums; }
 .callout-warning .label { color: var(--warning); }
 .callout-risk { background: var(--danger-soft); border-color: rgba(179,38,30,.3); }
 .callout-risk .label { color: var(--danger); }
-.callout-future { background: var(--primary-soft); border-color: rgba(199,69,4,.3); }
-.callout-future .label { color: var(--primary-dark); }
+.callout-future { background: var(--primary-soft); border-color: var(--line-strong); }
+.callout-future .label { color: var(--primary-text); }
 
 hr.rule { border: 0; border-top: 1px solid var(--line); margin: 1.25rem 0; }
 .empty { font-style: italic; color: var(--muted); }
@@ -168,9 +169,9 @@ hr.rule { border: 0; border-top: 1px solid var(--line); margin: 1.25rem 0; }
   display: flex; align-items: baseline; gap: .75rem;
   padding: .35rem 0; text-decoration: none; color: var(--ink);
 }
-.toc li a:hover { color: var(--primary-dark); }
+.toc li a:hover { color: var(--primary-text); }
 .toc .sub { padding-left: 2rem; font-size: 14px; color: var(--body); }
-.toc .num { color: var(--primary-dark); font-weight: 700; }
+.toc .num { color: var(--primary-text); font-weight: 700; }
 .toc .sub .num { color: var(--muted); font-weight: 400; }
 .toc .leader { flex: 1; border-bottom: 1px dotted var(--line-strong); transform: translateY(-.25em); min-width: 1rem; }
 .toc .page-number { color: var(--muted); font-variant-numeric: tabular-nums; }

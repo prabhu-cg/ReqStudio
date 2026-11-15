@@ -25,17 +25,19 @@ import { sanitise, truncateToWidth, wrapText } from './pdf-text'
 /* Palette and type scale                                                      */
 /* -------------------------------------------------------------------------- */
 
+// The Butter palette. Amber is a fill, never text; anything that carries the
+// accent as text (`primaryText`) is ochre. Text drawn on amber is charcoal.
 export const COLOURS = {
-  primary: hex('#c74504'),
-  primaryDark: hex('#a93a03'),
-  primarySoft: hex('#fdefe7'),
-  ink: hex('#1c1917'),
-  body: hex('#555555'),
-  muted: hex('#78716c'),
-  rule: hex('#e5e0d5'),
-  ruleStrong: hex('#d6c7ab'),
-  surface: hex('#f4f2ea'),
-  surfaceSoft: hex('#fbfaf6'),
+  primary: hex('#e8b923'),
+  primaryText: hex('#826400'),
+  primarySoft: hex('#faf4df'),
+  ink: hex('#353335'),
+  body: hex('#4d4a4d'),
+  muted: hex('#6b6b6b'),
+  rule: hex('#ece5cc'),
+  ruleStrong: hex('#dccfa6'),
+  surface: hex('#f8f4e4'),
+  surfaceSoft: hex('#fcfaf3'),
   white: rgb(1, 1, 1),
 }
 
@@ -44,7 +46,7 @@ const CALLOUT_STYLES: Record<CalloutTone, { fill: RGB; accent: RGB; label: strin
   success: { fill: hex('#e6f4ec'), accent: hex('#146c43'), label: 'Success' },
   warning: { fill: hex('#fdf3e0'), accent: hex('#8a5a00'), label: 'Warning' },
   risk: { fill: hex('#fdeceb'), accent: hex('#b3261e'), label: 'Risk' },
-  future: { fill: hex('#fdefe7'), accent: hex('#a93a03'), label: 'Future scope' },
+  future: { fill: hex('#faf4df'), accent: hex('#826400'), label: 'Future scope' },
 }
 
 function hex(value: string): RGB {
@@ -243,7 +245,7 @@ export class PdfWriter {
       this.text(version, margin + this.contentWidth - width, y, {
         font: this.fonts.bold,
         size: SIZE.micro,
-        colour: COLOURS.primaryDark,
+        colour: COLOURS.primaryText,
       })
 
       this.line(margin, y - 5, margin + this.contentWidth, y - 5, COLOURS.rule)
@@ -356,7 +358,7 @@ export class PdfWriter {
     this.text(numberText, this.left, this.cursor - size, {
       font: this.fonts.bold,
       size,
-      colour: COLOURS.primaryDark,
+      colour: COLOURS.primaryText,
     })
     this.text(sanitise(section.title), this.left + numberWidth, this.cursor - size, {
       font: this.fonts.bold,
@@ -384,7 +386,7 @@ export class PdfWriter {
     this.text(sanitise(text), this.left, this.cursor - size, {
       font: this.fonts.bold,
       size,
-      colour: level === 3 ? COLOURS.ink : COLOURS.primaryDark,
+      colour: level === 3 ? COLOURS.ink : COLOURS.primaryText,
     })
     this.advance(size * LEADING + 2)
   }
@@ -654,7 +656,7 @@ export class PdfWriter {
     this.text(initials, margin + 22 - initialsWidth / 2, top - 27, {
       font: this.fonts.bold,
       size: 15,
-      colour: COLOURS.white,
+      colour: COLOURS.ink,
     })
 
     const organisation = cover.organisation !== 'Not recorded' ? cover.organisation : 'ReqStudio'
@@ -673,7 +675,7 @@ export class PdfWriter {
     this.text(sanitise(cover.version), margin + this.contentWidth - versionWidth, top - 20, {
       font: this.fonts.bold,
       size: SIZE.small,
-      colour: COLOURS.primaryDark,
+      colour: COLOURS.primaryText,
     })
     const statusWidth = this.fonts.regular.widthOfTextAtSize(sanitise(cover.status), SIZE.small)
     this.text(sanitise(cover.status), margin + this.contentWidth - statusWidth, top - 34, {
@@ -687,7 +689,7 @@ export class PdfWriter {
     this.text('PROJECT REQUIREMENTS BRIEF', margin, this.cursor, {
       font: this.fonts.bold,
       size: SIZE.small,
-      colour: COLOURS.primaryDark,
+      colour: COLOURS.primaryText,
     })
     this.advance(28)
 
@@ -803,7 +805,7 @@ export class PdfWriter {
       this.text(numberText, this.left + indent, baseline, {
         font,
         size,
-        colour: bold ? COLOURS.primaryDark : COLOURS.muted,
+        colour: bold ? COLOURS.primaryText : COLOURS.muted,
       })
       this.text(title, titleX, baseline, {
         font,
