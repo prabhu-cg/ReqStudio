@@ -39,8 +39,11 @@ Everything is static — there is no backend.
 branch gets a preview URL. `vercel.json` sets the SPA rewrite and immutable asset caching. There
 are no environment variables; there is no backend.
 
-The marketing site lives in a separate repository, [ReqStudio-Landing](https://github.com/prabhu-cg/ReqStudio-Landing),
-and deploys independently.
+The marketing site lives in [`landing/`](landing) (Next.js) and is a **second Vercel project** built
+from the same repository with its Root Directory set to `landing`. The two deploy independently: the
+app at `reqstudioapp`, the site at `getreqstudio`. They stay separate projects because the app's origin
+must never change (see below). The site was previously the separate ReqStudio-Landing repository, whose
+history is preserved in `landing/`.
 
 **Serving from a sub-path** — set `VITE_BASE=/<path>/` at build time. The router reads it via
 `import.meta.env.BASE_URL`, and the build emits a `404.html` copy of `index.html` so deep links
