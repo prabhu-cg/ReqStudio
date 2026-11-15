@@ -1,14 +1,13 @@
-import { Monitor, Moon, Sun } from 'lucide-react'
+import { Moon, Sun } from 'lucide-react'
 import { useSettingsStore, type ThemePreference } from '@/stores/settings-store'
 import { cn } from '@/lib/utils/cn'
 
 const OPTIONS: Array<{ value: ThemePreference; label: string; icon: typeof Sun }> = [
   { value: 'light', label: 'Light', icon: Sun },
   { value: 'dark', label: 'Dark', icon: Moon },
-  { value: 'system', label: 'System', icon: Monitor },
 ]
 
-/** Segmented light / dark / system control. */
+/** Segmented light / dark control. */
 export function ThemeToggle({ className }: { className?: string }) {
   const theme = useSettingsStore((state) => state.theme)
   const setTheme = useSettingsStore((state) => state.setTheme)
@@ -17,7 +16,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     <div
       role="radiogroup"
       aria-label="Colour theme"
-      className={cn('flex items-center gap-0.5 rounded-control border border-border bg-surface p-0.5', className)}
+      className={cn('flex items-center gap-0.5 rounded-full border border-border bg-surface p-1', className)}
     >
       {OPTIONS.map((option) => {
         const Icon = option.icon
@@ -31,9 +30,9 @@ export function ThemeToggle({ className }: { className?: string }) {
             aria-label={`${option.label} theme`}
             onClick={() => setTheme(option.value)}
             className={cn(
-              'grid size-7 place-items-center rounded-[6px] transition-colors',
+              'grid size-7 place-items-center rounded-full transition-colors',
               selected
-                ? 'bg-surface-raised text-foreground shadow-xs'
+                ? 'bg-primary-soft text-primary-text'
                 : 'text-muted-foreground hover:text-foreground',
             )}
           >

@@ -37,7 +37,7 @@ export function AppShell() {
 
         <Dialog.Root open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
           <Dialog.Portal>
-            <Dialog.Overlay className="fixed inset-0 z-60 bg-foreground/25 backdrop-blur-[2px] data-[state=open]:animate-[fade-in_150ms_ease-out] lg:hidden" />
+            <Dialog.Overlay className="fixed inset-0 z-60 bg-black/40 data-[state=open]:animate-[fade-in_150ms_ease-out] lg:hidden" />
             <Dialog.Content className="fixed inset-y-0 left-0 z-70 w-60 outline-none data-[state=open]:animate-[fade-in_180ms_ease-out] lg:hidden">
               <Dialog.Title className="sr-only">Navigation</Dialog.Title>
               <Dialog.Description className="sr-only">

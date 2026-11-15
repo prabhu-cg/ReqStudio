@@ -16,11 +16,8 @@
         try {
           var raw = localStorage.getItem('reqstudio.settings')
           var state = raw ? JSON.parse(raw).state : null
-          var theme = (state && state.theme) || 'system'
-          var dark =
-            theme === 'dark' ||
-            (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
-          document.documentElement.classList.toggle('dark', dark)
+          // Light is the default; dark only when explicitly chosen.
+          document.documentElement.classList.toggle('dark', !!state && state.theme === 'dark')
           if (state && state.fontSize) {
             document.documentElement.dataset.fontSize = state.fontSize
           }

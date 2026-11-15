@@ -1,22 +1,31 @@
 @import 'tailwindcss';
-@import '@fontsource-variable/manrope';
+@import '@fontsource-variable/dm-sans';
+@import '@fontsource-variable/newsreader';
 
 /* ------------------------------------------------------------------------- */
-/* Design tokens                                                              */
+/* Design tokens — Solvr "Butter" system (DESIGN.md)                          */
+/* White paper on a pale butter desk, hairlines, one amber fill.              */
 /* ------------------------------------------------------------------------- */
 
 @theme inline {
   --font-sans:
-    'Manrope Variable', 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Newsreader Variable', 'Newsreader', Georgia, serif;
+
+  /* The bold and extrabold weights both resolve to 600. */
+  --font-weight-bold: 600;
+  --font-weight-extrabold: 600;
 
   --color-background: var(--rs-background);
   --color-foreground: var(--rs-foreground);
+  --color-ink: var(--rs-ink);
   --color-surface: var(--rs-surface);
   --color-surface-raised: var(--rs-surface-raised);
   --color-muted: var(--rs-muted);
   --color-muted-foreground: var(--rs-muted-foreground);
   --color-border: var(--rs-border);
   --color-border-strong: var(--rs-border-strong);
+  --color-input: var(--rs-input);
   --color-ring: var(--rs-ring);
 
   --color-primary: var(--rs-primary);
@@ -34,13 +43,19 @@
   --color-info: var(--rs-info);
   --color-info-soft: var(--rs-info-soft);
 
-  /* Matched to the rest of the suite: 16px cards, 6px controls. */
-  --radius-card: 16px;
-  --radius-control: 6px;
+  /* Buttons, chips and nav items are full pills; fields 8px; inner panels and
+     menus 12px; cards, dialogs and drawers 20px. */
+  --radius-card: 20px;
+  --radius-panel: 12px;
+  --radius-control: 8px;
 
-  --shadow-card: 0 1px 2px 0 rgb(16 16 20 / 0.04), 0 1px 3px 0 rgb(16 16 20 / 0.06);
-  --shadow-raised: 0 2px 4px -1px rgb(16 16 20 / 0.06), 0 8px 24px -6px rgb(16 16 20 / 0.12);
-  --shadow-drawer: -8px 0 32px -12px rgb(16 16 20 / 0.22);
+  /* Flat by default: resting surfaces carry a hairline, not a shadow. Lift is
+     for what leaves the page plane — hovered cards, menus, dialogs, drawers. */
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow-card: none;
+  --shadow-raised: 0 4px 12px -2px rgb(53 51 53 / 0.08), 0 12px 32px -8px rgb(53 51 53 / 0.14);
+  --shadow-drawer: -8px 0 32px -12px rgb(53 51 53 / 0.22);
 
   --animate-drawer-in: drawer-in 220ms cubic-bezier(0.32, 0.72, 0, 1);
   --animate-drawer-out: drawer-out 180ms cubic-bezier(0.32, 0.72, 0, 1);
@@ -50,24 +65,26 @@
 }
 
 :root {
-  /* Exact parity with the landing page and the rest of the suite. Regions are
-     told apart by which token they use, not by muddying the palette: cream
-     rails, white working canvas, white cards lifted by border and shadow. */
+  /* Paper (background / raised) is what people work on; desk (surface) is the
+     chrome around it; sand (muted) is the stronger wash for hover. */
   --rs-background: #ffffff;
-  --rs-foreground: #1c1917;
-  --rs-surface: #fffaef;
+  --rs-foreground: #353335;
+  --rs-ink: #4d4a4d;
+  --rs-surface: #fcfaf3;
   --rs-surface-raised: #ffffff;
-  --rs-muted: #f4f2ea;
-  --rs-muted-foreground: #78716c;
-  --rs-border: #e8ddc8;
-  --rs-border-strong: #d6c7ab;
-  --rs-ring: #c74504;
+  --rs-muted: #f8f4e4;
+  --rs-muted-foreground: #6b6b6b;
+  --rs-border: #ece5cc;
+  --rs-border-strong: #dccfa6;
+  --rs-input: #8a7f6e;
+  --rs-ring: #826400;
 
-  --rs-primary: #c74504;
-  --rs-primary-hover: #a93a03;
-  --rs-primary-foreground: #ffffff;
-  --rs-primary-soft: #fdefe7;
-  --rs-primary-text: #a93a03;
+  /* Amber is a fill, never text. Text that carries it is ochre. */
+  --rs-primary: #e8b923;
+  --rs-primary-hover: #d4a615;
+  --rs-primary-foreground: #353335;
+  --rs-primary-soft: #faf4df;
+  --rs-primary-text: #826400;
 
   --rs-success: #146c43;
   --rs-success-soft: #e6f4ec;
@@ -81,22 +98,25 @@
   color-scheme: light;
 }
 
+/* Dark is a warm charcoal ramp, never neutral grey. */
 .dark {
-  --rs-background: #0c0c0c;
-  --rs-foreground: #fafafa;
-  --rs-surface: #151515;
-  --rs-surface-raised: #1c1c1c;
-  --rs-muted: #262626;
-  --rs-muted-foreground: #a1a1a1;
-  --rs-border: #2e2e2e;
-  --rs-border-strong: #3f3f3f;
-  --rs-ring: #ff8a5c;
+  --rs-background: #141312;
+  --rs-foreground: #faf8f2;
+  --rs-ink: #e6e2da;
+  --rs-surface: #181716;
+  --rs-surface-raised: #1c1b19;
+  --rs-muted: #262420;
+  --rs-muted-foreground: #a8a399;
+  --rs-border: #2e2b26;
+  --rs-border-strong: #433e35;
+  --rs-input: #7d7569;
+  --rs-ring: #f0c94a;
 
-  --rs-primary: #c74504;
-  --rs-primary-hover: #dd5211;
-  --rs-primary-foreground: #ffffff;
-  --rs-primary-soft: #26130a;
-  --rs-primary-text: #ff8a5c;
+  --rs-primary: #e8b923;
+  --rs-primary-hover: #f0c94a;
+  --rs-primary-foreground: #353335;
+  --rs-primary-soft: #2a2410;
+  --rs-primary-text: #f0c94a;
 
   --rs-success: #7ee2ab;
   --rs-success-soft: #10281c;
@@ -135,7 +155,7 @@ html[data-font-size='lg'] {
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-ink font-sans;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }
@@ -167,6 +187,7 @@ html[data-font-size='lg'] {
   }
 }
 
+/* App content container: 1440px. */
 @utility rs-page {
   margin-inline: auto;
   width: 100%;
@@ -182,6 +203,16 @@ html[data-font-size='lg'] {
   .rs-stagger > * {
     animation: rise 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+}
+
+/* One Heading Rule: every h1/h2 is Newsreader 500, wherever it appears.
+   Unlayered on purpose, so per-page font-bold utilities cannot override it. */
+h1,
+h2,
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 @keyframes drawer-in {

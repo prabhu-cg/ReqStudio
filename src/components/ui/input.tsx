@@ -2,7 +2,7 @@ import { forwardRef, type InputHTMLAttributes, type TextareaHTMLAttributes } fro
 import { cn } from '@/lib/utils/cn'
 
 const controlClasses =
-  'w-full rounded-control border border-border bg-surface-raised px-3 text-sm text-foreground shadow-xs transition-colors placeholder:text-muted-foreground/70 hover:border-border-strong focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-60 aria-[invalid=true]:border-danger aria-[invalid=true]:ring-danger/25'
+  'w-full rounded-control border border-input bg-surface-raised px-3 text-base text-ink transition-colors placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/30 disabled:cursor-not-allowed disabled:opacity-60 aria-[invalid=true]:border-danger aria-[invalid=true]:ring-danger/25'
 
 export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>(
   function Input({ className, type = 'text', ...props }, ref) {
@@ -10,7 +10,7 @@ export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputE
       <input
         ref={ref}
         type={type}
-        className={cn(controlClasses, 'h-9 py-2', className)}
+        className={cn(controlClasses, 'h-10 py-2', className)}
         {...props}
       />
     )
@@ -23,7 +23,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaHTMLAttributes<H
       <textarea
         ref={ref}
         rows={rows}
-        className={cn(controlClasses, 'resize-y py-2 leading-relaxed', className)}
+        className={cn(controlClasses, 'min-h-24 resize-y py-2 leading-relaxed', className)}
         {...props}
       />
     )

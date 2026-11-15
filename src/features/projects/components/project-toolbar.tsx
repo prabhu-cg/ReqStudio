@@ -47,7 +47,7 @@ export function ProjectToolbar({ tags, count }: { tags: string[]; count?: string
               align="end"
               sideOffset={6}
               collisionPadding={16}
-              className="z-90 min-w-56 rounded-[10px] border border-border bg-surface-raised p-1 shadow-raised"
+              className="z-90 min-w-56 rounded-xl border border-border bg-surface-raised p-1 shadow-raised"
             >
               <DropdownMenu.RadioGroup
                 value={store.sort}
@@ -57,7 +57,7 @@ export function ProjectToolbar({ tags, count }: { tags: string[]; count?: string
                   <DropdownMenu.RadioItem
                     key={sort}
                     value={sort}
-                    className="flex cursor-default items-center gap-2.5 rounded-[6px] px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
+                    className="flex cursor-default items-center gap-2.5 rounded-full px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
                   >
                     <span
                       className={cn(
@@ -77,7 +77,7 @@ export function ProjectToolbar({ tags, count }: { tags: string[]; count?: string
         <div
           role="radiogroup"
           aria-label="Layout"
-          className="flex items-center gap-0.5 rounded-control border border-border bg-surface p-0.5"
+          className="flex items-center gap-0.5 rounded-full border border-border bg-surface p-1"
         >
           {(['grid', 'list'] as const).map((layout) => {
             const Icon = layout === 'grid' ? LayoutGrid : List
@@ -91,9 +91,9 @@ export function ProjectToolbar({ tags, count }: { tags: string[]; count?: string
                 aria-label={`${layout === 'grid' ? 'Grid' : 'List'} layout`}
                 onClick={() => store.setLayout(layout)}
                 className={cn(
-                  'grid size-7 place-items-center rounded-[6px] transition-colors',
+                  'grid size-7 place-items-center rounded-full transition-colors',
                   selected
-                    ? 'bg-surface-raised text-foreground shadow-xs'
+                    ? 'bg-primary-soft text-primary-text'
                     : 'text-muted-foreground hover:text-foreground',
                 )}
               >

@@ -9,7 +9,7 @@ export function TopBar() {
   const setMobileNavOpen = useUIStore((state) => state.setMobileNavOpen)
 
   return (
-    <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background/85 px-4 backdrop-blur-md lg:px-6">
+    <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background px-4 lg:px-6">
       <Button
         variant="ghost"
         size="icon-sm"

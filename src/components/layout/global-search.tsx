@@ -132,7 +132,7 @@ export function GlobalSearch() {
                 go(results[activeIndex]!)
               }
             }}
-            className="h-9 w-full rounded-control border border-border bg-surface-raised pl-9 pr-16 text-sm shadow-xs transition-colors placeholder:text-muted-foreground/70 hover:border-border-strong focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/35"
+            className="h-10 w-full rounded-full border border-input bg-surface-raised pl-9 pr-16 text-sm transition-colors placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/30"
           />
 
           {search ? (
@@ -161,7 +161,7 @@ export function GlobalSearch() {
           align="start"
           sideOffset={6}
           onOpenAutoFocus={(event) => event.preventDefault()}
-          className="z-90 w-[var(--radix-popover-trigger-width)] min-w-[22rem] overflow-hidden rounded-[10px] border border-border bg-surface-raised shadow-raised data-[state=open]:animate-[fade-in_120ms_ease-out]"
+          className="z-90 w-[var(--radix-popover-trigger-width)] min-w-[22rem] overflow-hidden rounded-xl border border-border bg-surface-raised shadow-raised data-[state=open]:animate-[fade-in_120ms_ease-out]"
         >
           {results.length === 0 ? (
             <p className="px-4 py-6 text-center text-sm text-muted-foreground">

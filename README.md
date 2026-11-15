@@ -29,7 +29,7 @@ npm run dev        # http://localhost:5173
 ## Tech stack
 
 React 19 · TypeScript (strict) · Vite · Tailwind CSS v4 · shadcn-style primitives on Radix ·
-Lucide · Zustand · React Hook Form · Zod · React Router · Dexie (IndexedDB) · Manrope.
+Lucide · Zustand · React Hook Form · Zod · React Router · Dexie (IndexedDB) · Newsreader + DM Sans (Solvr "Butter" design system, see DESIGN.md).
 
 ## Deployment
 

@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export type ThemePreference = 'light' | 'dark' | 'system'
+export type ThemePreference = 'light' | 'dark'
 export type FontSizePreference = 'sm' | 'md' | 'lg'
 
 export interface SettingsState {
@@ -20,7 +20,7 @@ export interface SettingsState {
 }
 
 const DEFAULTS = {
-  theme: 'system' as ThemePreference,
+  theme: 'light' as ThemePreference,
   fontSize: 'md' as FontSizePreference,
   autosaveEnabled: true,
   autosaveDelay: 600,
@@ -41,7 +41,13 @@ export const useSettingsStore = create<SettingsState>()(
     {
       // Key is also read by the inline theme script in index.html.
       name: 'reqstudio.settings',
-      version: 1,
+      version: 2,
+      // v1 offered a 'system' option; light is the default now.
+      migrate: (persisted) => {
+        const state = persisted as Partial<SettingsState> | undefined
+        if (state && (state.theme as string) === 'system') state.theme = 'light'
+        return state as SettingsState
+      },
     },
   ),
 )

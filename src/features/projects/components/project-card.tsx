@@ -29,7 +29,7 @@ export function ProjectCard({ summary }: { summary: ProjectSummary }) {
   const overdue = days !== null && days < 0 && project.status !== 'completed'
 
   return (
-    <article className="group relative flex flex-col rounded-card border border-border bg-surface-raised p-5 shadow-card transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-primary hover:shadow-raised">
+    <article className="group relative flex flex-col rounded-card border border-border bg-surface-raised p-5 shadow-card transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-border-strong hover:shadow-raised">
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 flex-1 flex-col">
           <div className="flex items-center gap-2">
@@ -133,7 +133,7 @@ function ProjectCardMenu({ projectId, pinned }: { projectId: string; pinned: boo
   const readOnly = isSampleProject(projectId)
 
   const itemClass =
-    'flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted'
+    'flex cursor-default items-center gap-2 rounded-full px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted'
 
   return (
     <DropdownMenu.Root>
@@ -152,7 +152,7 @@ function ProjectCardMenu({ projectId, pinned }: { projectId: string; pinned: boo
         <DropdownMenu.Content
           align="end"
           sideOffset={4}
-          className="z-90 min-w-52 rounded-[10px] border border-border bg-surface-raised p-1 shadow-raised"
+          className="z-90 min-w-52 rounded-xl border border-border bg-surface-raised p-1 shadow-raised"
         >
           <DropdownMenu.Item
             className={itemClass}

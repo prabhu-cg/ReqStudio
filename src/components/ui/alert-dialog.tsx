@@ -25,7 +25,7 @@ export const AlertDialogOverlay = forwardRef<
     <AlertDialogPrimitive.Overlay
       ref={ref}
       className={cn(
-        'fixed inset-0 z-80 bg-foreground/40 backdrop-blur-[2px]',
+        'fixed inset-0 z-80 bg-black/40',
         'data-[state=open]:animate-[fade-in_160ms_ease-out] data-[state=closed]:animate-[fade-out_120ms_ease-in]',
         className,
       )}

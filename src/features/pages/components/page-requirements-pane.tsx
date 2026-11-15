@@ -104,7 +104,7 @@ function PageRow({
   return (
     <li>
       <div className="group flex items-start gap-4 rounded-card border border-border bg-surface-raised p-4 transition-colors hover:border-border-strong">
-        <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-[6px] bg-muted text-xs font-semibold text-muted-foreground">
+        <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-muted text-xs font-semibold text-muted-foreground">
           {index + 1}
         </span>
 
@@ -186,7 +186,7 @@ function PageRow({
               <DropdownMenu.Content
                 align="end"
                 sideOffset={4}
-                className="z-90 min-w-48 rounded-[10px] border border-border bg-surface-raised p-1 shadow-raised data-[state=open]:animate-[fade-in_120ms_ease-out]"
+                className="z-90 min-w-48 rounded-xl border border-border bg-surface-raised p-1 shadow-raised data-[state=open]:animate-[fade-in_120ms_ease-out]"
               >
                 <MenuItem
                   disabled={index === 0}
@@ -244,7 +244,7 @@ function MenuItem({
       disabled={disabled}
       onSelect={onSelect}
       className={cn(
-        'flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-40 data-[highlighted]:bg-muted',
+        'flex cursor-default items-center gap-2 rounded-full px-2.5 py-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-40 data-[highlighted]:bg-muted',
         danger && 'text-danger',
       )}
     >

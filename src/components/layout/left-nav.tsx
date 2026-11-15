@@ -89,8 +89,10 @@ export function LeftNav({ onNavigate }: { onNavigate?: () => void }) {
           size="sm"
           onClick={toggleNav}
           className={cn(
-            'w-full hover:bg-primary-soft hover:text-primary-text',
-            collapsed ? 'h-10 justify-center px-0' : 'justify-start',
+            'w-full',
+            // Same padding and gap as the nav items above, so the icon and
+            // label share their left edges.
+            collapsed ? 'h-10 justify-center px-0' : 'justify-start gap-3 px-3',
           )}
           aria-label={collapsed ? 'Expand navigation' : 'Collapse navigation'}
         >
@@ -128,7 +130,7 @@ function NavItemLink({
   // A fixed square when collapsed keeps every icon — nav, settings, collapse —
   // on the same vertical axis as the logo.
   const baseClasses = cn(
-    'flex items-center rounded-control text-sm font-medium transition-colors',
+    'flex items-center rounded-full text-sm font-semibold transition-colors',
     collapsed ? 'h-10 w-full justify-center px-0' : 'gap-3 px-3 py-2',
   )
 
@@ -173,7 +175,7 @@ function NavItemLink({
         baseClasses,
         isActive
           ? 'bg-primary-soft text-primary-text'
-          : 'text-muted-foreground hover:bg-primary-soft hover:text-primary-text',
+          : 'text-muted-foreground hover:bg-muted hover:text-foreground',
       )}
     >
       <Icon className="size-4 shrink-0" aria-hidden="true" />

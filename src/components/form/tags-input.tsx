@@ -53,7 +53,7 @@ export function TagsInput({
   return (
     <div
       className={cn(
-        'flex min-h-9 w-full flex-wrap items-center gap-1.5 rounded-control border border-border bg-surface-raised px-2 py-1.5 shadow-xs transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-ring/35',
+        'flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-control border border-input bg-surface-raised px-2 py-1.5 transition-colors focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/30',
         disabled && 'pointer-events-none opacity-60',
         aria['aria-invalid'] && 'border-danger',
       )}

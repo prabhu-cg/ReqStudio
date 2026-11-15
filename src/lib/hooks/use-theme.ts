@@ -7,19 +7,7 @@ export function useThemeEffect(): void {
   const fontSize = useSettingsStore((state) => state.fontSize)
 
   useEffect(() => {
-    const root = document.documentElement
-    const media = window.matchMedia('(prefers-color-scheme: dark)')
-
-    const apply = () => {
-      const dark = theme === 'dark' || (theme === 'system' && media.matches)
-      root.classList.toggle('dark', dark)
-    }
-
-    apply()
-    if (theme !== 'system') return
-
-    media.addEventListener('change', apply)
-    return () => media.removeEventListener('change', apply)
+    document.documentElement.classList.toggle('dark', theme === 'dark')
   }, [theme])
 
   useEffect(() => {

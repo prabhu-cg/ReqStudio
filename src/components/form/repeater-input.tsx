@@ -71,7 +71,7 @@ export function RepeaterInput({ field, value, onChange, errors, error }: Repeate
       </div>
 
       {rows.length === 0 ? (
-        <p className="rounded-control border border-dashed border-border bg-surface px-4 py-6 text-center text-sm text-muted-foreground">
+        <p className="rounded-xl border border-dashed border-border bg-surface px-4 py-6 text-center text-sm text-muted-foreground">
           No {field.itemLabel.toLowerCase()}s yet.
         </p>
       ) : null}
@@ -82,13 +82,13 @@ export function RepeaterInput({ field, value, onChange, errors, error }: Repeate
             <Collapsible.Root
               open={openRows[index] ?? false}
               onOpenChange={(open) => setOpenRows((current) => ({ ...current, [index]: open }))}
-              className="overflow-hidden rounded-[10px] border border-border bg-surface-raised"
+              className="overflow-hidden rounded-xl border border-border bg-surface-raised"
             >
               <div className="flex items-center gap-1 bg-surface px-2 py-1.5">
                 <Collapsible.Trigger asChild>
                   <button
                     type="button"
-                    className="flex min-w-0 flex-1 items-center gap-2 rounded-[6px] px-2 py-1 text-left text-sm font-medium transition-colors hover:bg-muted"
+                    className="flex min-w-0 flex-1 items-center gap-2 rounded-full px-2 py-1 text-left text-sm font-medium transition-colors hover:bg-muted"
                   >
                     <ChevronDown
                       className={cn(

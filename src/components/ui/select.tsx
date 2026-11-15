@@ -15,7 +15,7 @@ export const SelectTrigger = forwardRef<
     <SelectPrimitive.Trigger
       ref={ref}
       className={cn(
-        'flex h-9 w-full items-center justify-between gap-2 rounded-control border border-border bg-surface-raised px-3 text-sm shadow-xs transition-colors hover:border-border-strong focus:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/35 disabled:cursor-not-allowed disabled:opacity-60 data-[placeholder]:text-muted-foreground/70 aria-[invalid=true]:border-danger',
+        'flex h-10 w-full items-center justify-between gap-2 rounded-control border border-input bg-surface-raised px-3 text-base transition-colors focus:outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/30 disabled:cursor-not-allowed disabled:opacity-60 data-[placeholder]:text-muted-foreground/70 aria-[invalid=true]:border-danger',
         className,
       )}
       {...props}
@@ -38,7 +38,7 @@ export const SelectContent = forwardRef<
         ref={ref}
         position={position}
         className={cn(
-          'relative z-100 max-h-72 min-w-[10rem] overflow-hidden rounded-[10px] border border-border bg-surface-raised text-foreground shadow-raised',
+          'relative z-100 max-h-72 min-w-[10rem] overflow-hidden rounded-xl border border-border bg-surface-raised text-foreground shadow-raised',
           'data-[state=open]:animate-[fade-in_120ms_ease-out]',
           position === 'popper' && 'data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1',
           className,
@@ -63,7 +63,7 @@ export const SelectItem = forwardRef<
     <SelectPrimitive.Item
       ref={ref}
       className={cn(
-        'relative flex w-full cursor-default select-none flex-col gap-0.5 rounded-[6px] py-1.5 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-muted',
+        'relative flex w-full cursor-default select-none flex-col gap-0.5 rounded-full py-1.5 pl-8 pr-2 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-muted',
         className,
       )}
       {...props}

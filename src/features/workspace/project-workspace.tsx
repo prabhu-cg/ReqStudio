@@ -188,18 +188,18 @@ export function ProjectWorkspace() {
                 <DropdownMenu.Content
                   align="end"
                   sideOffset={4}
-                  className="z-90 min-w-52 rounded-[10px] border border-border bg-surface-raised p-1 shadow-raised"
+                  className="z-90 min-w-52 rounded-xl border border-border bg-surface-raised p-1 shadow-raised"
                 >
                   <DropdownMenu.Item
                     onSelect={() => openDrawer({ type: 'project.details', projectId: project.id })}
-                    className="flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
+                    className="flex cursor-default items-center gap-2 rounded-full px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
                   >
                     <Settings2 className="size-4" aria-hidden="true" />
                     View details
                   </DropdownMenu.Item>
                   <DropdownMenu.Item
                     onSelect={() => void togglePinned(project.id)}
-                    className="flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
+                    className="flex cursor-default items-center gap-2 rounded-full px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
                   >
                     {project.pinned ? (
                       <PinOff className="size-4" aria-hidden="true" />
@@ -211,7 +211,7 @@ export function ProjectWorkspace() {
                   {readOnly ? (
                     <DropdownMenu.Item
                       onSelect={() => void duplicateToEdit()}
-                      className="flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
+                      className="flex cursor-default items-center gap-2 rounded-full px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
                     >
                       <Copy className="size-4" aria-hidden="true" />
                       Duplicate to edit
@@ -222,7 +222,7 @@ export function ProjectWorkspace() {
                         onSelect={() =>
                           openDrawer({ type: 'project.settings', projectId: project.id })
                         }
-                        className="flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
+                        className="flex cursor-default items-center gap-2 rounded-full px-2.5 py-2 text-sm outline-none data-[highlighted]:bg-muted"
                       >
                         <Settings2 className="size-4" aria-hidden="true" />
                         Project settings
@@ -230,7 +230,7 @@ export function ProjectWorkspace() {
                       <DropdownMenu.Separator className="my-1 h-px bg-border" />
                       <DropdownMenu.Item
                         onSelect={() => openDrawer({ type: 'project.delete', projectId: project.id })}
-                        className="flex cursor-default items-center gap-2 rounded-[6px] px-2.5 py-2 text-sm text-danger outline-none data-[highlighted]:bg-muted"
+                        className="flex cursor-default items-center gap-2 rounded-full px-2.5 py-2 text-sm text-danger outline-none data-[highlighted]:bg-muted"
                       >
                         <Trash2 className="size-4" aria-hidden="true" />
                         Delete project

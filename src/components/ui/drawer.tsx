@@ -105,7 +105,7 @@ const DrawerOverlay = forwardRef<
     <DialogPrimitive.Overlay
       ref={ref}
       className={cn(
-        'fixed inset-0 z-60 bg-foreground/25 backdrop-blur-[2px]',
+        'fixed inset-0 z-60 bg-black/40',
         'data-[state=open]:animate-[fade-in_180ms_ease-out] data-[state=closed]:animate-[fade-out_150ms_ease-in]',
         className,
       )}

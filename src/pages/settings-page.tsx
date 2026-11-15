@@ -48,7 +48,7 @@ export function SettingsPage() {
       />
 
       <SettingsSection icon={<Palette className="size-4" aria-hidden="true" />} title="Appearance">
-        <SettingRow label="Theme" description="Light, dark, or follow your operating system.">
+        <SettingRow label="Theme" description="Light or dark.">
           <ThemeToggle />
         </SettingRow>
 
@@ -61,7 +61,7 @@ export function SettingsPage() {
           <div
             role="radiogroup"
             aria-label="Font size"
-            className="flex items-center gap-0.5 rounded-control border border-border bg-surface p-0.5"
+            className="flex items-center gap-0.5 rounded-full border border-border bg-surface p-1"
           >
             {FONT_SIZES.map((option) => (
               <button
@@ -71,9 +71,9 @@ export function SettingsPage() {
                 aria-checked={settings.fontSize === option.value}
                 onClick={() => settings.setFontSize(option.value)}
                 className={cn(
-                  'flex items-center gap-1.5 rounded-[6px] px-3 py-1.5 text-xs font-medium transition-colors',
+                  'flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors',
                   settings.fontSize === option.value
-                    ? 'bg-surface-raised text-foreground shadow-xs'
+                    ? 'bg-primary-soft text-primary-text'
                     : 'text-muted-foreground hover:text-foreground',
                 )}
               >
@@ -107,7 +107,7 @@ export function SettingsPage() {
           <div
             role="radiogroup"
             aria-label="Autosave delay"
-            className="flex items-center gap-0.5 rounded-control border border-border bg-surface p-0.5"
+            className="flex items-center gap-0.5 rounded-full border border-border bg-surface p-1"
           >
             {[300, 600, 1200].map((delay) => (
               <button
@@ -118,9 +118,9 @@ export function SettingsPage() {
                 disabled={!settings.autosaveEnabled}
                 onClick={() => settings.setAutosaveDelay(delay)}
                 className={cn(
-                  'rounded-[6px] px-3 py-1.5 text-xs font-medium transition-colors disabled:opacity-50',
+                  'rounded-full px-3 py-1.5 text-xs font-medium transition-colors disabled:opacity-50',
                   settings.autosaveDelay === delay
-                    ? 'bg-surface-raised text-foreground shadow-xs'
+                    ? 'bg-primary-soft text-primary-text'
                     : 'text-muted-foreground hover:text-foreground',
                 )}
               >

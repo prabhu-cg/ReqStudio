@@ -91,7 +91,7 @@ export function BriefTab() {
           </div>
 
           {showHints && completion && completion.missingRequired.length > 0 ? (
-            <p className="mt-4 rounded-control border border-warning/30 bg-warning-soft px-3 py-2 text-xs text-foreground">
+            <p className="mt-4 rounded-xl border border-warning/30 bg-warning-soft px-3 py-2 text-xs text-foreground">
               <span className="font-semibold">Still required:</span>{' '}
               {completion.missingRequired.join(', ')}
             </p>
