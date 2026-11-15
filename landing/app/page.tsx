@@ -1,0 +1,419 @@
+import {
+  ArrowRight,
+  CloudOff,
+  FileCheck2,
+  Gauge,
+  KeyRound,
+  LayoutTemplate,
+  Printer,
+  Save,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  TriangleAlert,
+  WifiOff,
+  type LucideIcon,
+} from 'lucide-react'
+import { siteConfig } from '@/lib/site'
+import { Logo } from '@/components/logo'
+import { MacbookMockup } from '@/components/macbook-mockup'
+import { SiteFooter, SiteHeader } from '@/components/site-chrome'
+
+const STATS = [
+  { value: '10', label: 'Guided brief sections' },
+  { value: 'Unlimited', label: 'Projects and pages' },
+  { value: '0', label: 'Accounts to create' },
+  { value: 'Free', label: 'No card, no trial' },
+]
+
+const FEATURES: Array<{ icon: LucideIcon; title: string; body: string }> = [
+  {
+    icon: FileCheck2,
+    title: 'Ten guided sections',
+    body: 'Overview, goals, audience, structure, pages, functionality, content, technical, risks and approvals. Fill them in any order — the brief is never blocked on a half-finished section.',
+  },
+  {
+    icon: Gauge,
+    title: 'A readiness score that means something',
+    body: 'Weighted across every section, updating as you type, with the missing answers named. You always know whether a brief is safe to send.',
+  },
+  {
+    icon: LayoutTemplate,
+    title: 'Unlimited pages, fully specified',
+    body: 'Purpose, audience, CTAs, content requirements, components, dependencies, SEO, accessibility and analytics — per page, with its own completeness bar.',
+  },
+  {
+    icon: Save,
+    title: 'No Save button anywhere',
+    body: 'Every keystroke is written to local storage a moment after you stop typing, and flushed if you close the tab mid-sentence.',
+  },
+  {
+    icon: Printer,
+    title: 'A report you can hand over',
+    body: 'A clean preview with a sticky table of contents, collapsible sections and a print stylesheet. Print to PDF and send it.',
+  },
+  {
+    icon: Search,
+    title: 'Search, filter, sort',
+    body: 'Find a project by client, tag or page name. Filter by status, type and priority. Pin the ones you live in.',
+  },
+]
+
+const STEPS = [
+  {
+    title: 'Create a project',
+    body: 'Name, client, type, dates, stakeholders. Thirty seconds, and no sign-up stands between you and it.',
+  },
+  {
+    title: 'Work the ten sections',
+    body: 'Answer what you know, skip what you do not. The outline tracks completion and names what is still required.',
+  },
+  {
+    title: 'Send the brief',
+    body: 'Preview the report, print it to PDF, and share it with the readiness score attached so nobody pretends the gaps are not there.',
+  },
+]
+
+const FAQ = [
+  {
+    q: 'Is it really free?',
+    a: 'Yes. There is no paid tier, no trial and no upsell. There are no servers to pay for, because there are no servers.',
+  },
+  {
+    q: 'Where is my data stored?',
+    a: "In your browser's IndexedDB, on the machine you are using. It is never uploaded, because there is nowhere to upload it to.",
+  },
+  {
+    q: 'What happens if I clear my browser data?',
+    a: 'Your projects are deleted along with it. That is the honest trade for a tool that never touches a server — print or export anything you cannot afford to lose.',
+  },
+  {
+    q: 'Can I use it on more than one device?',
+    a: 'Not yet. Projects live on the device that created them. Cloud sync is designed for but deliberately not built — the architecture already carries the fields it needs.',
+  },
+  {
+    q: 'Does it work offline?',
+    a: 'Completely. Nothing about ReqStudio needs a connection once the page has loaded.',
+  },
+  {
+    q: 'Who is it for?',
+    a: 'UX and product designers, business analysts, product managers and project managers — anyone who has to write a brief before anything gets built.',
+  },
+]
+
+export default function HomePage() {
+  return (
+    <>
+      <SiteHeader />
+
+      <main id="main">
+        {/* Hero ------------------------------------------------------------ */}
+        <section className="relative overflow-hidden border-b border-border bg-secondary pb-20 pt-20 sm:pb-24 sm:pt-24">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+            {/* Oversized mark behind the headline, the same watermark device the
+                other apps use to stop a centred hero floating in white space.
+                Flat: no gradients or glow, per the design system.
+                Pulled up by half its own height so the section's overflow-hidden
+                crops it to just the lower half. */}
+            <Logo className="absolute left-1/2 -top-[220px] h-[440px] w-auto -translate-x-1/2 opacity-[0.05]" />
+          </div>
+
+          {/* Outer container matches the header and every section below, so the
+              stat row lines up with the rest of the page; the copy stays narrow. */}
+          <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+            <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-border-strong bg-primary-soft px-4 py-1.5">
+              <Sparkles className="size-3.5 shrink-0 fill-primary text-primary-text" aria-hidden="true" />
+              <span className="text-xs font-semibold uppercase tracking-wide text-primary-text">
+                <span className="sm:hidden">Free · Local-first</span>
+                <span className="hidden sm:inline">
+                  Free to use · No account · Your data never leaves the device
+                </span>
+              </span>
+            </div>
+
+            <h1 className="text-5xl leading-none text-balance sm:text-7xl">
+              Write the brief before
+              <br />
+              <span className="text-primary-text">anyone writes the code.</span>
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-balance text-muted-foreground">
+              ReqStudio turns a scattered Word document into a structured project brief — ten guided
+              sections, unlimited pages, and a readiness score that tells you exactly what is still
+              missing. It runs entirely in your browser.
+            </p>
+
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a
+                href={siteConfig.appUrl}
+                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground transition-all duration-150 hover:bg-primary-hover active:scale-[0.98] sm:w-auto"
+              >
+                Start a brief — free
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </a>
+              <a
+                href="#how-it-works"
+                className="inline-flex h-11 w-full items-center justify-center rounded-full border border-border-strong bg-background px-8 text-base font-semibold text-foreground transition-all duration-150 hover:bg-muted active:scale-[0.98] sm:w-auto"
+              >
+                See how it works
+              </a>
+            </div>
+
+              <p className="mt-4 text-sm text-muted-foreground">
+                Opens instantly. Nothing to install, nothing to sign up for.
+              </p>
+            </div>
+
+            <dl className="mt-14 grid grid-cols-2 gap-8 text-center sm:grid-cols-4">
+              {STATS.map((stat) => (
+                <div key={stat.label}>
+                  <dt className="sr-only">{stat.label}</dt>
+                  <dd>
+                    <span className="block text-2xl font-semibold tabular-nums text-primary-text sm:text-3xl">
+                      {stat.value}
+                    </span>
+                    <span className="mt-1 block text-sm text-muted-foreground">{stat.label}</span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* Product preview -------------------------------------------------- */}
+        <section className="py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-14 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
+                A peek at your brief
+              </p>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">
+                Ten sections. One live readiness score.
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-balance text-muted-foreground">
+                A real capture of the Brief tab, showing the built-in sample project with fictional
+                data.
+              </p>
+            </div>
+            <MacbookMockup />
+          </div>
+        </section>
+
+        {/* Features --------------------------------------------------------- */}
+        <section id="features" className="border-y border-border bg-secondary py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-14 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
+                What ReqStudio does
+              </p>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">
+                Everything a brief needs. Nothing it doesn&rsquo;t.
+              </h2>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {FEATURES.map((feature) => {
+                const Icon = feature.icon
+                return (
+                  <div
+                    key={feature.title}
+                    className="group rounded-2xl border border-border bg-card p-6 transition-colors hover:border-border-strong"
+                  >
+                    <div className="mb-4 inline-flex size-10 items-center justify-center rounded-xl bg-primary-soft">
+                      <Icon className="size-5 text-primary-text" aria-hidden="true" />
+                    </div>
+                    <h3 className="mb-2 text-base font-bold">{feature.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{feature.body}</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* How it works ----------------------------------------------------- */}
+        <section id="how-it-works" className="py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-14 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
+                How it works
+              </p>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">
+                From a blank page to a signed-off brief
+              </h2>
+            </div>
+
+            <ol className="grid gap-6 md:grid-cols-3">
+              {STEPS.map((step, index) => (
+                <li
+                  key={step.title}
+                  className="rounded-2xl border border-border bg-card p-6"
+                >
+                  <span className="inline-flex size-9 items-center justify-center rounded-xl bg-primary text-sm font-semibold tabular-nums text-primary-foreground">
+                    {index + 1}
+                  </span>
+                  <h3 className="mb-2 mt-4 text-base font-bold">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* Privacy ---------------------------------------------------------- */}
+        <section id="privacy" className="border-y border-border bg-secondary py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-14 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
+                Privacy by architecture
+              </p>
+              <h2 className="text-3xl font-extrabold text-balance sm:text-4xl">
+                Client requirements are confidential.
+                <br />
+                Treat them that way.
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-balance text-muted-foreground">
+                Most brief tools ask you to upload your client&rsquo;s commercial goals, budgets and
+                launch dates to somebody else&rsquo;s server. ReqStudio has no server to upload them
+                to.
+              </p>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-3">
+              {[
+                {
+                  icon: KeyRound,
+                  title: 'No account',
+                  body: 'No email, no password, no profile. Open the page and start typing.',
+                },
+                {
+                  icon: CloudOff,
+                  title: 'No server',
+                  body: 'Everything is stored in your browser. There is no database of your clients anywhere.',
+                },
+                {
+                  icon: WifiOff,
+                  title: 'Works offline',
+                  body: 'On a plane, in a basement, on hotel wifi — it behaves exactly the same.',
+                },
+              ].map((item) => {
+                const Icon = item.icon
+                return (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl border border-border bg-card p-6 text-center"
+                  >
+                    <span className="mx-auto inline-flex size-10 items-center justify-center rounded-xl bg-primary-soft">
+                      <Icon className="size-5 text-primary-text" aria-hidden="true" />
+                    </span>
+                    <h3 className="mb-2 mt-4 text-base font-bold">{item.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* The trade at the heart of the product, so these two carry real
+                colour rather than the tinted-white the cards above use. */}
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              <div className="overflow-hidden rounded-2xl border-2 border-trade-good/35 bg-trade-good-soft">
+                <h3 className="flex items-center gap-2.5 border-b-2 border-trade-good/25 bg-trade-good px-6 py-4 text-base font-bold text-white">
+                  <ShieldCheck className="size-5 shrink-0" aria-hidden="true" />
+                  What you get
+                </h3>
+                <ul className="space-y-3 p-6 text-sm leading-relaxed text-foreground/85">
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-good" aria-hidden="true" />
+                    Your client&rsquo;s budgets, deadlines and commercial goals never touch a server.
+                  </li>
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-good" aria-hidden="true" />
+                    Nothing to breach, subpoena or sell — there is no database of your work.
+                  </li>
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-good" aria-hidden="true" />
+                    No vendor can lock you out, raise a price, or shut the product down on you.
+                  </li>
+                </ul>
+              </div>
+
+              <div className="overflow-hidden rounded-2xl border-2 border-trade-cost/35 bg-trade-cost-soft">
+                <h3 className="flex items-center gap-2.5 border-b-2 border-trade-cost/25 bg-trade-cost px-6 py-4 text-base font-bold text-white">
+                  <TriangleAlert className="size-5 shrink-0" aria-hidden="true" />
+                  What that costs you
+                </h3>
+                <ul className="space-y-3 p-6 text-sm leading-relaxed text-foreground/85">
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-cost" aria-hidden="true" />
+                    <span>
+                      <span className="font-bold text-foreground">
+                        Clearing your browser data deletes every brief.
+                      </span>{' '}
+                      There is no backup and no way to recover it.
+                    </span>
+                  </li>
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-cost" aria-hidden="true" />
+                    Briefs do not sync — they live on the one browser that created them.
+                  </li>
+                  <li className="flex gap-2.5">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-trade-cost" aria-hidden="true" />
+                    Print or export anything you cannot afford to lose.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="mt-6 text-center text-sm text-muted-foreground">
+              This is the honest trade of a tool with no server. We would rather you knew it up front
+              than discovered it later.
+            </p>
+          </div>
+        </section>
+
+        {/* FAQ -------------------------------------------------------------- */}
+        <section id="faq" className="py-20 sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-14 text-center">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
+                FAQ
+              </p>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">Frequently asked questions</h2>
+            </div>
+
+            <dl className="mx-auto grid max-w-5xl grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2">
+              {FAQ.map((item) => (
+                <div key={item.q}>
+                  <dt className="text-base font-bold">{item.q}</dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* Closing CTA ------------------------------------------------------ */}
+        <section className="border-t border-border bg-secondary py-20 sm:py-28">
+          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+            <h2 className="text-3xl text-balance sm:text-4xl">
+              Ready to write your next brief?
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-balance text-muted-foreground">
+              No trial to start, no card to enter, no data to hand over. Open it and write.
+            </p>
+            <a
+              href={siteConfig.appUrl}
+              className="mt-8 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground transition-all duration-150 hover:bg-primary-hover active:scale-[0.98]"
+            >
+              Open ReqStudio
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter />
+    </>
+  )
+}

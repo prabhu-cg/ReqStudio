@@ -1,0 +1,157 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------------- */
+/* Solvr "Butter" design system (DESIGN.md), matched to the ReqStudio app.     */
+/* White paper on a pale butter desk, butter hairlines, one amber fill.        */
+/* Newsreader for h1/h2, DM Sans for everything else. Light or dark only.      */
+/* ------------------------------------------------------------------------- */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-newsreader), Georgia, serif;
+
+  /* The bold and extrabold weights both resolve to 600. */
+  --font-weight-bold: 600;
+  --font-weight-extrabold: 600;
+
+  --color-background: var(--rs-background);
+  --color-foreground: var(--rs-foreground);
+  --color-ink: var(--rs-ink);
+  /* `secondary` is the desk: the pale butter used for alternating bands. */
+  --color-secondary: var(--rs-secondary);
+  --color-card: var(--rs-card);
+  --color-muted: var(--rs-muted);
+  --color-muted-foreground: var(--rs-muted-foreground);
+  --color-border: var(--rs-border);
+  --color-border-strong: var(--rs-border-strong);
+  --color-ring: var(--rs-ring);
+
+  --color-primary: var(--rs-primary);
+  --color-primary-hover: var(--rs-primary-hover);
+  --color-primary-foreground: var(--rs-primary-foreground);
+  --color-primary-soft: var(--rs-primary-soft);
+  --color-primary-text: var(--rs-primary-text);
+
+  --color-success: var(--rs-success);
+  --color-warning: var(--rs-warning);
+
+  /* The privacy trade-off panels. Deep teal and burnt sienna: distinct from the
+     primary, from each other, and both AA against white at 5:1+. */
+  --color-trade-good: var(--rs-trade-good);
+  --color-trade-good-soft: var(--rs-trade-good-soft);
+  --color-trade-cost: var(--rs-trade-cost);
+  --color-trade-cost-soft: var(--rs-trade-cost-soft);
+
+  /* Fields 8px, inner panels 12px, cards and dialogs 20px. Buttons, chips and
+     nav links are full pills (`rounded-full`). */
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1.25rem;
+
+  /* Flat by default; shadows are for what leaves the page plane. */
+  --shadow-sm: none;
+}
+
+:root {
+  --rs-background: #ffffff;
+  --rs-foreground: #353335;
+  --rs-ink: #4d4a4d;
+  --rs-secondary: #fcfaf3;
+  --rs-card: #ffffff;
+  --rs-muted: #f8f4e4;
+  --rs-muted-foreground: #6b6b6b;
+  --rs-border: #ece5cc;
+  --rs-border-strong: #dccfa6;
+  --rs-ring: #826400;
+
+  /* Amber is a fill, never text. Text that carries it is ochre. */
+  --rs-primary: #e8b923;
+  --rs-primary-hover: #d4a615;
+  --rs-primary-foreground: #353335;
+  --rs-primary-soft: #faf4df;
+  --rs-primary-text: #826400;
+
+  --rs-success: #146c43;
+  --rs-warning: #8a5a00;
+
+  --rs-trade-good: #0f5c52;
+  --rs-trade-good-soft: #eef6f4;
+  --rs-trade-cost: #8f3a12;
+  --rs-trade-cost-soft: #fdf1e9;
+
+  color-scheme: light;
+}
+
+/* Dark is a warm charcoal ramp, never neutral grey. Chosen by the toggle and
+   applied before first paint by the inline script in layout.tsx. */
+.dark {
+  --rs-background: #141312;
+  --rs-foreground: #faf8f2;
+  --rs-ink: #e6e2da;
+  --rs-secondary: #181716;
+  --rs-card: #1c1b19;
+  --rs-muted: #262420;
+  --rs-muted-foreground: #a8a399;
+  --rs-border: #2e2b26;
+  --rs-border-strong: #433e35;
+  --rs-ring: #f0c94a;
+
+  --rs-primary: #e8b923;
+  --rs-primary-hover: #f0c94a;
+  --rs-primary-foreground: #353335;
+  --rs-primary-soft: #2a2410;
+  --rs-primary-text: #f0c94a;
+
+  --rs-success: #7ee2ab;
+  --rs-warning: #f5c26b;
+
+  --rs-trade-good: #12796c;
+  --rs-trade-good-soft: #0e1a18;
+  --rs-trade-cost: #b04a18;
+  --rs-trade-cost-soft: #1c1210;
+
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    @apply bg-background text-ink font-sans antialiased;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    @apply outline-ring outline-2 outline-offset-2;
+  }
+
+  ::selection {
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary-text);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* One Heading Rule: every h1 and h2 is Newsreader 500, wherever it appears.
+   Unlayered so per-element font-bold utilities cannot override it. */
+h1,
+h2,
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
