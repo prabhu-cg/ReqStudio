@@ -1,14 +1,54 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "vite",
+  "framework": null,
+  "installCommand": "npm install && npm --prefix landing install",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "redirects": [
+    {
+      "source": "/projects/:path*",
+      "destination": "/app/projects/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/recent",
+      "destination": "/app/recent",
+      "permanent": false
+    },
+    {
+      "source": "/settings",
+      "destination": "/app/settings",
+      "permanent": false
+    },
+    {
+      "source": "/templates",
+      "destination": "/app/templates",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/app/:path*",
+      "destination": "/app/index.html"
+    }
+  ],
   "headers": [
     {
-      "source": "/assets/(.*)",
+      "source": "/app/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/_next/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     }
   ]

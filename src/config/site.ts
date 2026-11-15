@@ -1,9 +1,14 @@
 /**
  * Addresses outside the app.
  *
- * The marketing site is a separate deployment, so this is a real cross-origin
- * link rather than a route — it must not go through React Router.
+ * In production the marketing site is served from the root of the same origin
+ * and the app from /app/, so "/" is the landing page. It is still a plain link
+ * rather than a router route: React Router's basename would resolve it inside
+ * the app. In development the two run on separate ports, so point at the
+ * landing dev server (override with VITE_MARKETING_URL).
  */
 export const siteLinks = {
-  marketingUrl: import.meta.env.VITE_MARKETING_URL ?? 'https://getreqstudio.vercel.app',
+  marketingUrl:
+    import.meta.env.VITE_MARKETING_URL ??
+    (import.meta.env.PROD ? '/' : 'http://localhost:3000'),
 } as const

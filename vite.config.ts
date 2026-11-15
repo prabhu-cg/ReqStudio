@@ -10,12 +10,16 @@ import tailwindcss from '@tailwindcss/vite'
  * keeps client-side routing working without any server configuration.
  */
 function spaFallback(): Plugin {
+  let outDir = 'dist'
   return {
     name: 'reqstudio-spa-fallback',
     apply: 'build',
+    configResolved(config) {
+      outDir = config.build.outDir
+    },
     closeBundle() {
-      const index = resolve(import.meta.dirname, 'dist/index.html')
-      if (existsSync(index)) copyFileSync(index, resolve(import.meta.dirname, 'dist/404.html'))
+      const index = resolve(import.meta.dirname, outDir, 'index.html')
+      if (existsSync(index)) copyFileSync(index, resolve(import.meta.dirname, outDir, '404.html'))
     },
   }
 }

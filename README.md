@@ -35,15 +35,16 @@ Lucide · Zustand · React Hook Form · Zod · React Router · Dexie (IndexedDB)
 
 Everything is static — there is no backend.
 
-**Vercel** — connected to this repository, so a push to `main` deploys to production and every
-branch gets a preview URL. `vercel.json` sets the SPA rewrite and immutable asset caching. There
-are no environment variables; there is no backend.
+**Vercel** — one project, `reqstudioapp`, connected to this repository, so a push to `main` deploys to
+production and every branch gets a preview URL. `npm run build` (`scripts/build.mjs`) assembles one
+site into `dist/`: the marketing landing page ([`landing/`](landing), a static Next.js export) at the
+root, and the app (built with `VITE_BASE=/app/`) at `/app/`. `vercel.json` carries the SPA rewrite for
+`/app/*`, immutable asset caching, and redirects from the app's old root-level routes (`/projects/...`)
+to `/app/...`. There are no environment variables; there is no backend.
 
-The marketing site lives in [`landing/`](landing) (Next.js) and is a **second Vercel project** built
-from the same repository with its Root Directory set to `landing`. The two deploy independently: the
-app at `reqstudioapp`, the site at `getreqstudio`. They stay separate projects because the app's origin
-must never change (see below). The site was previously the separate ReqStudio-Landing repository, whose
-history is preserved in `landing/`.
+The landing page used to be the separate ReqStudio-Landing repository (history preserved in
+`landing/`). `npm run build:app` builds the app alone at `/`; `npm run dev:landing` runs the landing
+page on its own dev server.
 
 **Serving from a sub-path** — set `VITE_BASE=/<path>/` at build time. The router reads it via
 `import.meta.env.BASE_URL`, and the build emits a `404.html` copy of `index.html` so deep links
