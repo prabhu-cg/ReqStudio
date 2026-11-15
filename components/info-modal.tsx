@@ -64,7 +64,7 @@ export function InfoModal({ label, title, subtitle, icon, badge, children }: Inf
           // the content sits inside a child element.
           if (event.target === dialogRef.current) close()
         }}
-        className="m-auto w-[calc(100vw-2rem)] max-w-2xl rounded-2xl border border-border bg-card p-0 text-foreground shadow-xl backdrop:bg-foreground/40 backdrop:backdrop-blur-[2px] "
+        className="m-auto w-[calc(100vw-2rem)] max-w-2xl rounded-2xl border border-border bg-card p-0 text-foreground shadow-lg backdrop:bg-black/40 "
       >
         <div className="flex max-h-[min(80vh,44rem)] flex-col">
           <header className="flex items-start gap-4 border-b border-border px-6 py-4">
@@ -77,7 +77,7 @@ export function InfoModal({ label, title, subtitle, icon, badge, children }: Inf
                 <p className="mt-1 text-xs text-muted-foreground">{subtitle}</p>
               ) : null}
               {badge ? (
-                <span className="mt-2 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary-text">
+                <span className="mt-2 inline-flex items-center rounded-full bg-primary-soft px-2 py-0.5 text-[11px] font-semibold text-primary-text">
                   {badge}
                 </span>
               ) : null}
@@ -86,7 +86,7 @@ export function InfoModal({ label, title, subtitle, icon, badge, children }: Inf
               type="button"
               onClick={close}
               aria-label={`Close ${title}`}
-              className="grid size-8 shrink-0 place-items-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="grid size-8 shrink-0 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               <X className="size-4" aria-hidden="true" />
             </button>

@@ -58,9 +58,9 @@ export function Wordmark({
     <span className={cn('flex items-center gap-3', className)}>
       <Logo className="h-9" />
       <span className="flex min-w-0 flex-col leading-none">
-        <span className="text-base font-bold tracking-tight">
+        <span className="text-base font-semibold tracking-tight">
           <span className="text-foreground">Req</span>
-          <span className="text-primary">Studio</span>
+          <span className="text-primary-text">Studio</span>
         </span>
         {showTagline ? (
           <span className="mt-1 truncate text-[11px] font-medium text-muted-foreground">

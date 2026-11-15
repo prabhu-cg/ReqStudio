@@ -16,7 +16,7 @@ import {
 } from 'lucide-react'
 import { siteConfig } from '@/lib/site'
 import { Logo } from '@/components/logo'
-import { AppPreview } from '@/components/app-preview'
+import { MacbookMockup } from '@/components/macbook-mockup'
 import { SiteFooter, SiteHeader } from '@/components/site-chrome'
 
 const STATS = [
@@ -112,19 +112,18 @@ export default function HomePage() {
           <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
             {/* Oversized mark behind the headline, the same watermark device the
                 other apps use to stop a centred hero floating in white space.
+                Flat: no gradients or glow, per the design system.
                 Pulled up by half its own height so the section's overflow-hidden
                 crops it to just the lower half. */}
             <Logo className="absolute left-1/2 -top-[220px] h-[440px] w-auto -translate-x-1/2 opacity-[0.05]" />
-            <div className="absolute -top-24 right-0 h-[420px] w-[420px] translate-x-1/3 rounded-full bg-primary opacity-[0.10] blur-3xl" />
-            <div className="absolute -bottom-32 left-0 h-[380px] w-[380px] -translate-x-1/3 rounded-full bg-primary opacity-[0.07] blur-3xl" />
           </div>
 
           {/* Outer container matches the header and every section below, so the
               stat row lines up with the rest of the page; the copy stays narrow. */}
           <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-secondary px-4 py-1.5">
-              <Sparkles className="size-3.5 shrink-0 fill-primary text-primary" aria-hidden="true" />
+            <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-border-strong bg-primary-soft px-4 py-1.5">
+              <Sparkles className="size-3.5 shrink-0 fill-primary text-primary-text" aria-hidden="true" />
               <span className="text-xs font-semibold uppercase tracking-wide text-primary-text">
                 <span className="sm:hidden">Free · Local-first</span>
                 <span className="hidden sm:inline">
@@ -133,10 +132,10 @@ export default function HomePage() {
               </span>
             </div>
 
-            <h1 className="text-4xl font-extrabold tracking-tight text-balance sm:text-6xl">
+            <h1 className="text-5xl leading-none text-balance sm:text-7xl">
               Write the brief before
               <br />
-              <span className="text-primary">anyone writes the code.</span>
+              <span className="text-primary-text">anyone writes the code.</span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-balance text-muted-foreground">
@@ -148,14 +147,14 @@ export default function HomePage() {
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href={siteConfig.appUrl}
-                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-primary px-8 text-base font-semibold text-primary-foreground transition-all duration-150 hover:bg-primary-hover active:scale-[0.98] sm:w-auto"
+                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground transition-all duration-150 hover:bg-primary-hover active:scale-[0.98] sm:w-auto"
               >
                 Start a brief — free
                 <ArrowRight className="size-4" aria-hidden="true" />
               </a>
               <a
                 href="#how-it-works"
-                className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-border bg-background px-8 text-base font-semibold transition-all duration-150 hover:border-primary active:scale-[0.98] sm:w-auto"
+                className="inline-flex h-11 w-full items-center justify-center rounded-full border border-border-strong bg-background px-8 text-base font-semibold text-foreground transition-all duration-150 hover:bg-muted active:scale-[0.98] sm:w-auto"
               >
                 See how it works
               </a>
@@ -171,7 +170,7 @@ export default function HomePage() {
                 <div key={stat.label}>
                   <dt className="sr-only">{stat.label}</dt>
                   <dd>
-                    <span className="block text-2xl font-extrabold text-primary sm:text-3xl">
+                    <span className="block text-2xl font-semibold tabular-nums text-primary-text sm:text-3xl">
                       {stat.value}
                     </span>
                     <span className="mt-1 block text-sm text-muted-foreground">{stat.label}</span>
@@ -193,11 +192,11 @@ export default function HomePage() {
                 Ten sections. One live readiness score.
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-balance text-muted-foreground">
-                Illustrative preview with sample data — this is the Brief tab as you work through a
-                project.
+                A real capture of the Brief tab, showing the built-in sample project with fictional
+                data.
               </p>
             </div>
-            <AppPreview />
+            <MacbookMockup />
           </div>
         </section>
 
@@ -219,9 +218,9 @@ export default function HomePage() {
                 return (
                   <div
                     key={feature.title}
-                    className="group rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary hover:shadow-md"
+                    className="group rounded-2xl border border-border bg-card p-6 transition-colors hover:border-border-strong"
                   >
-                    <div className="mb-4 inline-flex size-10 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/15">
+                    <div className="mb-4 inline-flex size-10 items-center justify-center rounded-xl bg-primary-soft">
                       <Icon className="size-5 text-primary-text" aria-hidden="true" />
                     </div>
                     <h3 className="mb-2 text-base font-bold">{feature.title}</h3>
@@ -249,9 +248,9 @@ export default function HomePage() {
               {STEPS.map((step, index) => (
                 <li
                   key={step.title}
-                  className="rounded-2xl border border-border bg-card p-6 shadow-sm"
+                  className="rounded-2xl border border-border bg-card p-6"
                 >
-                  <span className="inline-flex size-9 items-center justify-center rounded-xl bg-primary text-sm font-extrabold text-primary-foreground">
+                  <span className="inline-flex size-9 items-center justify-center rounded-xl bg-primary text-sm font-semibold tabular-nums text-primary-foreground">
                     {index + 1}
                   </span>
                   <h3 className="mb-2 mt-4 text-base font-bold">{step.title}</h3>
@@ -303,9 +302,9 @@ export default function HomePage() {
                 return (
                   <div
                     key={item.title}
-                    className="rounded-2xl border border-border bg-card p-6 text-center shadow-sm"
+                    className="rounded-2xl border border-border bg-card p-6 text-center"
                   >
-                    <span className="mx-auto inline-flex size-10 items-center justify-center rounded-xl bg-primary/10">
+                    <span className="mx-auto inline-flex size-10 items-center justify-center rounded-xl bg-primary-soft">
                       <Icon className="size-5 text-primary-text" aria-hidden="true" />
                     </span>
                     <h3 className="mb-2 mt-4 text-base font-bold">{item.title}</h3>
@@ -318,7 +317,7 @@ export default function HomePage() {
             {/* The trade at the heart of the product, so these two carry real
                 colour rather than the tinted-white the cards above use. */}
             <div className="mt-8 grid gap-6 md:grid-cols-2">
-              <div className="overflow-hidden rounded-2xl border-2 border-trade-good/35 bg-trade-good-soft shadow-sm">
+              <div className="overflow-hidden rounded-2xl border-2 border-trade-good/35 bg-trade-good-soft">
                 <h3 className="flex items-center gap-2.5 border-b-2 border-trade-good/25 bg-trade-good px-6 py-4 text-base font-bold text-white">
                   <ShieldCheck className="size-5 shrink-0" aria-hidden="true" />
                   What you get
@@ -339,7 +338,7 @@ export default function HomePage() {
                 </ul>
               </div>
 
-              <div className="overflow-hidden rounded-2xl border-2 border-trade-cost/35 bg-trade-cost-soft shadow-sm">
+              <div className="overflow-hidden rounded-2xl border-2 border-trade-cost/35 bg-trade-cost-soft">
                 <h3 className="flex items-center gap-2.5 border-b-2 border-trade-cost/25 bg-trade-cost px-6 py-4 text-base font-bold text-white">
                   <TriangleAlert className="size-5 shrink-0" aria-hidden="true" />
                   What that costs you
@@ -395,17 +394,17 @@ export default function HomePage() {
         </section>
 
         {/* Closing CTA ------------------------------------------------------ */}
-        <section className="bg-primary py-20 sm:py-28">
+        <section className="border-t border-border bg-secondary py-20 sm:py-28">
           <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-extrabold text-balance text-primary-foreground sm:text-4xl">
+            <h2 className="text-3xl text-balance sm:text-4xl">
               Ready to write your next brief?
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-balance text-primary-foreground/80">
+            <p className="mx-auto mt-4 max-w-xl text-balance text-muted-foreground">
               No trial to start, no card to enter, no data to hand over. Open it and write.
             </p>
             <a
               href={siteConfig.appUrl}
-              className="mt-8 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-background px-8 text-base font-semibold text-foreground transition-all duration-150 hover:bg-secondary active:scale-[0.98]"
+              className="mt-8 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground transition-all duration-150 hover:bg-primary-hover active:scale-[0.98]"
             >
               Open ReqStudio
               <ArrowRight className="size-4" aria-hidden="true" />
