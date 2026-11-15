@@ -173,7 +173,7 @@ Ochre text on white is 5.6:1, on desk 5.3:1, on amber tint 5.1:1. Charcoal on th
 
 ## Layout
 
-**Site.** Content caps at 1152px (`max-w-6xl`, padding included) with 80px (`py-20`) vertical rhythm. Sections alternate desk and white: hero (desk), product preview (white), features (desk), how it works (white), privacy (desk), FAQ (white), closing call to action (desk). The closing call to action is not an amber band. The nav is a sticky translucent white bar with pill links, the theme toggle and one primary button. The footer is white with a hairline top border: logo left, copyright centred, links right, stacking on mobile. About, Privacy and Terms open as modals from the footer.
+**Site.** Content caps at 1152px (`max-w-6xl`, padding included) with 80px (`py-20`) vertical rhythm. Sections alternate desk and white: hero (desk), product preview (white), features (desk), how it works (white), privacy (desk), FAQ (white), closing call to action (desk). The closing call to action is not an amber band. The nav is a sticky translucent white bar with pill links, the theme toggle and one primary button. The footer is white with a hairline top border: logo left, copyright centred, links right, stacking on mobile. About, Privacy and Terms are their own routes (`/about`, `/privacy`, `/terms`), linked from the footer. Each has the site nav and footer, a Newsreader h1 with an optional badge and description, and a single 20px card on the desk ground, capped at `max-w-3xl`.
 
 **App.** A 56px white top bar (search, save state, theme toggle) over a desk navigation rail (240px, collapsible to 68px) and a white content area. Page content sits in a 1440px container (`rs-page`). The project workspace pins its header and tab bar and scrolls only the active tab.
 

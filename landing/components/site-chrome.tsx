@@ -3,14 +3,18 @@ import { ArrowRight } from 'lucide-react'
 import { siteConfig } from '@/lib/site'
 import { Wordmark } from './logo'
 import { ThemeToggle } from './theme-toggle'
-import { AboutModal, PrivacyModal, TermsModal } from './footer-documents'
 
+// Section anchors are rooted at "/" so they also work from the About, Privacy
+// and Terms pages, where a bare "#features" would point at nothing.
 const NAV_LINKS = [
-  { href: '#features', label: 'Features' },
-  { href: '#how-it-works', label: 'How it works' },
-  { href: '#privacy', label: 'Privacy' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '/#features', label: 'Features' },
+  { href: '/#how-it-works', label: 'How it works' },
+  { href: '/#privacy', label: 'Privacy' },
+  { href: '/#faq', label: 'FAQ' },
 ]
+
+const FOOTER_LINK =
+  'text-muted-foreground transition-colors hover:text-foreground'
 
 export function SiteHeader() {
   return (
@@ -62,14 +66,20 @@ export function SiteFooter() {
         </p>
 
         <nav aria-label="Footer" className="flex items-center gap-5 text-sm">
-          <AboutModal />
-          <PrivacyModal />
-          <TermsModal />
+          <Link href="/about" className={FOOTER_LINK}>
+            About
+          </Link>
+          <Link href="/privacy" className={FOOTER_LINK}>
+            Privacy
+          </Link>
+          <Link href="/terms" className={FOOTER_LINK}>
+            Terms
+          </Link>
           <a
             href={siteConfig.repoUrl}
             target="_blank"
             rel="noreferrer"
-            className="text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+            className={FOOTER_LINK}
           >
             GitHub
           </a>
