@@ -6,7 +6,7 @@ import Image from 'next/image'
  * The light capture shows in light mode and the dark one in dark mode, swapped
  * with CSS so there is no flash. Captures are 2880x1800 PNGs of the fictional
  * sample project in `public/mockups/`. Retake them whenever the app chrome
- * changes and bump the `-v1` suffix so caches refresh.
+ * changes and bump the `-v2` suffix so caches refresh.
  *
  * The device colours are literal on purpose: it is a picture of hardware, so
  * it does not follow the theme tokens.
@@ -28,7 +28,7 @@ export function MacbookMockup() {
           />
           <div className="relative aspect-[16/10] overflow-hidden rounded-[6px] bg-background sm:rounded-[8px]">
             <Image
-              src="/mockups/workspace-light-v1.png"
+              src="/mockups/workspace-light-v2.png"
               alt=""
               width={2880}
               height={1800}
@@ -36,7 +36,7 @@ export function MacbookMockup() {
               className="absolute inset-0 size-full dark:hidden"
             />
             <Image
-              src="/mockups/workspace-dark-v1.png"
+              src="/mockups/workspace-dark-v2.png"
               alt=""
               width={2880}
               height={1800}

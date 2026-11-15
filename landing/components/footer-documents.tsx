@@ -20,7 +20,7 @@ import packageJson from '../package.json'
 const STACK: Array<{ group: string; items: string }> = [
   { group: 'Framework', items: 'React 19, TypeScript (strict mode), Vite' },
   { group: 'Styling', items: 'Tailwind CSS v4, shadcn-style components on Radix UI primitives' },
-  { group: 'Icons & type', items: 'Lucide, Manrope (self-hosted)' },
+  { group: 'Icons & type', items: 'Lucide, Newsreader and DM Sans (self-hosted)' },
   { group: 'State', items: 'Zustand — separate UI, project-view and settings stores' },
   { group: 'Forms & validation', items: 'React Hook Form with Zod schemas generated from field descriptors' },
   { group: 'Routing', items: 'React Router' },

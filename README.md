@@ -35,7 +35,7 @@ Lucide · Zustand · React Hook Form · Zod · React Router · Dexie (IndexedDB)
 
 Everything is static — there is no backend.
 
-**Vercel** — one project, `reqstudioapp`, connected to this repository, so a push to `main` deploys to
+**Vercel** — one project (named `reqstudioapp`, served at `getreqstudio.vercel.app`) connected to this repository, so a push to `main` deploys to
 production and every branch gets a preview URL. `npm run build` (`scripts/build.mjs`) assembles one
 site into `dist/`: the marketing landing page ([`landing/`](landing), a static Next.js export) at the
 root, and the app (built with `VITE_BASE=/app/`) at `/app/`. `vercel.json` carries the SPA rewrite for
@@ -184,8 +184,8 @@ WCAG AA is a build constraint, not a pass at the end. Skip link; single `<h1>` p
 controls with `aria-describedby` wiring help text and errors through one `FieldShell`; `role="alert"`
 on validation messages; `aria-live` on save status and toasts; visible focus rings on every
 interactive element; full keyboard operation including ⌘K search with arrow-key navigation;
-`prefers-reduced-motion` honoured. The palette was chosen against contrast ratios — `#C74504` on
-white is 4.9:1, and both themes are checked independently.
+`prefers-reduced-motion` honoured. The palette was chosen against contrast ratios — ochre `#826400` text on
+white is 5.6:1, charcoal on the amber fill is 6.8:1, and both themes are checked independently.
 
 ---
 

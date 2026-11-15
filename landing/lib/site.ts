@@ -13,7 +13,7 @@ export const siteConfig = {
   metaTagline: 'Project briefs that stay on your machine',
   description:
     'A free, local-first studio for project requirements and website briefs. Ten guided sections, a live readiness score, and autosave — with no account, no server and no tracking.',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://reqstudioapp.vercel.app',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://getreqstudio.vercel.app',
   appUrl: process.env.NEXT_PUBLIC_APP_URL ?? '/app/',
   repoUrl: 'https://github.com/prabhu-cg/ReqStudio',
 
