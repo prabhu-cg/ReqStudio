@@ -2,16 +2,8 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { siteConfig } from '@/lib/site'
 import { Wordmark } from './logo'
+import { SectionNav } from './section-nav'
 import { ThemeToggle } from './theme-toggle'
-
-// Section anchors are rooted at "/" so they also work from the About, Privacy
-// and Terms pages, where a bare "#features" would point at nothing.
-const NAV_LINKS = [
-  { href: '/#features', label: 'Features' },
-  { href: '/#how-it-works', label: 'How it works' },
-  { href: '/#privacy', label: 'Privacy' },
-  { href: '/#faq', label: 'FAQ' },
-]
 
 const FOOTER_LINK =
   'text-muted-foreground transition-colors hover:text-foreground'
@@ -26,17 +18,7 @@ export function SiteHeader() {
           <Wordmark />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="rounded-full px-3 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        <SectionNav />
 
         <div className="flex items-center gap-2 justify-self-end">
           <ThemeToggle />

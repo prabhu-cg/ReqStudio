@@ -115,6 +115,13 @@
   color-scheme: dark;
 }
 
+/* Anchor targets sit just under the 64px sticky header, and take focus on
+   arrival (see lib/scroll.ts) without drawing a ring around the whole band. */
+section[id] {
+  scroll-margin-top: 4rem;
+  outline: none;
+}
+
 @layer base {
   * {
     border-color: var(--color-border);

@@ -17,6 +17,8 @@ import {
 import { siteConfig } from '@/lib/site'
 import { Logo } from '@/components/logo'
 import { MacbookMockup } from '@/components/macbook-mockup'
+import { AnchorLink } from '@/components/anchor-link'
+import { ScrollOnArrival } from '@/components/scroll-on-arrival'
 import { SiteFooter, SiteHeader } from '@/components/site-chrome'
 
 const STATS = [
@@ -105,6 +107,7 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
+      <ScrollOnArrival />
 
       <main id="main">
         {/* Hero ------------------------------------------------------------ */}
@@ -152,12 +155,9 @@ export default function HomePage() {
                 Start a brief — free
                 <ArrowRight className="size-4" aria-hidden="true" />
               </a>
-              <a
-                href="#how-it-works"
-                className="inline-flex h-11 w-full items-center justify-center rounded-full border border-border-strong bg-background px-8 text-base font-semibold text-foreground transition-all duration-150 hover:bg-muted active:scale-[0.98] sm:w-auto"
-              >
+              <AnchorLink id="how-it-works" className="inline-flex h-11 w-full items-center justify-center rounded-full border border-border-strong bg-background px-8 text-base font-semibold text-foreground transition-all duration-150 hover:bg-muted active:scale-[0.98] sm:w-auto">
                 See how it works
-              </a>
+              </AnchorLink>
             </div>
 
               <p className="mt-4 text-sm text-muted-foreground">
@@ -201,7 +201,7 @@ export default function HomePage() {
         </section>
 
         {/* Features --------------------------------------------------------- */}
-        <section id="features" className="border-y border-border bg-secondary py-20 sm:py-28">
+        <section id="features" tabIndex={-1} className="border-y border-border bg-secondary py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mb-14 text-center">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
@@ -233,7 +233,7 @@ export default function HomePage() {
         </section>
 
         {/* How it works ----------------------------------------------------- */}
-        <section id="how-it-works" className="py-20 sm:py-28">
+        <section id="how-it-works" tabIndex={-1} className="py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mb-14 text-center">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
@@ -262,7 +262,7 @@ export default function HomePage() {
         </section>
 
         {/* Privacy ---------------------------------------------------------- */}
-        <section id="privacy" className="border-y border-border bg-secondary py-20 sm:py-28">
+        <section id="privacy" tabIndex={-1} className="border-y border-border bg-secondary py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mb-14 text-center">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">
@@ -373,7 +373,7 @@ export default function HomePage() {
         </section>
 
         {/* FAQ -------------------------------------------------------------- */}
-        <section id="faq" className="py-20 sm:py-28">
+        <section id="faq" tabIndex={-1} className="py-20 sm:py-28">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mb-14 text-center">
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary-text">

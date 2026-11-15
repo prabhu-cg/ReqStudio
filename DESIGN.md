@@ -120,6 +120,7 @@ Two surfaces share one system. The **site** persuades: desk and white bands alte
 - **Light or dark, nothing else.** Light is the default; there is no system option. A toggle sits in the app's top bar and the site's nav. In the app the choice is stored in `localStorage` (`reqstudio.settings`); on the site in `reqstudio-theme`. Both are applied on `<html class="dark">` by an inline script before first paint. Dark is a warm charcoal ramp (`#141312` ground, `#1c1b19` cards), never neutral grey.
 - **Honest about what is simulated.** Site captures are labelled "Sample project — fictional data" and show the bundled fictional sample project.
 - **Motion explains state.** A 2% press scale on buttons, short fades on overlays, a 2px lift on clickable cards. Reduced motion drops all travel.
+- **Anchor links glide.** On the site, the nav's section links and the hero's "See how it works" glide to their section (`landing/lib/scroll.ts`): exponential ease-out, 450–900ms scaled to distance, landing 64px under the sticky header, stopped instantly by wheel, touch, keys or scrollbar. A butter pill slides behind the nav link of the section in view. From About, Privacy or Terms a section link returns home and glides on arrival. Under reduced motion the jump is instant and the pill does not slide, but focus still moves to the section.
 
 ## Colors
 
